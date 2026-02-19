@@ -246,7 +246,7 @@ export default withMermaid(defineConfig({
       ],
     },
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/openclaw/openclaw' },
+      { icon: 'github', link: 'https://github.com/yeuxuan/openclaw-docs' },
     ],
     darkModeSwitchLabel: '主题',
     darkModeSwitchTitle: '切换暗色模式',
