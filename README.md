@@ -18,12 +18,6 @@
 
 ---
 
-## ⭐ Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=openclaw/openclaw&type=Date)](https://star-history.com/#openclaw/openclaw&Date)
-
----
-
 ## 🚀 本地运行
 
 ```bash
@@ -62,3 +56,9 @@ openclaw-docs/
 └── docs/.vitepress/
     └── config.mts                        # 站点配置（导航、侧边栏）
 ```
+
+---
+
+## ⭐ Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=openclaw/openclaw&type=Date)](https://star-history.com/#openclaw/openclaw&Date)
