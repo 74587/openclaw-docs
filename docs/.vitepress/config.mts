@@ -117,6 +117,31 @@ const jsonLd = JSON.stringify({
 })
 
 export default withMermaid(defineConfig({
+  markdown: {
+    config(md) {
+      // vitepress-plugin-mermaid overrides VitePress's highlight function,
+      // bypassing the {{ }} escaping that VitePress normally applies to code blocks.
+      // Re-apply escaping by wrapping the fence and code_inline renderers.
+      const escapeBraces = (html: string) =>
+        html.replace(/\{\{/g, '&#123;&#123;').replace(/\}\}/g, '&#125;&#125;')
+
+      const origFence = md.renderer.rules.fence
+      md.renderer.rules.fence = function (tokens, idx, options, env, self) {
+        const result = origFence
+          ? origFence.call(this, tokens, idx, options, env, self)
+          : self.renderToken(tokens, idx, options)
+        return escapeBraces(result)
+      }
+
+      const origCodeInline = md.renderer.rules.code_inline
+      md.renderer.rules.code_inline = function (tokens, idx, options, env, self) {
+        const result = origCodeInline
+          ? origCodeInline.call(this, tokens, idx, options, env, self)
+          : self.renderToken(tokens, idx, options)
+        return escapeBraces(result)
+      }
+    },
+  },
   lang: 'zh-CN',
   title: 'OpenClaw 源码剖析与指南',
   titleTemplate: ':title | OpenClaw Docs',

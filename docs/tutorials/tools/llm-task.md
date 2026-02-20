@@ -126,7 +126,7 @@ LLM Task 是一个插件工具，允许当前 Agent 向另一个 LLM（大语言
 Lobster 工作流支持将 LLM Task 作为工作流节点使用，实现更复杂的多模型协作：
 
 ::: details Lobster 工作流示例
-在 Lobster 工作流编辑器中，你可以添加"LLM Task"节点。`prompt` 中用 `{{input}}` 引用输入，用 `{{步骤id.output}}` 引用前序步骤输出：
+在 Lobster 工作流编辑器中，你可以添加"LLM Task"节点。`prompt` 中用 <code v-pre>{{input}}</code> 引用输入，用 <code v-pre>{{步骤id.output}}</code> 引用前序步骤输出：
 
 ```yaml
 # 工作流示例（伪代码）
