@@ -139,7 +139,7 @@ sidebarTitle: "配置示例"
         models: [
           { provider: "openai", model: "gpt-4o-mini-transcribe" },
           // 可选 CLI 回退（Whisper 二进制）：
-          // { type: "cli", command: "whisper", args: ["--model", "base", "{{MediaPath}}"] }
+          // { type: "cli", command: "whisper", args: ["--model", "base", "<MediaPath>"] }
         ],
         timeoutSeconds: 120,
       },
@@ -371,9 +371,9 @@ sidebarTitle: "配置示例"
         action: "agent",
         wakeMode: "now",
         name: "Gmail",
-        sessionKey: "hook:gmail:{{messages[0].id}}",
-        messageTemplate: "From: {{messages[0].from}}\nSubject: {{messages[0].subject}}",
-        textTemplate: "{{messages[0].snippet}}",
+        sessionKey: "hook:gmail:<message-id>",
+        messageTemplate: "From: <sender>\nSubject: <subject>",
+        textTemplate: "<snippet>",
         deliver: true,
         channel: "last",
         to: "+15555550123",

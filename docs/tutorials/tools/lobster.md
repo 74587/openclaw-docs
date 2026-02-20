@@ -33,9 +33,7 @@ openclaw plugins install lobster
 
 ## 工作流文件格式
 
-工作流使用 YAML 格式定义：
-
-<div v-pre>
+工作流使用 YAML 格式定义，步骤之间可通过 `{{步骤id.result}}` 引用前序步骤的输出：
 
 ```yaml
 name: "数据分析工作流"
@@ -47,15 +45,19 @@ steps:
 
   - id: analyze
     type: llm
-    prompt: "分析以下数据，提取关键趋势：\n\n{{fetch.result}}"
+    # 通过 <fetch.result> 引用上一步输出
+    prompt: "分析以下数据，提取关键趋势"
     output: json
 
   - id: report
     type: llm
-    prompt: "根据以下分析结果生成一份执行摘要：\n\n{{analyze.result}}"
+    # 通过 <analyze.result> 引用分析结果
+    prompt: "根据分析结果生成执行摘要"
 ```
 
-</div>
+::: tip 步骤引用语法
+在 `prompt` 字段中，用 `{{步骤id.result}}` 引用任意前序步骤的输出内容。例如：`{{fetch.result}}` 引用 `fetch` 步骤的返回值。
+:::
 
 ::: details 完整工作流参数说明
 
@@ -76,9 +78,7 @@ steps:
 
 ### 顺序模式（Sequential）
 
-步骤按定义顺序依次执行，后续步骤可以引用前面步骤的输出：
-
-<div v-pre>
+步骤按定义顺序依次执行，后续步骤可以引用前面步骤的输出（用 `{{step1.result}}` 语法）：
 
 ```yaml
 steps:
@@ -88,16 +88,13 @@ steps:
 
   - id: step2
     type: llm
-    prompt: "根据大纲写正文：{{step1.result}}"
+    # prompt 中用 <step1.result> 引用大纲内容
+    prompt: "根据大纲写正文"
 ```
-
-</div>
 
 ### 并行模式（Parallel）
 
 多个步骤同时执行，加速处理效率：
-
-<div v-pre>
 
 ```yaml
 steps:
@@ -113,42 +110,37 @@ steps:
 
   - id: summarize
     type: llm
-    prompt: "综合以下信息：\n新闻：{{fetch_news.result}}\n数据：{{fetch_data.result}}"
+    # 用 <fetch_news.result> 和 <fetch_data.result> 引用并行输出
+    prompt: "综合新闻和数据，生成报告"
 ```
-
-</div>
 
 ---
 
 ## JSON-only LLM 步骤
 
-在需要结构化输出的步骤中，可以强制 LLM 以 JSON 格式响应：
-
-<div v-pre>
+在需要结构化输出的步骤中，可以强制 LLM 以 JSON 格式响应。通过 `{{步骤id.result}}` 引用前序步骤的原始文本作为输入：
 
 ```yaml
 - id: extract
   type: llm
   output: json
+  # 用 <fetch.result> 引用 fetch 步骤获取的网页内容
   prompt: |
     从以下文本中提取结构化信息，以 JSON 格式返回：
     {"title": "...", "author": "...", "date": "..."}
-
-    文本内容：{{fetch.result}}
 ```
-
-</div>
 
 ---
 
 ## 审批节点（Approval）
 
-在关键步骤前加入人工审批，防止自动化流程产生不可逆操作：
+在关键步骤前加入人工审批，防止自动化流程产生不可逆操作。消息中也可引用前序步骤的变量（如 `{{recipient}}`）：
 
 ```yaml
 - id: confirm_send
   type: approval
-  message: "即将发送邮件给 {{recipient}}，确认继续？"
+  # 消息中可用 {{变量名}} 引用上下文数据
+  message: "即将发送邮件，确认继续？"
   timeout: 300  # 等待 5 分钟，超时则中止
 ```
 
