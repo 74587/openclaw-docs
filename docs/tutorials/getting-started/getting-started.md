@@ -13,21 +13,70 @@ OpenClaw 是一个运行在你自己电脑上的 AI 助手平台。安装完成�
 
 ## 第一步：准备 API 密钥
 
-OpenClaw 本身是免费的，但它需要借助 AI 服务（比如 Anthropic 的 Claude）来产生智能回复。**你需要提前准备好一个 API 密钥。**
+OpenClaw 本身是免费的，但它需要借助第三方 AI 服务来产生智能回复。**你需要提前准备好一个 AI API 密钥。**
 
-::: tip 推荐使用 Anthropic（Claude）
-Claude 中文理解能力强，也是 OpenClaw 官方首选。
+::: info API 提供商不限于 Anthropic
+你可以自由选择任意支持的 AI 服务商，无需绑定某一家。下面列出了常见的几种选择，按需挑选即可。
 :::
 
-**如何获取 Anthropic API 密钥：**
+### 可选的 AI 提供商
 
-1. 打开浏览器，访问 [console.anthropic.com](https://console.anthropic.com)
-2. 注册账号并登录
-3. 点击左侧菜单 **"API Keys"**，再点击 **"Create Key"**
-4. 给密钥起个名字（随便写），点击确认
-5. **立刻复制这串密钥**（以 `sk-ant-` 开头）——它只显示一次！
+| 提供商 | 模型 | 特点 | 适合人群 |
+|--------|------|------|----------|
+| **Anthropic（Claude）** ⭐ | Claude 3.5 / 3 系列 | 中文能力强，推理准确，官方首选 | 追求综合质量 |
+| **DeepSeek** | DeepSeek-V3 / R1 | 价格极低，中文优秀，国内可直连 | 国内用户、性价比优先 |
+| **OpenAI（ChatGPT）** | GPT-4o / o1 系列 | 生态成熟，插件丰富 | 已有 OpenAI 账号 |
+| **Google Gemini** | Gemini 1.5 / 2.0 系列 | 多模态能力强，免费额度大 | 想免费试用 |
+| **阿里云百炼（通义千问）** | Qwen-Max / Plus | 国内服务，无需翻墙，支付宝充值 | 国内用户、合规需求 |
 
-> 也可以使用 OpenAI（ChatGPT）的密钥，在 [platform.openai.com](https://platform.openai.com) 注册获取。
+---
+
+### 各平台获取密钥方法
+
+::: details Anthropic（Claude）— 官方推荐
+1. 访问 [console.anthropic.com](https://console.anthropic.com)，注册并登录
+2. 点击左侧菜单 **"API Keys"** → **"Create Key"**
+3. 给密钥起个名字，点击确认
+4. **立刻复制**这串密钥（以 `sk-ant-` 开头）——**只显示一次！**
+
+> 需要信用卡充值，国内需要翻墙访问。
+:::
+
+::: details DeepSeek — 国内首选，超高性价比
+1. 访问 [platform.deepseek.com](https://platform.deepseek.com)，注册并登录
+2. 点击右上角头像 → **"API Keys"** → **"创建 API Key"**
+3. 复制密钥（以 `sk-` 开头）
+
+> 支持微信 / 支付宝充值，国内直连，价格极低。
+:::
+
+::: details OpenAI（ChatGPT）
+1. 访问 [platform.openai.com](https://platform.openai.com)，支持用 **Google / Microsoft 账号 OAuth 登录**，无需单独注册
+2. 点击左侧 **"API Keys"** → **"Create new secret key"**
+3. 复制密钥（以 `sk-` 开头）
+
+> 需要信用卡充值，国内需要翻墙访问。
+:::
+
+::: details Google Gemini
+1. 访问 [aistudio.google.com](https://aistudio.google.com)，用 Google 账号登录
+2. 点击左侧 **"Get API key"** → **"Create API key"**
+3. 复制生成的密钥
+
+> 有免费额度，国内需要翻墙访问。
+:::
+
+::: details 阿里云百炼（通义千问）
+1. 访问 [bailian.console.aliyun.com](https://bailian.console.aliyun.com)，用阿里云账号登录
+2. 点击右上角 **"API-KEY"** → **"创建 API-KEY"**
+3. 复制密钥（以 `sk-` 开头）
+
+> 国内直连，支持支付宝充值，有免费试用额度。
+:::
+
+---
+
+拿到密钥后，在安装配置时填入对应字段即可。
 
 ---
 
