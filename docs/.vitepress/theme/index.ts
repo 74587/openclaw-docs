@@ -82,7 +82,8 @@ const MODAL_HTML = /* html */`
   </div>
 
   <div class="oc-dz-topbar" aria-hidden="true">
-    <span class="oc-dz-hint">滚轮缩放 &nbsp;·&nbsp; 拖拽平移 &nbsp;·&nbsp; 双击还原</span>
+    <span class="oc-dz-hint oc-dz-hint--mouse">滚轮缩放 &nbsp;·&nbsp; 拖拽平移 &nbsp;·&nbsp; 双击还原</span>
+    <span class="oc-dz-hint oc-dz-hint--touch">双指缩放 &nbsp;·&nbsp; 单指平移 &nbsp;·&nbsp; 双击还原</span>
   </div>
 
   <button class="oc-dz-close" title="关闭 (Esc)" aria-label="关闭">

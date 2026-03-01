@@ -253,6 +253,7 @@ export default withMermaid(defineConfig({
     ]
   },
   themeConfig: {
+    siteTitle: 'OpenClaw 文档',
     search: {
       provider: 'local',
       options: {
