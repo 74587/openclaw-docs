@@ -1,6 +1,7 @@
 ---
 title: "智能体循环"
 sidebarTitle: "智能体循环"
+description: "OpenClaw 核心概念：智能体循环（Agent Loop）（OpenClaw）。智能体循环（Agent Loop）是智能体（Agent）的完整\"真实\"运行过程：接收输入 → 上下文（Contex…"
 ---
 
 # 智能体循环（Agent Loop）（OpenClaw）

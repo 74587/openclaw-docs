@@ -1,6 +1,7 @@
 ---
 title: "创建自定义技能"
 sidebarTitle: "创建技能"
+description: "OpenClaw 工具系统：创建自定义技能（Creating Skills）。你可以创建自己的技能（Skills），让 Agent 掌握特定领域的专业知识、固定流程或行为规范。技能以 Markdow…"
 ---
 
 # 创建自定义技能（Creating Skills）

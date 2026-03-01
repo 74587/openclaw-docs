@@ -2,6 +2,7 @@
 title: 沙箱（Sandbox）
 sidebarTitle: "沙箱"
 status: active
+description: "OpenClaw Gateway：沙箱（Sandbox）。OpenClaw 可以在 Docker 容器中运行工具以减少爆炸半径。这是可选的，由配置控制（ 或 ）。如果沙箱（Sandbox）关闭，工具…"
 ---
 
 # 沙箱（Sandbox）

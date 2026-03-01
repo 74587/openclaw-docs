@@ -1,6 +1,7 @@
 ---
 title: "OpenAI"
 sidebarTitle: "OpenAI"
+description: "OpenClaw 模型接入：OpenAI。OpenAI 提供 GPT 模型的开发者 API。Codex 支持 ChatGPT 登录（订阅访问）或 API 密钥登录（按量计费）。Codex 云端需要 …"
 ---
 
 # OpenAI

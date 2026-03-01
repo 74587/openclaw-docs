@@ -1,6 +1,7 @@
 ---
 title: "提升模式"
 sidebarTitle: "提升模式"
+description: "OpenClaw 工具系统：提升模式（Elevated Mode）。提升模式（Elevated Mode）通过  指令临时提升 Agent 的命令执行权限，让更多命令可以自动执行，无需逐次确认。这适…"
 ---
 
 # 提升模式（Elevated Mode）

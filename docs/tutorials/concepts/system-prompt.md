@@ -1,6 +1,7 @@
 ---
 title: "系统提示词"
 sidebarTitle: "系统提示词"
+description: "OpenClaw 核心概念：系统提示词（System Prompt）。OpenClaw 为每次智能体运行构建自定义系统提示词。该提示词由 OpenClaw 拥有，不使用 pi-coding-agen…"
 ---
 
 # 系统提示词（System Prompt）

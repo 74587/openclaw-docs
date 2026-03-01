@@ -1,6 +1,7 @@
 ---
 title: "群组"
 sidebarTitle: "群组"
+description: "OpenClaw 通道接入：群组。OpenClaw 在不同平台上统一处理群组聊天：WhatsApp、Telegram、Discord、Slack、Signal、iMessage、Microsoft …"
 ---
 
 # 群组

@@ -1,6 +1,7 @@
 ---
 title: "iMessage"
 sidebarTitle: "iMessage"
+description: "OpenClaw 通道接入：iMessage（旧版：imsg）。对于新的 iMessage 部署，请使用 BlueBubbles。"
 ---
 
 # iMessage（旧版：imsg）

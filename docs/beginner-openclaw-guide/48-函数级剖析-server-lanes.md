@@ -1,3 +1,6 @@
+---
+description: "OpenClaw 源码剖析：函数级剖析：server-lanes。这是\"配置 → 并发控制\"的唯一桥接点。 Gateway 启动、热重载时都会调它，不走这里， 里改的并发数不会真正生效。"
+---
 # 48 函数级剖析：server-lanes
 
 核心文件：`src/gateway/server-lanes.ts`

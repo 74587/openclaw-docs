@@ -1,6 +1,7 @@
 ---
 title: "BlueBubbles"
 sidebarTitle: "BlueBubbles"
+description: "OpenClaw 通道接入：BlueBubbles（macOS REST）。状态：内置插件，通过 HTTP 与 BlueBubbles macOS 服务器通信。推荐用于 iMessage 集成，相比…"
 ---
 
 # BlueBubbles（macOS REST）

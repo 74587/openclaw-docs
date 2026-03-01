@@ -1,6 +1,7 @@
 ---
 title: "调试指南"
 sidebarTitle: "调试"
+description: "OpenClaw 帮助：调试指南（Debugging Guide）。当 Agent 行为异常或请求没有按预期执行时，开启调试模式能让你看到 OpenClaw 与 AI 模型之间的完整通信细节，快速定…"
 ---
 
 # 调试指南（Debugging Guide）

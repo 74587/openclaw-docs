@@ -1,6 +1,7 @@
 ---
 title: "认证"
 sidebarTitle: "认证"
+description: "OpenClaw Gateway：认证。OpenClaw 支持 OAuth 和 API 密钥用于模型提供商（Provider）认证。对于 Anthropic 账户，我们推荐使用 API 密钥。对于 …"
 ---
 
 # 认证

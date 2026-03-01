@@ -1,6 +1,7 @@
 ---
 title: "会话修剪"
 sidebarTitle: "会话修剪"
+description: "OpenClaw 核心概念：会话修剪（Session Pruning）。会话修剪在每次 LLM 调用之前从内存上下文中修剪 旧的工具结果。它 不会 重写磁盘上的会话历史（）。"
 ---
 
 # 会话修剪（Session Pruning）

@@ -1,6 +1,7 @@
 ---
 title: "Cron 与 Heartbeat 对比"
 sidebarTitle: "Cron vs Heartbeat"
+description: "OpenClaw 自动化：Cron 与 Heartbeat 对比（Cron vs Heartbeat）。OpenClaw 提供两种让 Agent 持续运行的机制：心跳（Heartbeat）和定时任务…"
 ---
 
 # Cron 与 Heartbeat 对比（Cron vs Heartbeat）

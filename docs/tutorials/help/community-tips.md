@@ -1,6 +1,7 @@
 ---
 title: "社区实践技巧（Skills、MCP、钉钉、多人格）"
 sidebarTitle: "社区实践技巧"
+description: "OpenClaw 帮助：社区实践技巧。本文汇整了社区用户在实际使用 OpenClaw 过程中总结的常见配置技巧，涵盖 Skills 安装、MCP 集成、钉钉接入与多人格配置四个主题。每个部分侧重实操…"
 ---
 
 # 社区实践技巧

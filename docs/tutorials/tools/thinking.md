@@ -1,6 +1,7 @@
 ---
 title: "思考模式"
 sidebarTitle: "思考模式"
+description: "OpenClaw 工具系统：思考模式（Thinking Mode）。思考模式（Thinking Mode）通过  指令激活 Claude 的扩展思考（Extended Thinking）功能。开启后…"
 ---
 
 # 思考模式（Thinking Mode）

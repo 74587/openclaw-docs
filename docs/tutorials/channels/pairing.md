@@ -1,6 +1,7 @@
 ---
 title: "配对"
 sidebarTitle: "配对"
+description: "OpenClaw 通道接入：配对。\"配对\"是 OpenClaw 的显式所有者批准步骤。 它用于两个场景："
 ---
 
 # 配对

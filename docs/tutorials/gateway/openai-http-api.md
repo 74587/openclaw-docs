@@ -1,6 +1,7 @@
 ---
 title: "OpenAI Chat Completions"
 sidebarTitle: "OpenAI Chat Completions"
+description: "OpenClaw Gateway：OpenAI Chat Completions（HTTP）。OpenClaw 的网关（Gateway）可以提供一个小型的 OpenAI 兼容 Chat Comple…"
 ---
 
 # OpenAI Chat Completions（HTTP）

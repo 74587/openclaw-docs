@@ -1,6 +1,7 @@
 ---
 title: "输入指示器"
 sidebarTitle: "输入指示器"
+description: "OpenClaw 核心概念：输入指示器（Typing Indicators）。当运行活跃时，输入指示器会发送到聊天通道。使用  控制 何时 开始输入，使用  控制 多久 刷新一次。"
 ---
 
 # 输入指示器（Typing Indicators）

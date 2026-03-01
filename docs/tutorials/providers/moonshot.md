@@ -1,6 +1,7 @@
 ---
 title: "Moonshot AI"
 sidebarTitle: "Moonshot AI"
+description: "OpenClaw 模型接入：Moonshot AI (Kimi)。Moonshot 提供具有 OpenAI 兼容端点的 Kimi API。配置提供商并将默认模型设置为 ，或使用 Kimi Codin…"
 ---
 
 # Moonshot AI (Kimi)

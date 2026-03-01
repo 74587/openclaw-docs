@@ -1,6 +1,7 @@
 ---
 title: "文档中心"
 sidebarTitle: "文档中心"
+description: "OpenClaw 快速入门：文档中心。如果你是 OpenClaw 的新用户，请从 快速入门 开始。"
 ---
 
 # 文档中心

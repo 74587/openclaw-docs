@@ -1,6 +1,7 @@
 ---
 title: "自定义模型提供商"
 sidebarTitle: "自定义提供商"
+description: "OpenClaw 模型接入：自定义模型提供商。OpenClaw 内置了对主流 AI 服务商的支持，同时也允许你通过  配置接入任意兼容 OpenAI / Anthropic / Google 协议的…"
 ---
 
 # 自定义模型提供商

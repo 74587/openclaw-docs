@@ -1,6 +1,7 @@
 ---
 title: "Hugging Face（推理）"
 sidebarTitle: "Hugging Face"
+description: "OpenClaw 模型接入：Hugging Face（推理）。Hugging Face 推理提供商通过单一路由 API 提供 OpenAI 兼容的聊天补全。你只需一个 Token 即可访问多种模型（…"
 ---
 
 # Hugging Face（推理）

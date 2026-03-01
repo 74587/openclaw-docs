@@ -1,6 +1,7 @@
 ---
 title: "自动化故障排查"
 sidebarTitle: "故障排查"
+description: "OpenClaw 自动化：自动化故障排查（Troubleshooting）。Cron 不执行、Heartbeat 停了、Webhook 报 401……遇到自动化问题别慌，这里汇总了最常见的问题和对应…"
 ---
 
 # 自动化故障排查（Troubleshooting）

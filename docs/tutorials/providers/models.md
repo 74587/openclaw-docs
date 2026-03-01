@@ -1,6 +1,7 @@
 ---
 title: "模型提供商快速入门"
 sidebarTitle: "模型提供商快速入门"
+description: "OpenClaw 模型接入：模型提供商。OpenClaw 支持多种 LLM 提供商。选择一个提供商，完成认证，然后将默认模型设置为 。"
 ---
 
 # 模型提供商

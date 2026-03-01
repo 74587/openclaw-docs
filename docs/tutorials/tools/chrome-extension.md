@@ -1,6 +1,7 @@
 ---
 title: "Chrome 扩展"
 sidebarTitle: "Chrome 扩展"
+description: "OpenClaw 工具系统：Chrome 扩展（Chrome Extension）。OpenClaw 的 Chrome 扩展让浏览器与 Agent 深度集成，你可以直接在浏览器中控制 Agent、查…"
 ---
 
 # Chrome 扩展（Chrome Extension）

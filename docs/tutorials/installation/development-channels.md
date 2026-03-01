@@ -1,6 +1,7 @@
 ---
 title: "开发通道"
 sidebarTitle: "开发通道"
+description: "OpenClaw 安装部署：开发通道（Development Channels）。最后更新：2026-01-21"
 ---
 
 # 开发通道（Development Channels）

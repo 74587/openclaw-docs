@@ -1,6 +1,7 @@
 ---
 title: "入门引导概述"
 sidebarTitle: "入门引导概述"
+description: "OpenClaw 快速入门：入门引导概述。OpenClaw 支持多种入门引导路径，具体取决于网关（Gateway）的运行位置以及你偏好的提供商配置方式。"
 ---
 
 # 入门引导概述

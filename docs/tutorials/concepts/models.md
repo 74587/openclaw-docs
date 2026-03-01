@@ -1,6 +1,7 @@
 ---
 title: "模型 CLI"
 sidebarTitle: "模型 CLI"
+description: "OpenClaw 核心概念：模型 CLI。参见 /concepts/model-failover 了解认证配置文件轮换、冷却以及与回退的交互方式。 快速提供商概览 + 示例：/concepts/mo…"
 ---
 
 # 模型 CLI

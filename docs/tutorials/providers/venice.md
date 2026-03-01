@@ -1,6 +1,7 @@
 ---
 title: "Venice AI"
 sidebarTitle: "Venice AI"
+description: "OpenClaw 模型接入：Venice AI（Venice 推荐方案）。Venice 是我们推荐的 Venice 配置方案，提供隐私优先的推理服务，并可选择通过匿名代理访问专有模型。"
 ---
 
 # Venice AI（Venice 推荐方案）

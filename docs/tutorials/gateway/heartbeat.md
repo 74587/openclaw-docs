@@ -1,6 +1,7 @@
 ---
 title: "心跳"
 sidebarTitle: "心跳"
+description: "OpenClaw Gateway：心跳（网关（Gateway））。> 心跳 vs 定时任务？ 参阅 Cron vs Heartbeat 了解何时使用哪种方式。"
 ---
 
 # 心跳（网关（Gateway））

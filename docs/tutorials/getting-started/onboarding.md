@@ -1,6 +1,7 @@
 ---
 title: "macOS App 首次启动指南"
 sidebarTitle: "macOS App 首次启动"
+description: "OpenClaw 快速入门：macOS App 首次启动指南。> 这是 方式一：macOS 桌面应用 的安装指南。 > 如果你想用命令行安装，请看命令行向导安装指南。"
 ---
 
 # macOS App 首次启动指南

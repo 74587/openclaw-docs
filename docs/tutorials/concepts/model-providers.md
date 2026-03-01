@@ -1,6 +1,7 @@
 ---
 title: "模型提供商"
 sidebarTitle: "模型提供商"
+description: "OpenClaw 核心概念：模型提供商（Model Providers）。本页涵盖 LLM/模型提供商（Provider）（非 WhatsApp/Telegram 等聊天通道）。关于模型选择规则，参…"
 ---
 
 # 模型提供商（Model Providers）

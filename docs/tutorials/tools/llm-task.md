@@ -1,6 +1,7 @@
 ---
 title: "LLM 任务工具"
 sidebarTitle: "LLM 任务工具"
+description: "OpenClaw 工具系统：LLM 任务工具（LLM Task）。LLM Task 是一个插件工具，允许当前 Agent 向另一个 LLM（大语言模型）发起子任务。与子智能体不同，LLM Task …"
 ---
 
 # LLM 任务工具（LLM Task）

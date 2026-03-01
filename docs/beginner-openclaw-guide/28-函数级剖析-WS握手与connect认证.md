@@ -1,3 +1,6 @@
+---
+description: "OpenClaw 源码剖析：函数级剖析：WS 握手与 connect 认证。核心文件： -  -  -"
+---
 # 28 函数级剖析：WS 握手与 connect 认证
 
 核心文件：

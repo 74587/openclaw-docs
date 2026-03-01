@@ -1,6 +1,7 @@
 ---
 title: "CLI 后端"
 sidebarTitle: "CLI 后端"
+description: "OpenClaw Gateway：CLI 后端（回退运行时）。OpenClaw 可以运行本地 AI CLI 作为 API 提供商（Provider）不可用、 被限速或暂时异常时的纯文本回退。这是有意…"
 ---
 
 # CLI 后端（回退运行时）

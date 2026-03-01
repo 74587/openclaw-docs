@@ -1,3 +1,6 @@
+---
+description: "OpenClaw 源码剖析：函数级剖析：runEmbeddedAttempt。是单次 LLM 调用尝试的完整生命周期管理器。它不负责 provider/model 轮换（那是  的工作），只负责把当…"
+---
 # 22 函数级剖析：runEmbeddedAttempt
 
 核心文件：`src/agents/pi-embedded-runner/run/attempt.ts`

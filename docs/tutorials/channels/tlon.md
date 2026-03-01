@@ -1,6 +1,7 @@
 ---
 title: "Tlon"
 sidebarTitle: "Tlon"
+description: "OpenClaw 通道接入：Tlon（插件）。Tlon 是一个基于 Urbit 构建的去中心化即时通讯工具。OpenClaw 连接到你的 Urbit ship，可以回复私信和群聊消息。群组回复默认需…"
 ---
 
 # Tlon（插件）

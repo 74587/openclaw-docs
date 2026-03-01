@@ -1,3 +1,6 @@
+---
+description: "OpenClaw 源码剖析：模型与 Provider 体系。理解系统如何管理多提供商模型、别名、白名单、回退与动态发现。"
+---
 # 07 模型与 Provider 体系
 
 ## 模块目标

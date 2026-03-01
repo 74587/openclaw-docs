@@ -1,6 +1,7 @@
 ---
 title: "exe.dev"
 sidebarTitle: "exe.dev"
+description: "OpenClaw 安装部署：exe.dev。目标：在 exe.dev 虚拟机上运行 OpenClaw 网关（Gateway），从你的笔记本电脑通过以下地址访问："
 ---
 
 # exe.dev

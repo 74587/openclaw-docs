@@ -1,6 +1,7 @@
 ---
 title: "CLI 自动化"
 sidebarTitle: "CLI 自动化"
+description: "OpenClaw 快速入门：CLI 自动化。不代表非交互模式。对于脚本，请使用 （和 ）。"
 ---
 
 # CLI 自动化

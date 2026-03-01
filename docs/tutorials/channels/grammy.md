@@ -1,6 +1,7 @@
 ---
 title: grammY
 sidebarTitle: "grammY"
+description: "OpenClaw 通道接入：grammY 集成（Telegram Bot API）。- TypeScript 优先的 Bot API 客户端，内置长轮询 + Webhook 助手、中间件、错误处理、…"
 ---
 
 # grammY 集成（Telegram Bot API）

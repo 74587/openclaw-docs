@@ -1,6 +1,7 @@
 ---
 title: "脚本约定"
 sidebarTitle: "脚本约定"
+description: "OpenClaw 帮助：脚本约定（Script Conventions）。OpenClaw 允许你通过自定义脚本扩展 Agent 的能力。遵循本页的约定，能让你的脚本与 OpenClaw 更好地协作。"
 ---
 
 # 脚本约定（Script Conventions）

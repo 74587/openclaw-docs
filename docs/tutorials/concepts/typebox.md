@@ -1,6 +1,7 @@
 ---
 title: "TypeBox"
 sidebarTitle: "TypeBox"
+description: "OpenClaw 核心概念：TypeBox 作为协议的唯一事实来源。最后更新：2026-01-10"
 ---
 
 # TypeBox 作为协议的唯一事实来源

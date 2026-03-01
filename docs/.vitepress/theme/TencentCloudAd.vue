@@ -8,24 +8,30 @@
       class="tc-ad-link"
       aria-label="腾讯云特惠活动"
     >
-      <img
-        :src="wideSrc"
-        alt="腾讯云特惠活动 · 云服务器、数据库、CDN 新用户专享折扣"
-        class="tc-ad-img tc-ad-img--wide"
-        width="728"
-        height="90"
-        loading="lazy"
-        @error="onError"
-      />
-      <img
-        :src="narrowSrc"
-        alt="腾讯云特惠活动 · 云服务器、数据库、CDN 新用户专享折扣"
-        class="tc-ad-img tc-ad-img--narrow"
-        width="300"
-        height="250"
-        loading="lazy"
-        @error="onError"
-      />
+      <!-- 宽屏：728×90 -->
+      <picture class="tc-ad-img tc-ad-img--wide">
+        <source :srcset="wideWebp" type="image/webp" />
+        <img
+          :src="widePng"
+          alt="腾讯云特惠活动 · 云服务器、数据库、CDN 新用户专享折扣"
+          width="728"
+          height="90"
+          loading="lazy"
+          @error="onError"
+        />
+      </picture>
+      <!-- 移动端：300×250 -->
+      <picture class="tc-ad-img tc-ad-img--narrow">
+        <source :srcset="narrowWebp" type="image/webp" />
+        <img
+          :src="narrowPng"
+          alt="腾讯云特惠活动 · 云服务器、数据库、CDN 新用户专享折扣"
+          width="300"
+          height="250"
+          loading="lazy"
+          @error="onError"
+        />
+      </picture>
     </a>
   </div>
 </template>
@@ -33,10 +39,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-// 用变量绑定而非静态 src，阻止 Vite 将图片转为模块 import
-// 广告拦截器只会拦截 HTTP 请求，不会导致模块崩溃
-const wideSrc = '/assets/cloud/tc-728x90.png'
-const narrowSrc = '/assets/cloud/tc-300x250.png'
+const wideWebp  = '/assets/cloud/tc-728x90.webp'
+const widePng   = '/assets/cloud/tc-728x90.png'
+const narrowWebp = '/assets/cloud/tc-300x250.webp'
+const narrowPng  = '/assets/cloud/tc-300x250.png'
 
 const visible = ref(true)
 let errorCount = 0
@@ -71,7 +77,13 @@ function onError() {
 .tc-ad-img {
   max-width: 100%;
   height: auto;
+}
+
+.tc-ad-img img {
+  max-width: 100%;
+  height: auto;
   border-radius: 6px;
+  display: block;
 }
 
 .tc-ad-img--wide   { display: inline-block; }

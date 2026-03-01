@@ -1,6 +1,7 @@
 ---
 title: "会话工具"
 sidebarTitle: "会话工具"
+description: "OpenClaw 核心概念：会话工具（Session Tools）。目标：小型、难以误用的工具集，以便智能体可以列出会话、获取历史记录并发送到另一个会话。"
 ---
 
 # 会话工具（Session Tools）

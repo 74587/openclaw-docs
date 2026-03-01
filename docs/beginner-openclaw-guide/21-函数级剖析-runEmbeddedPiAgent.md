@@ -1,3 +1,6 @@
+---
+description: "OpenClaw 源码剖析：函数级剖析：runEmbeddedPiAgent。是 embedded agent 的顶层调度函数。负责：双层队列串行化、context window 预检、auth p…"
+---
 # 21 函数级剖析：runEmbeddedPiAgent
 
 核心文件：`src/agents/pi-embedded-runner/run.ts`

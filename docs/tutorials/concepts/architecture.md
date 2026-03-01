@@ -1,6 +1,7 @@
 ---
 title: "OpenClaw 是怎么工作的（系统架构）"
 sidebarTitle: "OpenClaw 是怎么工作的"
+description: "OpenClaw 核心概念：OpenClaw 是怎么工作的？。这篇文章用生活化的语言解释 OpenClaw 的工作原理。不了解技术也没关系，看完你就知道每个部件是干什么的了。"
 ---
 
 # OpenClaw 是怎么工作的？

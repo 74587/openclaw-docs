@@ -1,3 +1,6 @@
+---
+description: "OpenClaw 源码剖析：函数级剖析：HTTP 请求路由与安全网。网关的 HTTP 请求路由层。 是所有 HTTP 请求的统一入口，按固定优先级顺序匹配路由。 处理 WS 升级（Canvas WS…"
+---
 # 36 函数级剖析：HTTP 请求路由与安全网
 
 核心文件：`src/gateway/server-http.ts`

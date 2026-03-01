@@ -1,6 +1,7 @@
 ---
 title: "压缩"
 sidebarTitle: "压缩"
+description: "OpenClaw 核心概念：上下文窗口与压缩（Compaction）。每个模型都有一个 上下文窗口（可以看到的最大 Token 数）。长时间运行的聊天会累积消息和工具结果；一旦窗口接近上限，Open…"
 ---
 
 # 上下文窗口与压缩（Compaction）

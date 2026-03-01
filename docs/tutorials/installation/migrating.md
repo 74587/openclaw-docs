@@ -1,6 +1,7 @@
 ---
 title: "迁移指南"
 sidebarTitle: "迁移指南"
+description: "OpenClaw 安装部署：将 OpenClaw 迁移到新机器。本指南将 OpenClaw 网关（Gateway）从一台机器迁移到另一台，无需重新进行引导。"
 ---
 
 # 将 OpenClaw 迁移到新机器

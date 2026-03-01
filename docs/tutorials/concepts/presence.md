@@ -1,6 +1,7 @@
 ---
 title: "在线状态"
 sidebarTitle: "在线状态"
+description: "OpenClaw 核心概念：在线状态（Presence）。OpenClaw \"在线状态\"是一个轻量级的、尽力而为的视图，展示："
 ---
 
 # 在线状态（Presence）

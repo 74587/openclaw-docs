@@ -1,3 +1,6 @@
+---
+description: "OpenClaw 源码剖析：函数级剖析：server-discovery-runtime。网关启动时的服务发现广播管理器。 负责两路发现机制：mDNS/Bonjour（局域网自动发现）和广域 DNS…"
+---
 # 47 函数级剖析：server-discovery-runtime
 
 核心文件：`src/gateway/server-discovery-runtime.ts`

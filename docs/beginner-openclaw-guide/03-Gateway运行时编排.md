@@ -1,3 +1,6 @@
+---
+description: "OpenClaw 源码剖析：Gateway 运行时编排。理解网关是如何一次性把配置、插件、通道、WS/HTTP、定时器、热重载都编排起来。"
+---
 # 03 Gateway 运行时编排
 
 ## 模块目标

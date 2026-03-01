@@ -1,6 +1,7 @@
 ---
 title: "Bun（实验性）"
 sidebarTitle: "Bun"
+description: "OpenClaw 安装部署：Bun（实验性）。目标：使用 Bun 运行本仓库（可选，不推荐用于 WhatsApp/Telegram），同时不偏离 pnpm 工作流。"
 ---
 
 # Bun（实验性）

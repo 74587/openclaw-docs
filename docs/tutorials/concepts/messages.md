@@ -1,6 +1,7 @@
 ---
 title: "消息"
 sidebarTitle: "消息"
+description: "OpenClaw 核心概念：消息（Messages）。本页将 OpenClaw 处理入站消息、会话（Session）、队列、流式输出（Streaming）和推理可见性的方式串联起来。"
 ---
 
 # 消息（Messages）

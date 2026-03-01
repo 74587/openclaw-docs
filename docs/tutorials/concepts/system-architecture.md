@@ -1,6 +1,7 @@
 ---
 title: "OpenClaw 系统架构详解"
 sidebarTitle: "系统架构详解"
+description: "OpenClaw 核心概念：OpenClaw 系统架构详解。本文从技术视角全面剖析 OpenClaw 的系统架构，适合希望深入理解或二次开发的读者。"
 ---
 
 # OpenClaw 系统架构详解

@@ -1,6 +1,7 @@
 ---
 title: "浏览器手动登录"
 sidebarTitle: "手动登录"
+description: "OpenClaw 工具系统：浏览器手动登录（Manual Login）。有些网站需要滑块验证、短信验证码或 CAPTCHA，Agent 无法自动完成这类人机验证。通过手动登录（Manual Logi…"
 ---
 
 # 浏览器手动登录（Manual Login）

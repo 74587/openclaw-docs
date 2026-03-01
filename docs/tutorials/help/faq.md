@@ -1,6 +1,7 @@
 ---
 title: "常见问题 FAQ"
 sidebarTitle: "FAQ"
+description: "OpenClaw 帮助：常见问题（Frequently Asked Questions）。收集了使用 OpenClaw 时最频繁被问到的问题。如果你刚开始上手，建议先把这页快速过一遍。"
 ---
 
 # 常见问题（Frequently Asked Questions）

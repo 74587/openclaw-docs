@@ -1,6 +1,7 @@
 ---
 title: "Synthetic"
 sidebarTitle: "Synthetic"
+description: "OpenClaw 模型接入：Synthetic。Synthetic 提供 Anthropic 兼容的端点。OpenClaw 将其注册为  提供商，并使用 Anthropic Messages API。"
 ---
 
 # Synthetic

@@ -1,6 +1,7 @@
 ---
 title: "插件系统"
 sidebarTitle: "插件系统"
+description: "OpenClaw 工具系统：插件系统（Plugin System）。插件系统让你能够在不修改 OpenClaw 核心代码的情况下，扩展其功能——添加新工具、接入新的模型提供商、创建新的聊天通道，甚至…"
 ---
 
 # 插件系统（Plugin System）

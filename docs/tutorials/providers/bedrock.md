@@ -1,6 +1,7 @@
 ---
 title: "Amazon Bedrock"
 sidebarTitle: "Amazon Bedrock"
+description: "OpenClaw 模型接入：Amazon Bedrock。OpenClaw 可以通过 pi-ai 的 Bedrock Converse 流式提供商使用 Amazon Bedrock 模型。Bedro…"
 ---
 
 # Amazon Bedrock

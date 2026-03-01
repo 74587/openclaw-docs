@@ -1,6 +1,7 @@
 ---
 title: "多网关（Gateway）"
 sidebarTitle: "多网关"
+description: "OpenClaw Gateway：多网关（Gateway）（同一主机）。大多数场景应使用一个网关（Gateway），因为单个网关（Gateway）可以处理多个消息连接和智能体（Agent）。如果你需…"
 ---
 
 # 多网关（Gateway）（同一主机）

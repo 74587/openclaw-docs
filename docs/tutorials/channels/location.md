@@ -1,6 +1,7 @@
 ---
 title: "通道位置解析"
 sidebarTitle: "通道位置解析"
+description: "OpenClaw 通道接入：通道位置解析。OpenClaw 将聊天通道中分享的位置信息标准化为："
 ---
 
 # 通道位置解析

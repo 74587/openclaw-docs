@@ -1,6 +1,7 @@
 ---
 title: "Zalo"
 sidebarTitle: "Zalo"
+description: "OpenClaw 通道接入：Zalo（Bot API）。状态：实验性。仅支持私信；群组功能根据 Zalo 文档即将推出。"
 ---
 
 # Zalo（Bot API）

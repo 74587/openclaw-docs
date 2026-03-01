@@ -1,6 +1,7 @@
 ---
 title: "故障排查"
 sidebarTitle: "故障排查"
+description: "OpenClaw 帮助：故障排查（Troubleshooting）。大多数问题都能在 60 秒内定位。按照下面各场景的步骤逐一排查，通常能快速找到原因。"
 ---
 
 # 故障排查（Troubleshooting）

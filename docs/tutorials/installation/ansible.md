@@ -1,6 +1,7 @@
 ---
 title: "Ansible"
 sidebarTitle: "Ansible"
+description: "OpenClaw 安装部署：Ansible 安装。将 OpenClaw 部署到生产服务器的推荐方式是通过 openclaw-ansible — 一个以安全为优先的自动化安装器。"
 ---
 
 # Ansible 安装

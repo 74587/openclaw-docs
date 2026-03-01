@@ -1,6 +1,7 @@
 ---
 title: "会话"
 sidebarTitle: "会话"
+description: "OpenClaw 核心概念：会话（Sessions）。会话（Session） 是 OpenClaw 跟踪每段对话历史的方式。每当你通过聊天软件和 AI 说话，这段对话就保存在一个会话里。"
 ---
 
 # 会话（Sessions）

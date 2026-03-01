@@ -1,6 +1,7 @@
 ---
 title: "小米 MiMo"
 sidebarTitle: "小米 MiMo"
+description: "OpenClaw 模型接入：小米 MiMo。小米 MiMo 是 MiMo 模型的 API 平台。它提供兼容 OpenAI 和 Anthropic 格式的 REST API，并使用 API 密钥进行认…"
 ---
 
 # 小米 MiMo

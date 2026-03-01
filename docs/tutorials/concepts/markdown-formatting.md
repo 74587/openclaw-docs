@@ -1,6 +1,7 @@
 ---
 title: "Markdown 格式化"
 sidebarTitle: "Markdown 格式化"
+description: "OpenClaw 核心概念：Markdown 格式化。OpenClaw 通过将出站 Markdown 转换为共享的中间表示（IR）来格式化，然后渲染通道特定的输出。IR 保持源文本不变，同时携带样式…"
 ---
 
 # Markdown 格式化

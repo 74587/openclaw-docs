@@ -1,3 +1,6 @@
+---
+description: "OpenClaw 源码剖析：skills 快照与注入机制。理解 skills 如何从“文件夹里的技能”变成“每次运行可复用上下文”。"
+---
 # 18 skills 快照与注入机制
 
 ## 模块目标

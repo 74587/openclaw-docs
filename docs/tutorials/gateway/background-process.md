@@ -1,6 +1,7 @@
 ---
 title: "后台执行与进程工具"
 sidebarTitle: "后台执行与进程工具"
+description: "OpenClaw Gateway：后台执行 + 进程工具。OpenClaw 通过  工具运行 shell 命令，并将长时间运行的任务保留在内存中。 工具用于管理这些后台会话（Session）。"
 ---
 
 # 后台执行 + 进程工具

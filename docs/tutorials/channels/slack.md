@@ -1,6 +1,7 @@
 ---
 title: "Slack"
 sidebarTitle: "Slack"
+description: "OpenClaw 通道接入：Slack。状态：通过 Slack 应用集成实现的私信 + 频道功能，已可投入生产使用。默认模式为 Socket Mode；HTTP Events API 模式也受支持。"
 ---
 
 # Slack

@@ -1,6 +1,7 @@
 ---
 title: "Hooks 事件钩子系统"
 sidebarTitle: "Hooks 事件钩子"
+description: "OpenClaw 自动化：Hooks 事件系统（Event-Driven Hooks）。Hooks 是 OpenClaw 的事件驱动插件机制。当系统内部发生特定事件时，OpenClaw 会自动找到对…"
 ---
 
 # Hooks 事件系统（Event-Driven Hooks）

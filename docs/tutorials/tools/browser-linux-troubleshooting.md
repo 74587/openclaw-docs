@@ -1,6 +1,7 @@
 ---
 title: "Linux 浏览器问题排查"
 sidebarTitle: "Linux 浏览器排查"
+description: "OpenClaw 工具系统：Linux 浏览器问题排查（Linux Browser Troubleshooting）。在 Linux 上启动浏览器工具时，你可能会遇到 CDP（Chrome DevT…"
 ---
 
 # Linux 浏览器问题排查（Linux Browser Troubleshooting）

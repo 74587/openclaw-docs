@@ -1,6 +1,7 @@
 ---
 title: "Cron 定时任务"
 sidebarTitle: "Cron 定时任务"
+description: "OpenClaw 自动化：Cron 定时任务（Cron Jobs）。Cron 让你的 Agent 在指定时间自动执行，无需人工干预。使用标准的 cron 表达式（Cron Expression）精确…"
 ---
 
 # Cron 定时任务（Cron Jobs）

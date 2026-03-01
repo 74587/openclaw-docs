@@ -1,6 +1,7 @@
 ---
 title: "技能系统"
 sidebarTitle: "技能系统"
+description: "OpenClaw 工具系统：技能系统（Skills）。技能（Skills）是预定义的指令集，以文件形式存在，在 Agent 启动时自动注入到提示词中。通过技能，你可以让 Agent 掌握特定领域的专…"
 ---
 
 # 技能系统（Skills）

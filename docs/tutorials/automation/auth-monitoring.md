@@ -1,6 +1,7 @@
 ---
 title: "OAuth 认证监控"
 sidebarTitle: "OAuth 认证监控"
+description: "OpenClaw 自动化：OAuth 认证监控（OAuth Token Monitoring）。OAuth 令牌（Token）会过期。当 Token 在凌晨 3 点悄悄失效，你的 Agent 就会停…"
 ---
 
 # OAuth 认证监控（OAuth Token Monitoring）

@@ -1,3 +1,6 @@
+---
+description: "OpenClaw 源码剖析：函数级剖析: agent-runner-execution。拆解上层自动回复如何调用底层智能体，并处理回退、流式和最终结果。"
+---
 # 25 函数级剖析: agent-runner-execution
 
 ## 模块目标

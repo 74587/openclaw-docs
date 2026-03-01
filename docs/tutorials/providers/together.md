@@ -1,6 +1,7 @@
 ---
 title: "Together AI"
 sidebarTitle: "Together AI"
+description: "OpenClaw 模型接入：Together AI。Together AI 通过统一 API 提供对领先开源模型的访问，包括 Llama、DeepSeek、Kimi 等。"
 ---
 
 # Together AI

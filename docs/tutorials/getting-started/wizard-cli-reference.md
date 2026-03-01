@@ -1,6 +1,7 @@
 ---
 title: "CLI 入门引导参考"
 sidebarTitle: "CLI 参考"
+description: "OpenClaw 快速入门：CLI 入门引导参考。本页面是  的完整参考。 简要指南请参阅 入门引导向导 (CLI)。"
 ---
 
 # CLI 入门引导参考

@@ -1,6 +1,7 @@
 ---
 title: "网络模型"
 sidebarTitle: "网络模型"
+description: "OpenClaw Gateway：。大多数操作通过网关（Gateway）（）进行，这是一个长时间运行的 进程，拥有通道（Channel）连接和 WebSocket 控制平面。"
 ---
 
 大多数操作通过网关（Gateway）（`openclaw gateway`）进行，这是一个长时间运行的

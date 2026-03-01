@@ -218,6 +218,7 @@ export default withMermaid(defineConfig({
   },
   head: [
     ['meta', { name: 'google-site-verification', content: '7B8csMYFOdvV0gzceMtR7a35llw1xqWXLeFp3AY4joo' }],
+    ['meta', { name: 'msvalidate.01', content: 'FDCCD88DCD82F43265BDB13F25164705' }],
     ['meta', { name: 'google-adsense-account', content: 'ca-pub-8945138028622018' }],
     ['script', { async: 'true', src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8945138028622018', crossorigin: 'anonymous' }],
     ['meta', { name: 'author', content: 'OpenClaw' }],

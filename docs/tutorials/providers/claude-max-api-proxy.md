@@ -1,6 +1,7 @@
 ---
 title: "Claude Max API 代理"
 sidebarTitle: "Claude Max API 代理"
+description: "OpenClaw 模型接入：Claude Max API 代理。claude-max-api-proxy 是一个社区工具，可以将你的 Claude Max/Pro 订阅暴露为 OpenAI 兼容的 …"
 ---
 
 # Claude Max API 代理

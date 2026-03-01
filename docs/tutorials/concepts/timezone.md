@@ -1,6 +1,7 @@
 ---
 title: "时区"
 sidebarTitle: "时区"
+description: "OpenClaw 核心概念：时区（Timezones）。OpenClaw 标准化时间戳，以便模型看到 单一的参考时间。"
 ---
 
 # 时区（Timezones）

@@ -1,6 +1,7 @@
 ---
 title: "智能体（Agent）引导启动"
 sidebarTitle: "引导启动"
+description: "OpenClaw 快速入门：智能体（Agent）引导启动。引导启动是首次运行时的初始化流程，用于准备智能体（Agent）工作区（Workspace）并收集身份信息。它在入门引导完成后、智能体（Age…"
 ---
 
 # 智能体（Agent）引导启动

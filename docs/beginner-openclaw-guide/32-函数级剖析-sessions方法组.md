@@ -1,3 +1,6 @@
+---
+description: "OpenClaw 源码剖析：函数级剖析 sessions 方法组。1. 查询类 -  -  -"
+---
 # 32 函数级剖析 sessions 方法组
 
 核心文件：`src/gateway/server-methods/sessions.ts`

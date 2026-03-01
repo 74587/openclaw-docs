@@ -1,6 +1,7 @@
 ---
 title: "Webhook 外部触发"
 sidebarTitle: "Webhook"
+description: "OpenClaw 自动化：Webhook 外部触发（Webhook）。Webhook 让你可以通过标准的 HTTP 请求从外部服务触发 OpenClaw 的 Agent 执行。无论是 GitHub …"
 ---
 
 # Webhook 外部触发（Webhook）

@@ -1,6 +1,7 @@
 ---
 title: "通道路由"
 sidebarTitle: "通道路由"
+description: "OpenClaw 通道接入：通道与路由。OpenClaw 将回复路由回消息来源的通道。模型不会选择通道；路由是确定性的，由主机配置控制。"
 ---
 
 # 通道与路由

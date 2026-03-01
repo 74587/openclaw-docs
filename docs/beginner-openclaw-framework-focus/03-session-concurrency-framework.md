@@ -1,3 +1,6 @@
+---
+description: "OpenClaw AI框架专项：会话与并发框架（session key + lane + queue）。- 这套模块就是“排队系统”。 - 同一个会话必须按顺序排队，不同会话可以并行。 -  决定排…"
+---
 # 03 会话与并发框架（session key + lane + queue）
 
 ## 小白先懂（30秒）

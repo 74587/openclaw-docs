@@ -1,3 +1,6 @@
+---
+description: "OpenClaw 源码剖析：函数级剖析：server-tailscale。网关启动时的 Tailscale 网络暴露管理器。 控制 serve（tailnet 内访问）或 funnel（互联网访问）…"
+---
 # 46 函数级剖析：server-tailscale
 
 核心文件：`src/gateway/server-tailscale.ts`

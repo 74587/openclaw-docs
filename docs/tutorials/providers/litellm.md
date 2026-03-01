@@ -1,6 +1,7 @@
 ---
 title: "LiteLLM"
 sidebarTitle: "LiteLLM"
+description: "OpenClaw 模型接入：LiteLLM。LiteLLM 是一个开源的 LLM 网关（Gateway），提供统一的 API 来访问 100 多个模型提供商。通过 LiteLLM 路由 OpenCl…"
 ---
 
 # LiteLLM

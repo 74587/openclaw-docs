@@ -1,6 +1,7 @@
 ---
 title: "会话管理"
 sidebarTitle: "会话管理"
+description: "OpenClaw 核心概念：会话管理（Session Management）。OpenClaw 将 每个智能体一个直接聊天会话 作为主会话。直接聊天合并到 （默认 ），而群组/通道聊天获得自己的键。…"
 ---
 
 # 会话管理（Session Management）

@@ -1,6 +1,7 @@
 ---
 title: "网关（Gateway）协议"
 sidebarTitle: "网关"
+description: "OpenClaw Gateway：网关（Gateway）协议（WebSocket）。网关（Gateway）WS 协议是 OpenClaw 的单一控制平面 + 节点传输。所有客户端（CLI、Web U…"
 ---
 
 # 网关（Gateway）协议（WebSocket）

@@ -1,6 +1,7 @@
 ---
 title: "故障排除"
 sidebarTitle: "故障排除"
+description: "OpenClaw Gateway：网关（Gateway）故障排除。本页是深度排查手册。如果你想先进行快速分诊流程，请从 /help/troubleshooting 开始。"
 ---
 
 # 网关（Gateway）故障排除

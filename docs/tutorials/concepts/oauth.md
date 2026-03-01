@@ -1,6 +1,7 @@
 ---
 title: "OAuth"
 sidebarTitle: "OAuth"
+description: "OpenClaw 核心概念：OAuth。OpenClaw 通过 OAuth 支持\"订阅认证\"，适用于提供此功能的提供商（特别是 OpenAI Codex (ChatGPT OAuth)）。对于 An…"
 ---
 
 # OAuth

@@ -1,6 +1,7 @@
 ---
 title: "应用补丁工具"
 sidebarTitle: "Apply Patch"
+description: "OpenClaw 工具系统：应用补丁工具（Apply Patch Tool）。工具让 Agent 能够以安全、精确的方式修改代码文件——不是直接覆盖整个文件，而是只应用指定的差异变更。"
 ---
 
 # 应用补丁工具（Apply Patch Tool）

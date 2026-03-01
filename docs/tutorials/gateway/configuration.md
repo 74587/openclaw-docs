@@ -1,6 +1,7 @@
 ---
 title: "配置"
 sidebarTitle: "配置"
+description: "OpenClaw Gateway：配置。OpenClaw 从  读取可选的 JSON5 配置。"
 ---
 
 # 配置

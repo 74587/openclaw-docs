@@ -1,6 +1,7 @@
 ---
 title: "多 Agent 沙箱工具配置"
 sidebarTitle: "多 Agent 沙箱工具配置"
+description: "OpenClaw 工具系统：多 Agent 沙箱工具配置（Multi-Agent Sandbox Tools）。在多 Agent 场景下，不同的 Agent 往往需要不同的工具权限和沙箱级别。Ope…"
 ---
 
 # 多 Agent 沙箱工具配置（Multi-Agent Sandbox Tools）

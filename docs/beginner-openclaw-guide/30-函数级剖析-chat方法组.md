@@ -1,3 +1,6 @@
+---
+description: "OpenClaw 源码剖析：函数级剖析：chat 方法组。chat 方法组负责会话交互的全部入口：发送消息（chat.send）、中止运行（chat.abort）、注入 assistant 消息（c…"
+---
 # 30 函数级剖析：chat 方法组
 
 核心文件：`src/gateway/server-methods/chat.ts`

@@ -1,6 +1,7 @@
 ---
 title: "OpenResponses API"
 sidebarTitle: "OpenResponses API"
+description: "OpenClaw Gateway：OpenResponses API（HTTP）。OpenClaw 的网关（Gateway）可以提供一个 OpenResponses 兼容的  端点。"
 ---
 
 # OpenResponses API（HTTP）

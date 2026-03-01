@@ -1,6 +1,7 @@
 ---
 title: Feishu
 sidebarTitle: "Feishu"
+description: "OpenClaw 通道接入：Feishu 机器人。Feishu（Lark）是企业用于消息和协作的团队沟通平台。此插件通过平台的 WebSocket 事件订阅将 OpenClaw 连接到 Feishu…"
 ---
 
 # Feishu 机器人

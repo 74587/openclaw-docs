@@ -1,6 +1,7 @@
 ---
 title: "Signal"
 sidebarTitle: "Signal"
+description: "OpenClaw 通道接入：Signal（signal-cli）。状态：外部 CLI 集成。网关通过 HTTP JSON-RPC + SSE 与  通信。"
 ---
 
 # Signal（signal-cli）

@@ -1,6 +1,7 @@
 ---
 title: "桥接协议"
 sidebarTitle: "桥接协议"
+description: "OpenClaw Gateway：桥接协议（旧版节点传输）。桥接协议是一种旧版节点传输协议（TCP JSONL）。新的节点客户端 应改用统一的网关（Gateway）WebSocket 协议。"
 ---
 
 # 桥接协议（旧版节点传输）

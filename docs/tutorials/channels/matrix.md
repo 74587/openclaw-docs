@@ -1,6 +1,7 @@
 ---
 title: "Matrix"
 sidebarTitle: "Matrix"
+description: "OpenClaw 通道接入：Matrix（插件）。Matrix 是一个开放的去中心化消息协议。OpenClaw 以 Matrix 用户身份连接到任意 homeserver，因此你需要一个 Matri…"
 ---
 
 # Matrix（插件）

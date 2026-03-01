@@ -1,3 +1,6 @@
+---
+description: "OpenClaw 源码剖析：runEmbeddedPiAgent 运行链路。精确理解  这一条核心执行路径。"
+---
 # 13 runEmbeddedPiAgent 运行链路
 
 ## 模块目标

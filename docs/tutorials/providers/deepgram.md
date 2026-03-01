@@ -1,6 +1,7 @@
 ---
 title: "Deepgram"
 sidebarTitle: "Deepgram"
+description: "OpenClaw 模型接入：Deepgram（音频转录）。Deepgram 是一个语音转文本 API。在 OpenClaw 中，它通过  用于接收音频/语音消息的转录。"
 ---
 
 # Deepgram（音频转录）

@@ -1,3 +1,6 @@
+---
+description: "OpenClaw AI框架专项：工具与审批安全框架（tool policy + exec approval）。- 这套模块就是“工具防火墙 + 人工闸门”。 - 先决定哪些工具可用，再决定高风险命令…"
+---
 # 04 工具与审批安全框架（tool policy + exec approval）
 
 ## 小白先懂（30秒）

@@ -1,6 +1,7 @@
 ---
 title: LINE
 sidebarTitle: "LINE"
+description: "OpenClaw 通道接入：LINE（插件）。LINE 通过 LINE Messaging API 连接到 OpenClaw。该插件作为网关上的 Webhook 接收器运行，使用你的通道访问 Tok…"
 ---
 
 # LINE（插件）

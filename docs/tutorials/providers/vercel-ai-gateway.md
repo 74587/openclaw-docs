@@ -1,6 +1,7 @@
 ---
 title: "Vercel AI Gateway"
 sidebarTitle: "Vercel AI Gateway"
+description: "OpenClaw 模型接入：Vercel AI Gateway。Vercel AI Gateway 提供统一 API，通过单一端点访问数百个模型。"
 ---
 
 # Vercel AI Gateway

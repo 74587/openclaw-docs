@@ -1,6 +1,7 @@
 ---
 title: "OpenRouter"
 sidebarTitle: "OpenRouter"
+description: "OpenClaw 模型接入：OpenRouter。OpenRouter 提供一个统一 API，通过单一端点和 API 密钥将请求路由到多种模型。它兼容 OpenAI，因此大多数 OpenAI SDK…"
 ---
 
 # OpenRouter

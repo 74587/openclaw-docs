@@ -1,3 +1,6 @@
+---
+description: "OpenClaw 源码剖析：函数级剖析：server-model-catalog。网关侧模型目录的读取入口。不是\"模型选择器\"，是\"网关上下文统一依赖注入点\"。"
+---
 # 49 函数级剖析：server-model-catalog
 
 核心文件：`src/gateway/server-model-catalog.ts`

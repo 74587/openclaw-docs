@@ -1,6 +1,7 @@
 ---
 title: "记忆"
 sidebarTitle: "记忆"
+description: "OpenClaw 核心概念：记忆（Memory）。OpenClaw 的记忆是 智能体工作区中的纯 Markdown 文件。这些文件是事实的来源；模型只\"记得\"写入磁盘的内容。"
 ---
 
 # 记忆（Memory）

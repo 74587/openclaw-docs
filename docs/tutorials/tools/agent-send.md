@@ -1,6 +1,7 @@
 ---
 title: "直接运行 Agent"
 sidebarTitle: "直接运行 Agent"
+description: "OpenClaw 工具系统：直接运行 Agent（Agent Send）。命令让你可以直接向 Agent 发送消息并获取响应，完全不需要打开聊天界面。这非常适合在脚本、CI/CD 流水线或命令行自动…"
 ---
 
 # 直接运行 Agent（Agent Send）

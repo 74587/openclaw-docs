@@ -1,6 +1,7 @@
 ---
 title: "重试策略"
 sidebarTitle: "重试策略"
+description: "OpenClaw 核心概念：重试策略（Retry Policy）。- 按 HTTP 请求重试，而非按多步流程重试。 - 仅重试当前步骤以保持顺序。 - 避免重复非幂等操作。"
 ---
 
 # 重试策略（Retry Policy）

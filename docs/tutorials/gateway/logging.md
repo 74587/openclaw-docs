@@ -1,6 +1,7 @@
 ---
 title: "日志"
 sidebarTitle: "日志"
+description: "OpenClaw Gateway：日志。面向用户的概览（CLI + 控制界面 + 配置）请参阅 /logging。"
 ---
 
 # 日志

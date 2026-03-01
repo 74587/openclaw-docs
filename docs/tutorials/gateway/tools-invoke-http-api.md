@@ -1,6 +1,7 @@
 ---
 title: "工具调用 API"
 sidebarTitle: "工具调用 API"
+description: "OpenClaw Gateway：工具调用（HTTP）。OpenClaw 的网关（Gateway）暴露了一个简单的 HTTP 端点，用于直接调用单个工具。它始终启用，但受网关（Gateway）认证和…"
 ---
 
 # 工具调用（HTTP）

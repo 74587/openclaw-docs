@@ -1,3 +1,6 @@
+---
+description: "OpenClaw 源码剖析：函数级剖析：exec-approval-manager。高风险命令（exec）执行前的人工审批状态机。 所有审批请求在这里注册、等待、决策，不接触文件系统，纯内存状态机。"
+---
 # 52 函数级剖析：exec-approval-manager
 
 核心文件：`src/gateway/exec-approval-manager.ts`

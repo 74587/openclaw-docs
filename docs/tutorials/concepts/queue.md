@@ -1,6 +1,7 @@
 ---
 title: "命令队列"
 sidebarTitle: "命令队列"
+description: "OpenClaw 核心概念：命令队列（Command Queue）（2026-01-16）。我们通过一个微小的进程内队列串行化入站自动回复运行（所有通道），以防止多个智能体运行冲突，同时仍然允许跨会…"
 ---
 
 # 命令队列（Command Queue）（2026-01-16）

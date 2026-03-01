@@ -1,6 +1,7 @@
 ---
 title: "发现与传输"
 sidebarTitle: "发现与传输"
+description: "OpenClaw Gateway：发现与传输。OpenClaw 有两个看起来相似但本质不同的问题："
 ---
 
 # 发现与传输

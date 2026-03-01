@@ -1,6 +1,7 @@
 ---
 title: "GLM 模型"
 sidebarTitle: "GLM 模型"
+description: "OpenClaw 模型接入：GLM 模型。GLM 是一个模型系列（不是一家公司），通过 Z.AI 平台提供。在 OpenClaw 中，GLM 模型通过  提供商访问，模型 ID 格式如 。"
 ---
 
 # GLM 模型

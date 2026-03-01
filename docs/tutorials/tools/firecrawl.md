@@ -1,6 +1,7 @@
 ---
 title: "Firecrawl 爬虫工具"
 sidebarTitle: "Firecrawl"
+description: "OpenClaw 工具系统：Firecrawl 爬虫工具。Firecrawl 是一个强大的网页内容抓取服务，能够绕过常见的反爬检测机制，支持 JavaScript 渲染页面的内容提取。当 OpenC…"
 ---
 
 # Firecrawl 爬虫工具

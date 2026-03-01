@@ -1,6 +1,7 @@
 ---
 title: "WhatsApp"
 sidebarTitle: "WhatsApp"
+description: "OpenClaw 通道接入：WhatsApp（Web 通道）。状态：通过 WhatsApp Web（Baileys）实现，已可投入生产使用。网关管理链接会话。"
 ---
 
 # WhatsApp（Web 通道）

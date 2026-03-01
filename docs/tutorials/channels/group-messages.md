@@ -1,6 +1,7 @@
 ---
 title: "群组消息"
 sidebarTitle: "群组消息"
+description: "OpenClaw 通道接入：群组消息（WhatsApp Web 通道）。目标：让 Clawd 加入 WhatsApp 群组，仅在被提及时唤醒，并将该线程与个人私信会话分开。"
 ---
 
 # 群组消息（WhatsApp Web 通道）

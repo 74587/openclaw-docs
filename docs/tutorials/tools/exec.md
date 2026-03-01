@@ -1,6 +1,7 @@
 ---
 title: "执行工具"
 sidebarTitle: "执行工具"
+description: "OpenClaw 工具系统：执行工具（Exec Tool）。执行工具（Exec Tool）允许 Agent 在你的系统上运行 shell 命令——执行脚本、调用 CLI 工具、管理文件，甚至驱动整个…"
 ---
 
 # 执行工具（Exec Tool）

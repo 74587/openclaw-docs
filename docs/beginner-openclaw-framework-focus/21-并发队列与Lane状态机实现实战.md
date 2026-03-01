@@ -1,3 +1,6 @@
+---
+description: "OpenClaw AI框架专项：并发队列与Lane状态机实现实战（session/global 双层排队）。这篇是\"并发控制\"的实现手册，重点解决三件事："
+---
 # 21 并发队列与Lane状态机实现实战（session/global 双层排队）
 
 这篇是"并发控制"的实现手册，重点解决三件事：

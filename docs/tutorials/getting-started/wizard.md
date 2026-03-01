@@ -1,6 +1,7 @@
 ---
 title: "命令行向导安装指南"
 sidebarTitle: "命令行向导"
+description: "OpenClaw 快速入门：命令行向导安装指南。> 这是 方式二：命令行安装 的安装指南，支持 macOS、Linux、Windows。 > 如果你想用图形界面安装，请看 macOS App 首次启…"
 ---
 
 # 命令行向导安装指南

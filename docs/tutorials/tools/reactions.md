@@ -1,6 +1,7 @@
 ---
 title: "表情回应"
 sidebarTitle: "表情回应"
+description: "OpenClaw 工具系统：表情回应（Reactions）。表情回应（Reactions）是 OpenClaw 跨通道的消息反馈机制，让 Agent 能够通过 👍、❤️、✅ 等表情符号快速表达对消…"
 ---
 
 # 表情回应（Reactions）

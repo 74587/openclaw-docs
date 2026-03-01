@@ -1,6 +1,7 @@
 ---
 title: "MiniMax"
 sidebarTitle: "MiniMax"
+description: "OpenClaw 模型接入：MiniMax。MiniMax 是一家 AI 公司，构建了 M2/M2.1 模型系列。当前面向编程的版本是 MiniMax M2.1（2025 年 12 月 23 日发布…"
 ---
 
 # MiniMax

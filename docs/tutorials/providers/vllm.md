@@ -1,6 +1,7 @@
 ---
 title: "vLLM"
 sidebarTitle: "vLLM"
+description: "OpenClaw 模型接入：vLLM。vLLM 可以通过 OpenAI 兼容的 HTTP API 提供开源（及部分自定义）模型的服务。OpenClaw 可以使用  API 连接到 vLLM。"
 ---
 
 # vLLM

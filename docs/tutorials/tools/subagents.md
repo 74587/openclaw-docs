@@ -1,6 +1,7 @@
 ---
 title: "子智能体"
 sidebarTitle: "子智能体"
+description: "OpenClaw 工具系统：子智能体（Sub-Agents）。子智能体（Sub-Agents）让主 Agent 可以启动并协调其他 Agent 来并行完成复杂任务。就像一个项目经理把工作分配给团队成…"
 ---
 
 # 子智能体（Sub-Agents）

@@ -1,6 +1,7 @@
 ---
 title: "网关（Gateway）锁"
 sidebarTitle: "网关"
+description: "OpenClaw Gateway：网关（Gateway）锁。最后更新：2025-12-11"
 ---
 
 # 网关（Gateway）锁

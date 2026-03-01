@@ -1,6 +1,7 @@
 ---
 title: "智能体工作区"
 sidebarTitle: "智能体工作区"
+description: "OpenClaw 核心概念：智能体工作区（Agent Workspace）。工作区（Workspace）是智能体（Agent）的主目录。它是文件工具和工作区上下文使用的唯一工作目录。请将其视为私有空…"
 ---
 
 # 智能体工作区（Agent Workspace）

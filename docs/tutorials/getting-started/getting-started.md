@@ -1,6 +1,7 @@
 ---
 title: "快速开始"
 sidebarTitle: "快速开始"
+description: "OpenClaw 快速入门：快速开始。OpenClaw 是什么？"
 ---
 
 # 快速开始

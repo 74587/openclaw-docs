@@ -1,6 +1,7 @@
 ---
 title: "技能配置参考"
 sidebarTitle: "技能配置参考"
+description: "OpenClaw 工具系统：技能配置参考（Skills Config Reference）。这里是技能（Skills）系统完整的配置字段说明。如果你想了解如何创建技能文件，请先阅读创建自定义技能。"
 ---
 
 # 技能配置参考（Skills Config Reference）

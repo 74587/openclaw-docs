@@ -1,3 +1,6 @@
+---
+description: "OpenClaw 源码剖析：函数级剖析：hooks 与 tools-invoke HTTP 入口。核心文件： -  - （含 ） -  -"
+---
 # 41 函数级剖析：hooks 与 tools-invoke HTTP 入口
 
 核心文件：

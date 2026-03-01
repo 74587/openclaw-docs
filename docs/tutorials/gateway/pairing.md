@@ -1,6 +1,7 @@
 ---
 title: "网关（Gateway）配对"
 sidebarTitle: "网关"
+description: "OpenClaw Gateway：网关（Gateway）配对（方案 B）。在网关（Gateway）配对中，网关（Gateway）是哪些节点被允许加入的权威来源。 UI（macOS 应用、未来客户端）…"
 ---
 
 # 网关（Gateway）配对（方案 B）

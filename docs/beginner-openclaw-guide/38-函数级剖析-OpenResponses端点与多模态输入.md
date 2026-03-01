@@ -1,3 +1,6 @@
+---
+description: "OpenClaw 源码剖析：函数级剖析 OpenResponses 端点与多模态输入。1. 仅处理 。 2. 鉴权通过后，按配置解析输入限制（body/url/file/image）。 3. 用 Z…"
+---
 # 38 函数级剖析 OpenResponses 端点与多模态输入
 
 核心文件：

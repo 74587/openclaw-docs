@@ -2,6 +2,7 @@
 title: 沙箱（Sandbox）vs 工具策略 vs 提权
 sidebarTitle: "沙箱"
 status: active
+description: "OpenClaw Gateway：沙箱（Sandbox）vs 工具策略 vs 提权。OpenClaw 有三个相关（但不同）的控制："
 ---
 
 # 沙箱（Sandbox）vs 工具策略 vs 提权

@@ -1,6 +1,7 @@
 ---
 title: "Zalo Personal"
 sidebarTitle: "Zalo Personal"
+description: "OpenClaw 通道接入：Zalo Personal（非官方）。状态：实验性。此集成通过  自动化 个人 Zalo 账户。"
 ---
 
 # Zalo Personal（非官方）

@@ -1,6 +1,7 @@
 ---
 title: "执行审批"
 sidebarTitle: "执行审批"
+description: "OpenClaw 工具系统：执行审批（Exec Approvals）。执行审批（Exec Approvals）系统让你精确控制 Agent 的命令执行权限——哪些命令可以自动执行，哪些需要你手动确认…"
 ---
 
 # 执行审批（Exec Approvals）

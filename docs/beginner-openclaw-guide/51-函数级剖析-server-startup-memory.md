@@ -1,3 +1,6 @@
+---
+description: "OpenClaw 源码剖析：函数级剖析：server-startup-memory。网关启动时的 qmd 记忆后端预热器。 是可选侧车（sidecar），失败不影响主服务启动。"
+---
 # 51 函数级剖析：server-startup-memory
 
 核心文件：`src/gateway/server-startup-memory.ts`

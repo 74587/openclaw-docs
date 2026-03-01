@@ -1,6 +1,7 @@
 ---
 title: "轮询通道配置"
 sidebarTitle: "轮询通道"
+description: "OpenClaw 自动化：轮询通道（Channel Polling）。并不是所有通道都支持实时推送（Push）。对于这类通道，OpenClaw 通过主动轮询（Polling）的方式定期检查是否有新消…"
 ---
 
 # 轮询通道（Channel Polling）

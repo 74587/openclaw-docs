@@ -1,6 +1,7 @@
 ---
 title: "远程网关（Gateway）设置"
 sidebarTitle: "远程网关"
+description: "OpenClaw Gateway：使用远程网关（Gateway）运行 OpenClaw.app。OpenClaw.app 使用 SSH 隧道连接到远程网关（Gateway）。本指南展示如何设置。"
 ---
 
 # 使用远程网关（Gateway）运行 OpenClaw.app

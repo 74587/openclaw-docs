@@ -1,6 +1,7 @@
 ---
 title: "GCP"
 sidebarTitle: "GCP"
+description: "OpenClaw 安装部署：在 GCP Compute Engine 上部署 OpenClaw（Docker，生产 VPS 指南）。在 GCP Compute Engine 虚拟机上使用 Docke…"
 ---
 
 # 在 GCP Compute Engine 上部署 OpenClaw（Docker，生产 VPS 指南）

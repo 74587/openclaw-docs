@@ -1,6 +1,7 @@
 ---
 title: "安装 Node.js"
 sidebarTitle: "安装 Node.js"
+description: "OpenClaw 安装部署：安装 Node.js。OpenClaw 需要 Node.js 22 或更新版本。这篇文章教你怎么安装它。"
 ---
 
 # 安装 Node.js

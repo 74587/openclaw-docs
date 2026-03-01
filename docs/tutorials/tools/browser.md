@@ -1,6 +1,7 @@
 ---
 title: "浏览器工具"
 sidebarTitle: "浏览器工具"
+description: "OpenClaw 工具系统：浏览器工具（Browser Tool）。浏览器工具让 Agent 能够控制真实的浏览器——打开网页、点击元素、填写表单、截图，实现完整的网页自动化。你不需要手动编写爬虫，…"
 ---
 
 # 浏览器工具（Browser Tool）

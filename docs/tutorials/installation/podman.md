@@ -1,6 +1,7 @@
 ---
 title: "Podman"
 sidebarTitle: "Podman"
+description: "OpenClaw 安装部署：Podman。在无 root 的 Podman 容器中运行 OpenClaw 网关（Gateway）。使用与 Docker 相同的镜像（从仓库 Dockerfile 构建…"
 ---
 
 # Podman

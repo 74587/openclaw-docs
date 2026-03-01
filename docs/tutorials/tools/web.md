@@ -1,6 +1,7 @@
 ---
 title: "网络工具"
 sidebarTitle: "网络工具"
+description: "OpenClaw 工具系统：网络工具（Web Tools）。网络工具（Web Tools）包括两个核心能力：web_search（搜索网络）和 web_fetch（抓取网页内容）。有了这两个工具，A…"
 ---
 
 # 网络工具（Web Tools）

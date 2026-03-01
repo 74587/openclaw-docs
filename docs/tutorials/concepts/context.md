@@ -1,6 +1,7 @@
 ---
 title: "上下文"
 sidebarTitle: "上下文"
+description: "OpenClaw 核心概念：上下文（Context）。\"上下文\"是 OpenClaw 在一次运行中发送给模型的所有内容。它受模型的 上下文窗口（Token 限制）约束。"
 ---
 
 # 上下文（Context）

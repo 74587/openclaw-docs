@@ -1,6 +1,7 @@
 ---
 title: "Twitch"
 sidebarTitle: "Twitch"
+description: "OpenClaw 通道接入：Twitch（插件）。通过 IRC 连接支持 Twitch 聊天。OpenClaw 以 Twitch 用户（机器人账户）身份连接，在频道中接收和发送消息。"
 ---
 
 # Twitch（插件）

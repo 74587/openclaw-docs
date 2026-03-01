@@ -1,6 +1,7 @@
 ---
 title: "Tailscale"
 sidebarTitle: "Tailscale"
+description: "OpenClaw Gateway：Tailscale（网关（Gateway）仪表盘）。OpenClaw 可以为网关（Gateway）仪表盘和 WebSocket 端口自动配置 Tailscale S…"
 ---
 
 # Tailscale（网关（Gateway）仪表盘）

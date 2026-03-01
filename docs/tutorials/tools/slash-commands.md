@@ -1,6 +1,7 @@
 ---
 title: "斜杠命令"
 sidebarTitle: "斜杠命令"
+description: "OpenClaw 工具系统：斜杠命令（Slash Commands）。斜杠命令（Slash Commands）是以  开头的快捷指令，你可以在聊天窗口中随时输入，用于控制 Agent 行为、切换模式…"
 ---
 
 # 斜杠命令（Slash Commands）

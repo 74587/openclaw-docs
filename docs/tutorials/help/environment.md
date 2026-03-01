@@ -1,6 +1,7 @@
 ---
 title: "环境变量"
 sidebarTitle: "环境变量"
+description: "OpenClaw 帮助：环境变量（Environment Variables）。OpenClaw 通过多层机制加载环境变量，理解加载顺序能帮助你避免变量覆盖导致的配置困惑。"
 ---
 
 # 环境变量（Environment Variables）

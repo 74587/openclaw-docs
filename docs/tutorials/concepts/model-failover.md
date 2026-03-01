@@ -1,6 +1,7 @@
 ---
 title: "模型故障转移"
 sidebarTitle: "模型故障转移"
+description: "OpenClaw 核心概念：模型故障转移（Model Failover）。OpenClaw 分两个阶段处理故障："
 ---
 
 # 模型故障转移（Model Failover）

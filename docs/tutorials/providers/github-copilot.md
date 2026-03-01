@@ -1,6 +1,7 @@
 ---
 title: "GitHub Copilot"
 sidebarTitle: "GitHub Copilot"
+description: "OpenClaw 模型接入：GitHub Copilot。GitHub Copilot 是 GitHub 的 AI 编程助手。它根据你的 GitHub 账户和计划提供对 Copilot 模型的访问。…"
 ---
 
 # GitHub Copilot

@@ -1,6 +1,7 @@
 ---
 title: "接入 Telegram（推荐新手）"
 sidebarTitle: "接入 Telegram"
+description: "OpenClaw 通道接入：接入 Telegram——最简单的接入方式。Telegram 是新手最推荐的接入方式，因为设置最简单：只需要创建一个 Bot，获取一个 Token，填入 OpenClaw…"
 ---
 
 # 接入 Telegram——最简单的接入方式

@@ -1,6 +1,7 @@
 ---
 title: "远程访问"
 sidebarTitle: "远程访问"
+description: "OpenClaw Gateway：远程访问（SSH、隧道和 tailnet）。本仓库支持\"SSH 远程\"模式，通过在专用主机（桌面/服务器）上保持单个网关（Gateway）（主控）运行，并将客户端连…"
 ---
 
 # 远程访问（SSH、隧道和 tailnet）

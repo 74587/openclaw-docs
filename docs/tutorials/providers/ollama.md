@@ -1,6 +1,7 @@
 ---
 title: "Ollama"
 sidebarTitle: "Ollama"
+description: "OpenClaw 模型接入：Ollama。Ollama 是一个本地 LLM 运行时，可以轻松在你的机器上运行开源模型。OpenClaw 集成了 Ollama 的原生 API（），支持流式传输和工具调…"
 ---
 
 # Ollama

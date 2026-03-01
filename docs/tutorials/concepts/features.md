@@ -1,6 +1,7 @@
 ---
 title: "功能特性"
 sidebarTitle: "功能特性"
+description: "OpenClaw 核心概念：功能特性。- 通道（Channels） — 通过单一网关（Gateway）支持 WhatsApp、Telegram、Discord 和 iMessage。 - 插件 — …"
 ---
 
 # 功能特性

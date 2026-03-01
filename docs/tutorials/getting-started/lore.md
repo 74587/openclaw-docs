@@ -1,6 +1,7 @@
 ---
 title: "OpenClaw 背景故事"
 sidebarTitle: "OpenClaw 背景故事"
+description: "OpenClaw 快速入门：OpenClaw 的背景故事 🦞📖。_一个关于龙虾、蜕壳和过多 Token 的故事。_"
 ---
 
 # OpenClaw 的背景故事 🦞📖

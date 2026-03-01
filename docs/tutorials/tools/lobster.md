@@ -1,6 +1,7 @@
 ---
 title: "Lobster 工作流运行时"
 sidebarTitle: "Lobster"
+description: "OpenClaw 工具系统：Lobster 工作流运行时（Lobster）。Lobster 是 OpenClaw 内置的工作流运行时，专为需要结构化执行步骤的复杂 AI 任务而设计。当一个任务需要多…"
 ---
 
 # Lobster 工作流运行时（Lobster）

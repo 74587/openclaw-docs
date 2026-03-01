@@ -1,6 +1,7 @@
 ---
 title: "ClawHub 工具中心"
 sidebarTitle: "ClawHub"
+description: "OpenClaw 工具系统：ClawHub 工具中心（ClawHub）。ClawHub 是 OpenClaw 的官方技能和工具市场，汇聚了社区贡献的技能包（Skills）。你可以在这里搜索、安装、管…"
 ---
 
 # ClawHub 工具中心（ClawHub）

@@ -1,6 +1,7 @@
 ---
 title: "Mattermost"
 sidebarTitle: "Mattermost"
+description: "OpenClaw 通道接入：Mattermost（插件）。状态：通过插件支持（Bot Token + WebSocket 事件）。支持频道、群组和私信。 Mattermost 是一个可自托管的团队消…"
 ---
 
 # Mattermost（插件）

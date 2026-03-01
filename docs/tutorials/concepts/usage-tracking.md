@@ -1,6 +1,7 @@
 ---
 title: "用量跟踪"
 sidebarTitle: "用量跟踪"
+description: "OpenClaw 核心概念：用量跟踪（Usage Tracking）。- 直接从提供商的用量端点拉取用量/配额。 - 没有估算成本；仅有提供商报告的窗口。"
 ---
 
 # 用量跟踪（Usage Tracking）

@@ -1,6 +1,7 @@
 ---
 title: "Bonjour 发现"
 sidebarTitle: "Bonjour 发现"
+description: "OpenClaw Gateway：Bonjour / mDNS 发现。OpenClaw 使用 Bonjour（mDNS / DNS-SD）作为仅限局域网的便捷方式来发现 活跃的网关（Gateway）…"
 ---
 
 # Bonjour / mDNS 发现

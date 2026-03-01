@@ -1,6 +1,7 @@
 ---
 title: "测试指南"
 sidebarTitle: "测试指南"
+description: "OpenClaw 帮助：测试指南（Testing Guide）。OpenClaw 提供了完整的测试套件，帮助你验证改动是否正确、功能是否如预期工作。无论是开发自定义技能还是贡献代码，本页都能帮你快速…"
 ---
 
 # 测试指南（Testing Guide）

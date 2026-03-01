@@ -1,6 +1,7 @@
 ---
 title: "健康检查"
 sidebarTitle: "健康检查"
+description: "OpenClaw Gateway：健康检查（CLI）。用于验证通道（Channel）连接性的简要指南。"
 ---
 
 # 健康检查（CLI）

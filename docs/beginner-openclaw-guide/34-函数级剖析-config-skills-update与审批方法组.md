@@ -1,3 +1,6 @@
+---
+description: "OpenClaw 源码剖析：函数级剖析 config skills update 与审批方法组。核心文件： -  -  -  -  -"
+---
 # 34 函数级剖析 config skills update 与审批方法组
 
 核心文件：

@@ -1,6 +1,7 @@
 ---
 title: "安装器内部机制"
 sidebarTitle: "安装器内部机制"
+description: "OpenClaw 安装部署：安装器内部机制。OpenClaw 提供三个安装脚本，托管在 。"
 ---
 
 # 安装器内部机制

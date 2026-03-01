@@ -2,6 +2,7 @@
 title: 多智能体路由
 sidebarTitle: "多智能体路由"
 status: active
+description: "OpenClaw 核心概念：多智能体路由。目标：多个 _隔离的_ 智能体（独立的工作区 +  + 会话），加上多个通道账户（例如两个 WhatsApp）在一个运行中的网关中。入站消息通过绑定路由到智…"
 ---
 
 # 多智能体路由

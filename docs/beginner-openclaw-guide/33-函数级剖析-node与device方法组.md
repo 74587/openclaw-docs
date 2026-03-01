@@ -1,3 +1,6 @@
+---
+description: "OpenClaw 源码剖析：函数级剖析：node 与 device 方法组。核心文件： -  -  -  -  -  -  -"
+---
 # 33 函数级剖析：node 与 device 方法组
 
 核心文件：

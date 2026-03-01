@@ -1,6 +1,7 @@
 ---
 title: "Docker"
 sidebarTitle: "Docker"
+description: "OpenClaw 安装部署：Docker（可选）。Docker 是可选的。仅当你需要容器化网关（Gateway）或验证 Docker 流程时才使用它。"
 ---
 
 # Docker（可选）

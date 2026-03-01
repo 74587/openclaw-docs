@@ -1,6 +1,7 @@
 ---
 title: "NVIDIA"
 sidebarTitle: "NVIDIA"
+description: "OpenClaw 模型接入：NVIDIA。NVIDIA 在  提供 OpenAI 兼容的 API，支持 Nemotron 和 NeMo 模型。使用来自 NVIDIA NGC 的 API 密钥进行认证。"
 ---
 
 # NVIDIA

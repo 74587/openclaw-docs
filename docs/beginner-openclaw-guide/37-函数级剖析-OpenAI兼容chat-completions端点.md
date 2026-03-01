@@ -1,3 +1,6 @@
+---
+description: "OpenClaw 源码剖析：函数级剖析：OpenAI 兼容 chat-completions 端点。实现 OpenAI API 兼容层，使得任何支持 OpenAI SDK 的客户端（如 Cursor…"
+---
 # 37 函数级剖析：OpenAI 兼容 chat-completions 端点
 
 核心文件：`src/gateway/openai-http.ts`

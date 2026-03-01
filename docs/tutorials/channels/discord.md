@@ -1,6 +1,7 @@
 ---
 title: "接入 Discord"
 sidebarTitle: "接入 Discord"
+description: "OpenClaw 通道接入：接入 Discord——让 AI 助手住进你的 Discord。通过这个教程，你可以在 Discord 里和你的 AI 助手直接对话，也可以把它拉进服务器里给大家用。"
 ---
 
 # 接入 Discord——让 AI 助手住进你的 Discord

@@ -1,6 +1,7 @@
 ---
 title: "Hetzner"
 sidebarTitle: "Hetzner"
+description: "OpenClaw 安装部署：在 Hetzner 上部署 OpenClaw（Docker，生产 VPS 指南）。在 Hetzner VPS 上使用 Docker 运行持久化的 OpenClaw 网关（…"
 ---
 
 # 在 Hetzner 上部署 OpenClaw（Docker，生产 VPS 指南）

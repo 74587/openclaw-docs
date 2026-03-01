@@ -1,6 +1,7 @@
 ---
 title: "Nostr"
 sidebarTitle: "Nostr"
+description: "OpenClaw 通道接入：Nostr。状态： 可选插件（默认禁用）。"
 ---
 
 # Nostr

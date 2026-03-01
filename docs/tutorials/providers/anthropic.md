@@ -1,6 +1,7 @@
 ---
 title: "Anthropic (Claude) 配置"
 sidebarTitle: "Anthropic"
+description: "OpenClaw 模型接入：Anthropic (Claude) 配置。Anthropic 是 Claude 的开发公司，Claude 是一个非常聪明的 AI 助手，也是 OpenClaw 的官方推…"
 ---
 
 # Anthropic (Claude) 配置

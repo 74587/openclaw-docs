@@ -1,6 +1,7 @@
 ---
 title: "配置示例"
 sidebarTitle: "配置示例"
+description: "OpenClaw Gateway：配置示例。以下示例与当前配置架构对齐。详尽的参考和逐字段说明请参阅配置。"
 ---
 
 # 配置示例

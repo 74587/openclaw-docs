@@ -1,6 +1,7 @@
 ---
 title: "Nextcloud Talk"
 sidebarTitle: "Nextcloud Talk"
+description: "OpenClaw 通道接入：Nextcloud Talk（插件）。状态：通过插件支持（Webhook 机器人）。支持私信、房间、表情回应和 Markdown 消息。"
 ---
 
 # Nextcloud Talk（插件）

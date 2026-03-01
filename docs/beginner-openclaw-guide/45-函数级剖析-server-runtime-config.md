@@ -1,3 +1,6 @@
+---
+description: "OpenClaw 源码剖析：函数级剖析：server-runtime-config。网关启动时的配置合并与安全约束校验器。 这是启动前最后一道防误配闸门，把所有危险配置在启动阶段直接报错，阻止网关带…"
+---
 # 45 函数级剖析：server-runtime-config
 
 核心文件：`src/gateway/server-runtime-config.ts`

@@ -1,6 +1,7 @@
 ---
 title: "卸载"
 sidebarTitle: "卸载"
+description: "OpenClaw 安装部署：卸载。- 简单路径：如果  仍然已安装。 - 手动移除服务：如果 CLI 已被删除但服务仍在运行。"
 ---
 
 # 卸载

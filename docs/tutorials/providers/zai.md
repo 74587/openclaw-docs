@@ -1,6 +1,7 @@
 ---
 title: "Z.AI"
 sidebarTitle: "Z.AI"
+description: "OpenClaw 模型接入：Z.AI。Z.AI 是 GLM 模型的 API 平台。它提供 GLM 的 REST API，并使用 API 密钥进行认证。在 Z.AI 控制台创建你的 API 密钥。Op…"
 ---
 
 # Z.AI

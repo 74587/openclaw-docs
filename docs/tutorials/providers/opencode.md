@@ -1,6 +1,7 @@
 ---
 title: "OpenCode Zen"
 sidebarTitle: "OpenCode Zen"
+description: "OpenClaw 模型接入：OpenCode Zen。OpenCode Zen 是由 OpenCode 团队为编程智能体（Agent）推荐的精选模型列表。 它是一个可选的托管模型访问路径，使用 AP…"
 ---
 
 # OpenCode Zen

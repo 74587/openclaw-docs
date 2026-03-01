@@ -1,6 +1,7 @@
 ---
 title: "Doctor"
 sidebarTitle: "Doctor"
+description: "OpenClaw Gateway：Doctor。是 OpenClaw 的修复 + 迁移工具。它修复过期的 配置/状态，检查健康状况，并提供可操作的修复步骤。"
 ---
 
 # Doctor

@@ -1,6 +1,7 @@
 ---
 title: "智能体运行时"
 sidebarTitle: "智能体运行时"
+description: "OpenClaw 核心概念：智能体运行时（Agent Runtime）。智能体（Agent） 是 OpenClaw 里真正\"思考\"的部分——它接收你的消息，调用 AI 模型，把回复发回给你。每个智能…"
 ---
 
 # 智能体运行时（Agent Runtime）

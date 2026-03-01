@@ -1,6 +1,7 @@
 ---
 title: "Microsoft Teams"
 sidebarTitle: "Microsoft Teams"
+description: "OpenClaw 通道接入：Microsoft Teams（插件）。> \"进入此门者，须弃一切希望。\""
 ---
 
 # Microsoft Teams（插件）

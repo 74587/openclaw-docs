@@ -1,6 +1,7 @@
 ---
 title: "macOS 虚拟机"
 sidebarTitle: "macOS 虚拟机"
+description: "OpenClaw 安装部署：在 macOS 虚拟机上运行 OpenClaw（沙箱化）。- 小型 Linux VPS 用于始终在线的网关（Gateway），且成本低。参见 VPS 托管。 - 专用硬件…"
 ---
 
 # 在 macOS 虚拟机上运行 OpenClaw（沙箱化）

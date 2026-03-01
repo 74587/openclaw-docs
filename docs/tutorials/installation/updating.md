@@ -1,6 +1,7 @@
 ---
 title: "更新"
 sidebarTitle: "更新"
+description: "OpenClaw 安装部署：更新。OpenClaw 迭代很快（尚未到 \"1.0\"）。将更新视为基础设施发布：更新 → 运行检查 → 重启（或使用 ，它会重启） → 验证。"
 ---
 
 # 更新

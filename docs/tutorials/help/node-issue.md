@@ -1,6 +1,7 @@
 ---
 title: "Node.js 问题排查"
 sidebarTitle: "Node.js 问题"
+description: "OpenClaw 帮助：Node.js 问题排查（Node.js Troubleshooting）。本页专门记录 Node.js 运行时与 OpenClaw 工具链配合时出现的已知问题和解决方案。"
 ---
 
 # Node.js 问题排查（Node.js Troubleshooting）

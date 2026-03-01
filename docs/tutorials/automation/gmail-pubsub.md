@@ -1,6 +1,7 @@
 ---
 title: "Gmail PubSub 实时集成"
 sidebarTitle: "Gmail PubSub"
+description: "OpenClaw 自动化：Gmail PubSub 实时推送（Gmail PubSub）。通过 Google Cloud Pub/Sub 服务，OpenClaw 可以在新邮件到达时实时收到通知，而不…"
 ---
 
 # Gmail PubSub 实时推送（Gmail PubSub）

@@ -1,6 +1,7 @@
 ---
 title: "Qwen"
 sidebarTitle: "Qwen"
+description: "OpenClaw 模型接入：Qwen。Qwen 提供免费层的 OAuth 流程，支持 Qwen Coder 和 Qwen Vision 模型（每天 2,000 次请求，受 Qwen 速率限制约束）。"
 ---
 
 # Qwen

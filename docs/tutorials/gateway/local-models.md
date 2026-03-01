@@ -1,6 +1,7 @@
 ---
 title: "本地模型"
 sidebarTitle: "本地模型"
+description: "OpenClaw Gateway：本地模型。本地运行是可行的，但 OpenClaw 期望大上下文 + 强大的提示注入防御。小型显卡会截断上下文并泄露安全性。目标要高：≥2 台满配 Mac Studi…"
 ---
 
 # 本地模型

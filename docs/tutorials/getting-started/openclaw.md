@@ -1,6 +1,7 @@
 ---
 title: "个人助手设置"
 sidebarTitle: "个人助手设置"
+description: "OpenClaw 快速入门：使用 OpenClaw 构建个人助手。OpenClaw 是一个面向 Pi 智能体（Agent）的 WhatsApp + Telegram + Discord + iMes…"
 ---
 
 # 使用 OpenClaw 构建个人助手

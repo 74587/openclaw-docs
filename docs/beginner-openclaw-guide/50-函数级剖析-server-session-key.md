@@ -1,3 +1,6 @@
+---
+description: "OpenClaw 源码剖析：函数级剖析：server-session-key。runId → sessionKey 的反查桥接器。 WS/Agent 事件以  为主键，UI/节点订阅以  路由，这个…"
+---
 # 50 函数级剖析：server-session-key
 
 核心文件：`src/gateway/server-session-key.ts`

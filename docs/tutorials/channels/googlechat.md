@@ -1,6 +1,7 @@
 ---
 title: "Google Chat"
 sidebarTitle: "Google Chat"
+description: "OpenClaw 通道接入：Google Chat（Chat API）。状态：已就绪，支持通过 Google Chat API Webhook（仅 HTTP）进行私信和空间通信。"
 ---
 
 # Google Chat（Chat API）

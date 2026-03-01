@@ -1,6 +1,7 @@
 ---
 title: "Nix"
 sidebarTitle: "Nix"
+description: "OpenClaw 安装部署：Nix 安装。使用 Nix 运行 OpenClaw 的推荐方式是通过 nix-openclaw — 一个开箱即用的 Home Manager 模块。"
 ---
 
 # Nix 安装

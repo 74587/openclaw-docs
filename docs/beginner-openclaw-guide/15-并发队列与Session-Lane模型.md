@@ -1,3 +1,6 @@
+---
+description: "OpenClaw 源码剖析：并发队列与 Session-Lane 模型。理解系统如何在并发请求下保持\"同会话有序、全局可控\"。"
+---
 # 15 并发队列与 Session-Lane 模型
 
 ## 模块目标

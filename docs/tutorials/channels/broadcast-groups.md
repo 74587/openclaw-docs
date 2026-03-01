@@ -2,6 +2,7 @@
 status: experimental
 title: "广播组"
 sidebarTitle: "广播组"
+description: "OpenClaw 通道接入：广播组。状态： 实验性 版本： 在 2026.1.9 中添加"
 ---
 
 # 广播组

@@ -1,6 +1,7 @@
 ---
 title: "流式输出与分块"
 sidebarTitle: "流式输出与分块"
+description: "OpenClaw 核心概念：流式输出（Streaming）+ 分块。OpenClaw 有两个独立的\"流式输出\"层："
 ---
 
 # 流式输出（Streaming）+ 分块
