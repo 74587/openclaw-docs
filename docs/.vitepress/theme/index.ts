@@ -13,9 +13,10 @@
  *   · +/- 键步进缩放
  */
 import DefaultTheme from 'vitepress/theme'
-import { onMounted, watch, nextTick } from 'vue'
+import { h, onMounted, watch, nextTick } from 'vue'
 import { useRoute } from 'vitepress'
 import './style.css'
+import TencentCloudAd from './TencentCloudAd.vue'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Pan/Zoom State
@@ -292,6 +293,11 @@ function attachZoom() {
 
 export default {
   extends: DefaultTheme,
+  Layout() {
+    return h(DefaultTheme.Layout, null, {
+      'doc-before': () => h(TencentCloudAd),
+    })
+  },
   setup() {
     const route = useRoute()
     // Mermaid 是异步渲染的，需要延迟两次确保 SVG 已挂载
