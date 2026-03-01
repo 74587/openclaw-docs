@@ -3,18 +3,20 @@
 > 面向开发者与小白的 OpenClaw 实现型文档，覆盖智能体框架、通道适配器、上下文管理、状态机与 Gateway 控制面。
 
 [![VitePress](https://img.shields.io/badge/Built%20with-VitePress-646cff?logo=vite&logoColor=white)](https://vitepress.dev)
-[![Docs](https://img.shields.io/badge/Docs-236%20pages-4fc08d)](https://yeuxuan.github.io/openclaw-docs)
+[![Docs](https://img.shields.io/badge/在线文档-openclaw--docs.dx3n.cn-4fc08d?logo=readthedocs)](https://openclaw-docs.dx3n.cn)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+
+**[📖 在线阅读完整文档 → openclaw-docs.dx3n.cn](https://openclaw-docs.dx3n.cn)**
 
 ---
 
 ## 📚 文档内容
 
-| 学习主线 | 内容 | 篇数 |
-|---|---|---|
-| **Track 0** 安装教程 | 安装、配置、接入 AI 服务商、连接通道 | 147 篇 |
-| **Track A** 完整工程主线 | CLI → Gateway → 路由 → Agent 全链路拆解 | 59 篇 |
-| **Track B** AI 重点框架 | 上下文、状态机、工具策略、记忆、Hook 注入 | 22 篇 |
+| 学习主线 | 内容 | 篇数 | 直达链接 |
+|---|---|---|---|
+| **Track 0** 安装教程 | 安装、配置、接入 AI 服务商、连接通道 | 147 篇 | [进入教程](https://openclaw-docs.dx3n.cn/tutorials/) |
+| **Track A** 完整工程主线 | CLI → Gateway → 路由 → Agent 全链路拆解 | 59 篇 | [进入主线](https://openclaw-docs.dx3n.cn/beginner-openclaw-guide/) |
+| **Track B** AI 重点框架 | 上下文、状态机、工具策略、记忆、Hook 注入 | 22 篇 | [进入专项](https://openclaw-docs.dx3n.cn/beginner-openclaw-framework-focus/) |
 
 ---
 
