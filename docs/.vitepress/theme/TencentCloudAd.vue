@@ -2,36 +2,19 @@
   <div v-if="visible" class="tc-ad-wrap">
     <p class="tc-ad-label">广告 · 本站推荐</p>
     <a
-      href="https://curl.qcloud.com/EWbhzkIl"
+      href="https://curl.qcloud.com/3AjnOxhc"
       target="_blank"
       rel="noopener sponsored"
       class="tc-ad-link"
       aria-label="腾讯云特惠活动"
     >
-      <!-- 宽屏：728×90 -->
-      <picture class="tc-ad-img tc-ad-img--wide">
-        <source :srcset="wideWebp" type="image/webp" />
-        <img
-          :src="widePng"
-          alt="腾讯云特惠活动 · 云服务器、数据库、CDN 新用户专享折扣"
-          width="728"
-          height="90"
-          loading="lazy"
-          @error="onError"
-        />
-      </picture>
-      <!-- 移动端：300×250 -->
-      <picture class="tc-ad-img tc-ad-img--narrow">
-        <source :srcset="narrowWebp" type="image/webp" />
-        <img
-          :src="narrowPng"
-          alt="腾讯云特惠活动 · 云服务器、数据库、CDN 新用户专享折扣"
-          width="300"
-          height="250"
-          loading="lazy"
-          @error="onError"
-        />
-      </picture>
+      <img
+        src="/assets/cloud/4e262771-f4a2-4302-920a-3bf136ace493.png"
+        alt="腾讯云特惠活动 · 云服务器、数据库、CDN 新用户专享折扣"
+        loading="lazy"
+        class="tc-ad-img"
+        @error="onError"
+      />
     </a>
   </div>
 </template>
@@ -39,17 +22,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const wideWebp  = '/assets/cloud/tc-728x90.webp'
-const widePng   = '/assets/cloud/tc-728x90.png'
-const narrowWebp = '/assets/cloud/tc-300x250.webp'
-const narrowPng  = '/assets/cloud/tc-300x250.png'
-
 const visible = ref(true)
-let errorCount = 0
 
 function onError() {
-  errorCount++
-  if (errorCount >= 2) visible.value = false
+  visible.value = false
 }
 </script>
 
@@ -77,20 +53,7 @@ function onError() {
 .tc-ad-img {
   max-width: 100%;
   height: auto;
-}
-
-.tc-ad-img img {
-  max-width: 100%;
-  height: auto;
   border-radius: 6px;
   display: block;
-}
-
-.tc-ad-img--wide   { display: inline-block; }
-.tc-ad-img--narrow { display: none; }
-
-@media (max-width: 768px) {
-  .tc-ad-img--wide   { display: none; }
-  .tc-ad-img--narrow { display: inline-block; }
 }
 </style>
