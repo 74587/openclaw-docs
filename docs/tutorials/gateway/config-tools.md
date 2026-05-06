@@ -36,7 +36,9 @@ OpenClaw 用 group 简化配置：
 | `group:fs` | 读写编辑文件、`apply_patch` |
 | `group:web` | `web_search`、`web_fetch`、`x_search` |
 | `group:ui` | `browser`、`canvas` |
-| `group:media` | 图片、视频、TTS |
+| `group:automation` | `heartbeat_respond`、`cron`、`gateway` |
+| `group:agents` | `agents_list`、`update_plan` |
+| `group:media` | `image`、`image_generate`、`music_generate`、`video_generate`、`tts` |
 | `group:messaging` | `message` |
 | `group:nodes` | 节点能力 |
 
@@ -100,4 +102,3 @@ deny 优先级更高。
 - [工具系统](/tutorials/tools/)
 - [执行审批](/tutorials/tools/exec-approvals)
 - [高级执行审批](/tutorials/tools/exec-approvals-advanced)
-

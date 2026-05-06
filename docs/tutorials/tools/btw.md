@@ -61,4 +61,5 @@ BTW 像你在旁边小声问一句：“刚刚说到哪儿了？”
 - [斜杠命令](/tutorials/tools/slash-commands)
 - [队列引导](/tutorials/concepts/queue-steering)
 - [会话管理](/tutorials/concepts/session)
-
+- [思考等级](/tutorials/tools/thinking)
+- [Steer 命令](/tutorials/tools/steer)

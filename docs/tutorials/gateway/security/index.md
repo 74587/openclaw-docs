@@ -69,6 +69,22 @@ OpenClaw assumes the host and config boundary are trusted:
 - Session identifiers (`sessionKey`, session IDs, labels) are routing selectors, not authorization tokens.
 - If several people can message one tool-enabled agent, each of them can steer that same permission set. Per-user session/memory isolation helps privacy, but does not convert a shared agent into per-user host authorization.
 
+### 安全文件操作
+
+OpenClaw 使用 `@openclaw/fs-safe` 处理安全敏感的本地文件访问，例如限制根目录、原子写入、压缩包解压、临时工作区和密钥文件。
+
+但要记住：`fs-safe` 是文件操作护栏，不是沙箱。它能减少路径越界和写坏文件的风险，不能替代 OS 用户、容器、虚拟机或 Gateway 工具权限策略。
+
+OpenClaw 默认关闭 fs-safe 的可选 POSIX Python helper。只有当你明确需要额外的文件描述符相对操作加固，并且能保证 Python 运行时存在时，才设置：
+
+```bash
+OPENCLAW_FS_SAFE_PYTHON_MODE=auto
+# 或者要求必须启用，否则失败：
+OPENCLAW_FS_SAFE_PYTHON_MODE=require
+```
+
+详情看：[安全文件操作](/tutorials/gateway/security/secure-file-operations)。
+
 ### Shared Slack workspace: real risk
 
 If "everyone in Slack can message the bot," the core risk is delegated tool authority:
@@ -881,14 +897,11 @@ Doctor can generate one for you: `openclaw doctor --generate-gateway-token`.
 :::
 
 Optional: pin remote TLS with `gateway.remote.tlsFingerprint` when using `wss://`.
-Plaintext `ws://` is loopback-only by default. For trusted private-network
-paths, set `OPENCLAW_ALLOW_INSECURE_PRIVATE_WS=1` on the client process as
-break-glass. This is intentionally process environment only, not an
-`openclaw.json` config key.
-Mobile pairing and Android manual or scanned gateway routes are stricter:
-cleartext is accepted for loopback, but private-LAN, link-local, `.local`, and
-dotless hostnames must use TLS unless you explicitly opt into the trusted
-private-network cleartext path.
+Plaintext `ws://` setup codes are accepted only for loopback, private LAN
+addresses, `.local` Bonjour hosts, and the Android emulator host. Tailnet CGNAT
+addresses, `.ts.net` names, and public hosts still fail closed before QR/setup
+code issuance; use Tailscale Serve/Funnel or another `wss://` Gateway URL for
+those routes.
 
 Local device pairing:
 

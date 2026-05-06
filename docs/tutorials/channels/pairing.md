@@ -69,6 +69,23 @@ openclaw pairing approve telegram <CODE>
 
 在设置码有效期间，请像对待密码一样保管它。
 
+### 远程和局域网设置码
+
+如果手机通过 Tailscale、公网域名或其他远程方式连接 Gateway，推荐使用 Tailscale Serve/Funnel 或其他 `wss://` Gateway URL。
+
+明文 `ws://` 设置码只接受这些安全边界内的地址：
+
+- 本机 loopback，例如 `127.0.0.1`。
+- 私有局域网地址。
+- `.local` Bonjour 主机名。
+- Android 模拟器 host。
+
+Tailnet CGNAT 地址、`.ts.net` 名称和公网主机仍然会 fail closed，不会发出 QR/setup code。
+
+::: tip 记不住就看这一句
+家里局域网可以 `ws://`，跨网或公网就用 `wss://`。
+:::
+
 ### 批准节点设备
 
 ```bash

@@ -1323,27 +1323,49 @@ scripts/sandbox-browser-setup.sh   # 可选浏览器镜像
 
 ## 对话（Talk）
 
-Talk 模式（macOS/iOS/Android）的默认值。
+Talk 模式（macOS/iOS/Android、浏览器 realtime、Gateway relay）的默认值。
 
 ```json5
 {
   talk: {
-    voiceId: "elevenlabs_voice_id",
-    voiceAliases: {
-      Clawd: "EXAVITQu4vr4xnSDxMaL",
-      Roger: "CwhRBWXzGAHq8TQ4Fs17",
+    provider: "elevenlabs",
+    providers: {
+      elevenlabs: {
+        apiKey: "elevenlabs_api_key",
+        voiceId: "elevenlabs_voice_id",
+        voiceAliases: {
+          Clawd: "EXAVITQu4vr4xnSDxMaL",
+          Roger: "CwhRBWXzGAHq8TQ4Fs17",
+        },
+        modelId: "eleven_v3",
+        outputFormat: "mp3_44100_128",
+      },
     },
-    modelId: "eleven_v3",
-    outputFormat: "mp3_44100_128",
-    apiKey: "elevenlabs_api_key",
+    speechLocale: "zh-CN",
+    silenceTimeoutMs: 1500,
     interruptOnSpeech: true,
+    realtime: {
+      provider: "openai",
+      providers: {
+        openai: {
+          apiKey: "openai_api_key",
+          model: "gpt-realtime",
+          voice: "alloy",
+        },
+      },
+      mode: "realtime",
+      transport: "webrtc",
+      brain: "agent-consult",
+    },
   },
 }
 ```
 
-- 语音 ID 回退到 `ELEVENLABS_VOICE_ID` 或 `SAG_VOICE_ID`。
-- `apiKey` 回退到 `ELEVENLABS_API_KEY`。
-- `voiceAliases` 允许 Talk 指令使用友好名称。
+- `talk.provider` + `talk.providers.<provider>` 用于 `talk.speak` 和 STT/TTS 模式里的语音播放。
+- `talk.realtime.*` 用于浏览器 realtime、Gateway relay、transcription 等实时语音 session。
+- `talk.catalog` 会告诉客户端当前可用 provider、model、voice、mode、transport 和 brain，不会返回密钥。
+- `speechLocale` 是 iOS/macOS 设备语音识别语言，留空时用系统默认。
+- 旧的 `talk.voiceId`/`talk.voiceAliases`/`talk.modelId`/`talk.outputFormat`/`talk.apiKey` 和旧的顶层 realtime 字段可用 `openclaw doctor --fix` 迁移。
 
 ---
 
@@ -1370,9 +1392,11 @@ Talk 模式（macOS/iOS/Android）的默认值。
 | `group:memory`     | `memory_search`、`memory_get`                                                            |
 | `group:web`        | `web_search`、`web_fetch`                                                                |
 | `group:ui`         | `browser`、`canvas`                                                                      |
-| `group:automation` | `cron`、`gateway`                                                                        |
+| `group:automation` | `heartbeat_respond`、`cron`、`gateway`                                                   |
 | `group:messaging`  | `message`                                                                                |
 | `group:nodes`      | `nodes`                                                                                  |
+| `group:agents`     | `agents_list`、`update_plan`                                                            |
+| `group:media`      | `image`、`image_generate`、`music_generate`、`video_generate`、`tts`                     |
 | `group:openclaw`   | 所有内置工具（不包括提供商插件）                                                          |
 
 ### `tools.allow` / `tools.deny`

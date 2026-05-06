@@ -18,6 +18,12 @@ sidebarTitle: "qr"
 二维码通常有有效期。如果扫码失败、提示过期或手机没反应，重新生成即可。
 如果多次失败，问题一般不在二维码本身，而在网络、账号登录状态或 Gateway 是否可达。
 
+移动端配对时还要注意 URL 安全规则：
+
+- 私有局域网地址和 `.local` Bonjour 主机可以继续用 `ws://`。
+- Tailscale `.ts.net`、Tailnet CGNAT 地址和公网地址不要用 `ws://`，请用 Tailscale Serve/Funnel 或 `wss://`。
+- 如果加了 `--remote`，需要配置 `gateway.remote.url`，或者开启 `gateway.tailscale.mode=serve|funnel`。
+
 排障顺序：
 
 ```bash

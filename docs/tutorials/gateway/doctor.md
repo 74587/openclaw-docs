@@ -173,6 +173,10 @@ Doctor 会：
 - `routing.queue` → `messages.queue`
 - `routing.bindings` → 顶层 `bindings`
 - `routing.agents`/`routing.defaultAgentId` → `agents.list` + `agents.list[].default`
+- 旧版 `talk.voiceId`/`talk.voiceAliases`/`talk.modelId`/`talk.outputFormat`/`talk.apiKey`
+  → `talk.provider` + `talk.providers.<provider>`
+- 旧版顶层 realtime Talk 选择器（`talk.mode`/`talk.transport`/`talk.brain`/`talk.model`/`talk.voice`）
+  → `talk.realtime`
 - `routing.agentToAgent` → `tools.agentToAgent`
 - `routing.transcribeAudio` → `tools.media.audio.models`
 - `bindings[].match.accountID` → `bindings[].match.accountId`
@@ -210,6 +214,38 @@ openai/* 模型引用 + agentRuntime.id: "codex"
 ```bash
 openclaw doctor --fix
 ```
+
+### 2d) Talk 配置迁移
+
+新版 Talk 配置把“普通语音播放”和“实时语音会话”分开：
+
+- 语音播放：`talk.provider` + `talk.providers.<provider>`
+- 实时语音：`talk.realtime.*`
+
+如果旧配置里还有这些顶层字段：
+
+- `talk.mode`
+- `talk.transport`
+- `talk.brain`
+- `talk.model`
+- `talk.voice`
+
+或者旧的：
+
+- `talk.voiceId`
+- `talk.voiceAliases`
+- `talk.modelId`
+- `talk.outputFormat`
+- `talk.apiKey`
+
+运行：
+
+```bash
+openclaw doctor --fix
+openclaw gateway restart
+```
+
+doctor 会把它们迁到当前结构。
 
 ### 3) 旧版状态迁移（磁盘布局）
 

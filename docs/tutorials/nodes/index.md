@@ -40,6 +40,7 @@ Gateway 调用已配对的手机 Node
 - Canvas 可视化展示。
 - [相机](/tutorials/nodes/camera)、截图、屏幕录制。
 - [音频](/tutorials/nodes/audio)、[语音唤醒](/tutorials/nodes/voicewake)、朗读。
+- [Talk Mode](/tutorials/nodes/talk)：实时语音、push-to-talk、只转写模式。
 - [位置](/tutorials/nodes/location-command)。
 - [媒体理解](/tutorials/nodes/media-understanding)。
 - 远程机器命令执行。
@@ -66,6 +67,16 @@ Gateway 调用已配对的手机 Node
 ```
 
 并告诉 Gateway 自己有哪些能力，例如 `canvas.*`、`camera.*`、`screen.record`、`location.get`。
+
+支持 Talk 的节点还会声明 `talk` capability 或 `talk.*` 命令。
+可信 Talk 节点默认允许这些 push-to-talk 命令：
+
+- `talk.ptt.start`
+- `talk.ptt.stop`
+- `talk.ptt.cancel`
+- `talk.ptt.once`
+
+高风险命令仍然要按节点命令策略单独允许或审批。
 
 ---
 

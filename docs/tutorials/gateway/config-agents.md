@@ -105,9 +105,59 @@ sidebarTitle: "Agent 配置"
 
 ---
 
+## Talk 配置
+
+`talk` 控制语音对话。
+它分两层：
+
+- `talk.provider` + `talk.providers.<provider>`：传统语音播放，也就是 `talk.speak` 和 STT/TTS 模式里的 TTS。
+- `talk.realtime.*`：浏览器或服务端实时语音会话。
+
+示例：
+
+```json5
+{
+  talk: {
+    provider: "elevenlabs",
+    speechLocale: "zh-CN",
+    silenceTimeoutMs: 1500,
+    interruptOnSpeech: true,
+    realtime: {
+      provider: "openai",
+      providers: {
+        openai: {
+          model: "gpt-realtime",
+          voice: "alloy"
+        }
+      },
+      mode: "realtime",
+      transport: "webrtc",
+      brain: "agent-consult"
+    }
+  }
+}
+```
+
+如果配置里还写着旧字段：
+
+- `talk.mode`
+- `talk.transport`
+- `talk.brain`
+- `talk.model`
+- `talk.voice`
+
+运行：
+
+```bash
+openclaw doctor --fix
+```
+
+新版 doctor 会把这些旧的顶层 realtime selector 迁到 `talk.realtime`。
+
+---
+
 ## 继续阅读
 
 - [Agent 是什么](/tutorials/concepts/agent)
 - [多智能体路由](/tutorials/concepts/multi-agent)
 - [SOUL.md](/tutorials/concepts/soul)
-
