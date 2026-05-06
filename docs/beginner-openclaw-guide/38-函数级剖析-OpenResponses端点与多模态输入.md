@@ -53,7 +53,7 @@ description: "OpenClaw 源码剖析：函数级剖析 OpenResponses 端点与多
 
 ### D. 流式事件为什么这么多
 
-OpenResponses 协议不是只发文本 delta。  
+OpenResponses 协议不是只发文本 delta。
 它需要表达“响应对象生命周期”，所以会有：
 - `response.created`
 - `response.in_progress`

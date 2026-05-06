@@ -7,7 +7,7 @@ description: "OpenClaw 快速入门：CLI 入门引导参考。本页面是  的
 # CLI 入门引导参考
 
 本页面是 `openclaw onboard` 的完整参考。
-简要指南请参阅 [入门引导向导 (CLI)](/start/wizard)。
+简要指南请参阅 [入门引导向导 (CLI)](/tutorials/getting-started/wizard)。
 
 ---
 
@@ -132,7 +132,7 @@ description: "OpenClaw 快速入门：CLI 入门引导参考。本页面是  的
 ::: details Anthropic API 密钥（推荐）
 
     如果存在 `ANTHROPIC_API_KEY` 则使用该值，否则提示输入密钥，然后为守护进程保存。
-  
+
 
 :::
 
@@ -143,7 +143,7 @@ description: "OpenClaw 快速入门：CLI 入门引导参考。本页面是  的
 
     在 macOS 上，选择"始终允许"以便 launchd 启动时不会阻塞。
 
-  
+
 
 :::
 
@@ -151,14 +151,14 @@ description: "OpenClaw 快速入门：CLI 入门引导参考。本页面是  的
 
     在任何机器上运行 `claude setup-token`，然后粘贴 Token。
     可以命名；留空使用默认名称。
-  
+
 
 :::
 
 ::: details OpenAI Code 订阅（Codex CLI 复用）
 
     如果 `~/.codex/auth.json` 存在，向导可以复用它。
-  
+
 
 :::
 
@@ -168,7 +168,7 @@ description: "OpenClaw 快速入门：CLI 入门引导参考。本页面是  的
 
     当模型未设置或为 `openai/*` 时，将 `agents.defaults.model` 设置为 `openai-codex/gpt-5.3-codex`。
 
-  
+
 
 :::
 
@@ -179,14 +179,14 @@ description: "OpenClaw 快速入门：CLI 入门引导参考。本页面是  的
 
     当模型未设置、为 `openai/*` 或 `openai-codex/*` 时，将 `agents.defaults.model` 设置为 `openai/gpt-5.1-codex`。
 
-  
+
 
 :::
 
 ::: details xAI (Grok) API 密钥
 
     提示输入 `XAI_API_KEY` 并配置 xAI 作为模型提供商。
-  
+
 
 :::
 
@@ -194,14 +194,14 @@ description: "OpenClaw 快速入门：CLI 入门引导参考。本页面是  的
 
     提示输入 `OPENCODE_API_KEY`（或 `OPENCODE_ZEN_API_KEY`）。
     设置 URL：[opencode.ai/auth](https://opencode.ai/auth)。
-  
+
 
 :::
 
 ::: details API 密钥（通用）
 
     为你存储密钥。
-  
+
 
 :::
 
@@ -209,7 +209,7 @@ description: "OpenClaw 快速入门：CLI 入门引导参考。本页面是  的
 
     提示输入 `AI_GATEWAY_API_KEY`。
     更多详情：[Vercel AI Gateway](/tutorials/providers/vercel-ai-gateway)。
-  
+
 
 :::
 
@@ -217,7 +217,7 @@ description: "OpenClaw 快速入门：CLI 入门引导参考。本页面是  的
 
     提示输入账号 ID、网关 ID 和 `CLOUDFLARE_AI_GATEWAY_API_KEY`。
     更多详情：[Cloudflare AI Gateway](/tutorials/providers/cloudflare-ai-gateway)。
-  
+
 
 :::
 
@@ -225,7 +225,7 @@ description: "OpenClaw 快速入门：CLI 入门引导参考。本页面是  的
 
     配置自动写入。
     更多详情：[MiniMax](/tutorials/providers/minimax)。
-  
+
 
 :::
 
@@ -233,7 +233,7 @@ description: "OpenClaw 快速入门：CLI 入门引导参考。本页面是  的
 
     提示输入 `SYNTHETIC_API_KEY`。
     更多详情：[Synthetic](/tutorials/providers/synthetic)。
-  
+
 
 :::
 
@@ -241,7 +241,7 @@ description: "OpenClaw 快速入门：CLI 入门引导参考。本页面是  的
 
     Moonshot (Kimi K2) 和 Kimi Coding 的配置自动写入。
     更多详情：[Moonshot AI (Kimi + Kimi Coding)](/tutorials/providers/moonshot)。
-  
+
 
 :::
 
@@ -257,14 +257,14 @@ description: "OpenClaw 快速入门：CLI 入门引导参考。本页面是  的
     - `--custom-provider-id`（可选）
     - `--custom-compatibility <openai|anthropic>`（可选；默认 `openai`）
 
-  
+
 
 :::
 
 ::: details 跳过
 
     不配置认证。
-  
+
 
 :::
 
@@ -336,6 +336,6 @@ Signal 设置行为：
 
 ## 相关文档
 
-- 入门引导中心：[入门引导向导 (CLI)](/start/wizard)
-- 自动化和脚本：[CLI 自动化](/start/wizard-cli-automation)
-- 命令参考：[`openclaw onboard`](/cli/onboard)
+- 入门引导中心：[入门引导向导 (CLI)](/tutorials/getting-started/wizard)
+- 自动化和脚本：[CLI 自动化](/tutorials/getting-started/wizard-cli-automation)
+- 命令参考：[`openclaw onboard`](/tutorials/getting-started/wizard-cli-reference)

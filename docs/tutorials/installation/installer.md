@@ -51,7 +51,7 @@ iwr -useb https://openclaw.ai/install.ps1 | iex
 
 
 ::: info 说明
-如果安装成功但在新终端中找不到 `openclaw`，请参见 [Node.js 故障排除](/install/node#故障排除)。
+如果安装成功但在新终端中找不到 `openclaw`，请参见 [Node.js 故障排除](/tutorials/help/node-issue)。
 :::
 
 
@@ -75,9 +75,9 @@ iwr -useb https://openclaw.ai/install.ps1 | iex
 
     在 Linux（包括 WSL）上，安装 Node.js **之前**，脚本会自动预装原生编译工具链（`make`、`g++`、`cmake`、`python3`），避免后续 npm 原生模块安装失败。macOS 会跳过这一步。
 
-  ### 步骤 3：确保 Node.js 22+
+  ### 步骤 3：确保 Node.js 24（或兼容的 22.14+）
 
-    检查 Node 版本，如需安装 Node 22（macOS 上使用 Homebrew，Linux 上使用 NodeSource 设置脚本，适用于 apt/dnf/yum）。
+    检查 Node 版本，如需安装会优先准备 Node 24（macOS 上使用 Homebrew，Linux 上使用 NodeSource 设置脚本，适用于 apt/dnf/yum）。
 
   ### 步骤 4：确保 Git
 
@@ -152,7 +152,7 @@ curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install.sh | bash -s -
 | `--verbose`                     | 启用调试输出（`set -x`，npm notice 级别日志）               |
 | `--help`                        | 显示用法（`-h`）                                           |
 
-  
+
 
 :::
 
@@ -173,7 +173,7 @@ curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install.sh | bash -s -
 | `OPENCLAW_NPM_LOGLEVEL=error\|warn\|notice` | npm 日志级别                              |
 | `SHARP_IGNORE_GLOBAL_LIBVIPS=0\|1`          | 控制 sharp/libvips 行为（默认：`1`）       |
 
-  
+
 
 :::
 
@@ -244,7 +244,7 @@ curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install-cli.sh | bash 
 | `--set-npm-prefix`     | 在 Linux 上，如果当前前缀不可写则强制 npm 前缀为 `~/.npm-global`               |
 | `--help`               | 显示用法（`-h`）                                                             |
 
-  
+
 
 :::
 
@@ -261,7 +261,7 @@ curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install-cli.sh | bash 
 | `OPENCLAW_GIT_DIR=<path>`                   | 旧版清理查找路径（用于移除旧的 `Peekaboo` 子模块 checkout）                        |
 | `SHARP_IGNORE_GLOBAL_LIBVIPS=0\|1`          | 控制 sharp/libvips 行为（默认：`1`）                                              |
 
-  
+
 
 :::
 
@@ -277,7 +277,7 @@ curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install-cli.sh | bash 
 
     需要 PowerShell 5+。
 
-  ### 步骤 11：确保 Node.js 22+
+  ### 步骤 11：确保 Node.js 24（或兼容的 22.14+）
 
     如果缺失，依次尝试通过 winget、Chocolatey、Scoop 安装。
 
@@ -339,7 +339,7 @@ Set-PSDebug -Trace 0
 | `-NoGitUpdate`            | 跳过 `git pull`                                   |
 | `-DryRun`                 | 仅打印操作                                        |
 
-  
+
 
 :::
 
@@ -354,7 +354,7 @@ Set-PSDebug -Trace 0
 | `OPENCLAW_GIT_UPDATE=0`            | 禁用 git pull    |
 | `OPENCLAW_DRY_RUN=1`               | 试运行模式       |
 
-  
+
 
 :::
 
@@ -405,7 +405,7 @@ curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install-cli.sh | bash 
 ::: details 为什么需要 Git？
 
     Git 是 `git` 安装方法所需的。对于 `npm` 安装，仍然会检查/安装 Git 以避免依赖使用 git URL 时出现 `spawn git ENOENT` 错误。
-  
+
 
 :::
 
@@ -413,7 +413,7 @@ curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install-cli.sh | bash 
 ::: details 为什么 npm 在 Linux 上报 EACCES 错误？
 
     某些 Linux 配置将 npm 全局前缀指向 root 所有的路径。`install.sh` 可以将前缀切换到 `~/.npm-global` 并将 PATH 导出追加到 shell rc 文件（如果这些文件存在）。
-  
+
 
 :::
 
@@ -426,7 +426,7 @@ curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install-cli.sh | bash 
 SHARP_IGNORE_GLOBAL_LIBVIPS=0 curl -fsSL --proto '=https' --tlsv1.2 https://openclaw.ai/install.sh | bash
 ```
 
-  
+
 
 :::
 
@@ -434,7 +434,7 @@ SHARP_IGNORE_GLOBAL_LIBVIPS=0 curl -fsSL --proto '=https' --tlsv1.2 https://open
 ::: details Windows："npm error spawn git / ENOENT"
 
     安装 Git for Windows，重新打开 PowerShell，重新运行安装器。
-  
+
 
 :::
 
@@ -442,7 +442,7 @@ SHARP_IGNORE_GLOBAL_LIBVIPS=0 curl -fsSL --proto '=https' --tlsv1.2 https://open
 ::: details Windows："openclaw is not recognized"
 
     运行 `npm config get prefix`，追加 `\bin`，将该目录添加到用户 PATH，然后重新打开 PowerShell。
-  
+
 
 :::
 
@@ -458,14 +458,14 @@ Set-PSDebug -Trace 1
 Set-PSDebug -Trace 0
 ```
 
-  
+
 
 :::
 
 
 ::: details 安装后找不到 openclaw
 
-    通常是 PATH 问题。参见 [Node.js 故障排除](/install/node#故障排除)。
-  
+    通常是 PATH 问题。参见 [Node.js 故障排除](/tutorials/help/node-issue)。
+
 
 :::

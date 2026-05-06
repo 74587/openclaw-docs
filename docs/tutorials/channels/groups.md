@@ -119,9 +119,9 @@ requireMention? yes -> 被提及？ 否 -> 仅存储为上下文
 
 相关：
 
-- 配置键和默认值：[网关配置](/tutorials/gateway/configuration#agentsdefaultssandbox)
+- 配置键和默认值：[网关配置](/tutorials/gateway/configuration)
 - 调试工具为何被阻止：[沙箱 vs 工具策略 vs 提权](/tutorials/gateway/sandbox-vs-tool-policy-vs-elevated)
-- 绑定挂载详情：[沙箱](/tutorials/gateway/sandboxing#custom-bind-mounts)
+- 绑定挂载详情：[沙箱](/tutorials/gateway/sandboxing)
 
 ---
 

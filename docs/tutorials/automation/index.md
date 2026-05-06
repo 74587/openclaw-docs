@@ -3,68 +3,129 @@ title: "自动化模块概览"
 sidebarTitle: "自动化"
 ---
 
-# 自动化（Automation）
+# 自动化
 
-OpenClaw 提供了三种强大的自动化方式，让你的 Agent 无需手动干预就能自动响应事件、定时执行任务或接收外部触发。无论是持续监控、定时报告还是外部系统集成，都能轻松实现。
+自动化就是让 OpenClaw 在你没盯着它的时候，也能按规则做事。
 
----
+比如：
 
-## 三种自动化方式
-
-### 1. Hooks（事件钩子）
-
-当系统内部发生特定事件时自动触发脚本执行。适合在 Agent 生命周期的关键节点插入自定义逻辑。
-
-- 会话启动/结束时执行初始化或清理
-- 消息收发时做日志记录或内容过滤
-- 工具调用前后做审计和监控
-
-[查看 Hooks 文档 →](./hooks)
+- 每天早上发一份日报
+- GitHub 有新 Issue 时提醒你
+- 服务器报警时让 Agent 先看日志
+- 每隔一段时间检查一次某个网页
+- 让某个会话过一会儿继续推进
 
 ---
 
-### 2. Cron（定时任务）
+## 四种常见方式
 
-使用标准 cron 表达式，在精确的时间点自动触发 Agent 执行任务。适合周期性、有时间要求的工作。
+### 1. Hooks：事情发生时触发
 
-- 每天早上 9 点生成工作日报
-- 每周五下午汇总本周数据
-- 每小时检查一次系统状态
+Hooks 像门铃。有人按门铃，屋里的人就知道要做事。
 
-[查看 Cron 定时任务文档 →](./cron-jobs)
+适合：
+
+- 会话开始时准备上下文
+- 消息到达时记录日志
+- 工具调用前后做审计
+- 任务结束后清理临时文件
+
+[查看 Hooks 文档](/tutorials/automation/hooks)
 
 ---
 
-### 3. Webhook（外部触发）
+### 2. Cron：按固定时间触发
 
-通过 HTTP 接口让外部服务主动触发 OpenClaw 的 Agent 执行。适合与第三方系统集成。
+Cron 像闹钟。每天几点、每周几、每小时一次，都可以安排。
 
-- GitHub Actions 完成后触发通知 Agent
-- 外部监控系统告警时自动响应
-- 任意 HTTP 客户端按需触发任务
+适合：
 
-[查看 Webhook 文档 →](./webhook)
+- 每天 9 点生成日报
+- 每周五整理周报
+- 每小时检查系统状态
+- 每晚汇总待办事项
+
+[查看 Cron 定时任务](/tutorials/automation/cron-jobs)
+
+---
+
+### 3. Heartbeat：让当前会话稍后继续
+
+Heartbeat 像“过 30 分钟提醒我回来接着做”。
+它更适合当前这条对话里的短周期跟进，而不是长期后台任务。
+
+适合：
+
+- 20 分钟后继续检查构建结果
+- 1 小时后回到当前线程总结进展
+- 等某个服务启动后继续下一步
+
+[查看 Cron vs Heartbeat](/tutorials/automation/cron-vs-heartbeat)
+
+---
+
+### 4. Webhook：外部系统来敲门
+
+Webhook 像别人从外面打电话进来。
+GitHub、监控系统、表单系统、内部平台都可以通过 HTTP 请求触发 OpenClaw。
+
+适合：
+
+- GitHub Actions 完成后通知 Agent
+- 监控告警后自动排查
+- 外部系统提交数据后生成摘要
+- 用脚本主动触发某个工作流
+
+[查看 Webhook 文档](/tutorials/automation/webhook)
+
+---
+
+## 怎么选
+
+| 你想做的事 | 选哪个 |
+|------------|--------|
+| “每周一早上固定运行” | Cron |
+| “这条对话半小时后继续” | Heartbeat |
+| “收到外部系统通知再运行” | Webhook |
+| “OpenClaw 内部发生事件后运行” | Hooks |
+| “不支持推送，只能定期去看有没有新内容” | Poll |
+| “后台任务跑了但不知道结果” | Tasks |
+| “多步骤流程要跨重启跟踪” | Task Flow |
+
+更多对比看 [Cron vs Heartbeat](/tutorials/automation/cron-vs-heartbeat)。
 
 ---
 
 ## 扩展功能
 
-| 功能 | 说明 | 文档 |
-|------|------|------|
-| Cron vs Heartbeat | 了解两种持续运行模式的区别和选择建议 | [对比说明](./cron-vs-heartbeat) |
-| 轮询通道（Poll） | 对不支持推送的通道主动轮询新消息 | [轮询配置](./poll) |
-| Gmail PubSub | 实时接收 Gmail 邮件通知，无需轮询 | [Gmail 集成](./gmail-pubsub) |
-| OAuth 认证监控 | 监控 Token 过期，防止服务中断 | [认证监控](./auth-monitoring) |
-| 故障排查 | Cron、Heartbeat、Webhook 常见问题解决 | [故障排查](./troubleshooting) |
+- [Poll 轮询](/tutorials/automation/poll)：主动去检查新消息或新数据
+- [后台任务 Tasks](/tutorials/automation/tasks)：查看后台运行的状态、结果和失败原因
+- [Task Flow 任务流](/tutorials/automation/taskflow)：跟踪多步骤后台流程
+- [Standing Orders 长期指令](/tutorials/automation/standing-orders)：给 Agent 长期授权和边界
+- [ClawFlow 已更名](/tutorials/automation/clawflow)：旧名称到 Task Flow 的说明
+- [Gmail Pub/Sub](/tutorials/automation/gmail-pubsub)：接收 Gmail 推送
+- [OAuth 认证监控](/tutorials/automation/auth-monitoring)：避免 Token 过期导致服务中断
+- [自动化故障排查](/tutorials/automation/troubleshooting)：任务没有执行时从这里查
 
 ---
 
-::: tip 从哪里开始？
-- 如果你是第一次使用自动化功能，推荐从 **[Hooks 事件钩子](./hooks)** 开始，理解事件驱动机制。
-- 如果你有明确的定时需求，直接看 **[Cron 定时任务](./cron-jobs)**。
-- 如果需要对接外部系统，查看 **[Webhook 外部触发](./webhook)**。
-:::
+## 安全提醒
+
+自动化任务最好写得清楚一点：什么时候运行、能访问什么、失败了怎么办。
+
+特别是会运行命令、访问外部系统、处理敏感信息的任务，要注意：
+
+- 不要把 API Key 写进公开文档或公开仓库
+- Webhook 要有认证或签名校验
+- Cron 任务要避免重复启动同一个重活
+- 命令执行类任务要配合审批和沙箱
+- 失败后要有日志，别让问题悄悄发生
 
 ---
 
-_下一步：[Hooks 事件钩子](./hooks) | [Cron 定时任务](./cron-jobs) | [Webhook 外部触发](./webhook)_
+## 第一次使用建议
+
+先做一个很小的任务，比如“每天早上发一句测试消息”。
+跑通以后，再加模型调用、工具调用和外部系统集成。
+
+自动化最怕一开始就做太大：出了问题，不知道是时间规则错了、权限错了、模型错了，还是外部系统没回调。

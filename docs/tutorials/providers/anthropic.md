@@ -1,12 +1,12 @@
 ---
 title: "Anthropic (Claude) 配置"
 sidebarTitle: "Anthropic"
-description: "OpenClaw 模型接入：Anthropic (Claude) 配置。Anthropic 是 Claude 的开发公司，Claude 是一个非常聪明的 AI 助手，也是 OpenClaw 的官方推…"
+description: "OpenClaw 模型接入：Anthropic (Claude) 配置。适合想使用 Claude 模型的用户，支持 API Key 和订阅授权等方式。"
 ---
 
 # Anthropic (Claude) 配置
 
-Anthropic 是 Claude 的开发公司，Claude 是一个非常聪明的 AI 助手，也是 OpenClaw 的官方推荐首选 AI。
+Anthropic 是 Claude 的开发公司。Claude 很适合长上下文、代码理解、写作和复杂分析，也是很多 OpenClaw 用户会优先尝试的模型之一。
 
 ---
 
@@ -29,7 +29,7 @@ Anthropic 是 Claude 的开发公司，Claude 是一个非常聪明的 AI 助手
 运行配置向导：
 
 ```bash
-openclaw onboard
+openclaw onboard --install-daemon
 ```
 
 向导会问你：`Which AI provider do you want to use?`，选择 `Anthropic (Claude)`，然后粘贴你的密钥。
@@ -52,13 +52,15 @@ openclaw models status
 
 ## 我能用哪个 Claude 模型？
 
+模型名称会随 Anthropic 和 OpenClaw 的更新而变化，**以向导和 `openclaw models list` 显示为准**。下面是常见选择方式：
+
 | 模型名称 | 特点 | 适合什么场景 |
 |---------|------|------------|
-| `claude-opus-4-6` | 最聪明，花费稍高 | 复杂任务、写作、分析 |
-| `claude-sonnet-4-6` | 能力与费用平衡 ⭐ 推荐 | 日常使用 |
-| `claude-haiku-4-5` | 最快，费用最低 | 简单问答、快速回复 |
+| `claude-opus-*` | 能力最强，费用通常更高 | 复杂任务、源码分析、长文写作 |
+| `claude-sonnet-*` | 能力和费用比较均衡 | 日常使用、代码协作 |
+| `claude-haiku-*` | 更快、更省 | 简单问答、快速分类、轻量任务 |
 
-**新手推荐用 `claude-sonnet-4-6`**，性价比最高。
+新手一般从 `sonnet` 级别开始最稳：够聪明，费用也不会一下子太吓人。
 
 ---
 
@@ -74,7 +76,7 @@ openclaw models status
 ### CLI 设置
 
 ```bash
-openclaw onboard
+openclaw onboard --install-daemon
 # 选择：Anthropic API key
 
 # 或非交互式
@@ -175,7 +177,7 @@ openclaw onboard --auth-choice setup-token
 ## 注意事项
 
 - 使用 `claude setup-token` 生成 setup-token 并粘贴，或在网关（Gateway）主机上运行 `openclaw models auth setup-token`。
-- 如果在 Claude 订阅中看到 "OAuth token refresh failed ..." 错误，请使用 setup-token 重新认证。参见 [/gateway/troubleshooting#oauth-token-refresh-failed-anthropic-claude-subscription](/tutorials/gateway/troubleshooting#oauth-token-refresh-failed-anthropic-claude-subscription)。
+- 如果在 Claude 订阅中看到 "OAuth token refresh failed ..." 错误，请使用 setup-token 重新认证。参见 [/gateway/troubleshooting#oauth-token-refresh-failed-anthropic-claude-subscription](/tutorials/gateway/troubleshooting)。
 - 认证详情和复用规则见 [/concepts/oauth](/tutorials/concepts/oauth)。
 
 ## 故障排查

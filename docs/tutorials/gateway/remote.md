@@ -31,7 +31,7 @@ description: "OpenClaw Gateway：远程访问（SSH、隧道和 tailnet）。本
 
 - **最佳体验：**保持 `gateway.bind: "loopback"` 并使用 **Tailscale Serve** 提供 Control UI。
 - **回退方案：**保持 loopback + 从任何需要访问的机器建立 SSH 隧道。
-- **示例：**[exe.dev](/install/exe-dev)（简易 VM）或 [Hetzner](/install/hetzner)（生产 VPS）。
+- **示例：**[exe.dev](/tutorials/installation/exe-dev)（简易 VM）或 [Hetzner](/tutorials/installation/hetzner)（生产 VPS）。
 
 当你的笔记本经常休眠但希望智能体（Agent）始终在线时，这是理想方案。
 
@@ -42,7 +42,7 @@ description: "OpenClaw Gateway：远程访问（SSH、隧道和 tailnet）。本
 - 使用 macOS 应用的**远程 SSH**模式（设置 → 通用 → "OpenClaw 运行位置"）。
 - 应用打开并管理隧道，因此 WebChat + 健康检查"开箱即用"。
 
-操作手册：[macOS 远程访问](/platforms/mac/remote)。
+操作手册：[macOS 远程访问](/tutorials/gateway/remote)。
 
 ### 3) 笔记本运行网关（Gateway），从其他机器远程访问
 
@@ -51,7 +51,7 @@ description: "OpenClaw Gateway：远程访问（SSH、隧道和 tailnet）。本
 - 从其他机器建立到笔记本的 SSH 隧道，或
 - Tailscale Serve 提供 Control UI 并保持网关（Gateway）仅 loopback。
 
-指南：[Tailscale](/tutorials/gateway/tailscale) 和 [Web 概览](/web)。
+指南：[Tailscale](/tutorials/gateway/tailscale) 和 [Web 概览](/tutorials/web/)。
 
 ---
 
@@ -125,7 +125,7 @@ WebChat 不再使用单独的 HTTP 端口。SwiftUI 聊天 UI 直接连接到网
 
 macOS 菜单栏应用可以端到端驱动相同的设置（远程状态检查、WebChat 和语音唤醒转发）。
 
-操作手册：[macOS 远程访问](/platforms/mac/remote)。
+操作手册：[macOS 远程访问](/tutorials/gateway/remote)。
 
 ---
 

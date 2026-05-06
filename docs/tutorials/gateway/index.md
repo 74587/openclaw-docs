@@ -3,133 +3,169 @@ title: "网关（Gateway）使用指南"
 sidebarTitle: "网关"
 ---
 
-# 网关（Gateway）——AI 助手的"指挥部"
+# 网关（Gateway）——OpenClaw 的总服务台
 
-## 什么是网关？
+如果只能记住一个概念，请记住 Gateway。
 
-把 OpenClaw 想象成一个邮局：
-
-- **网关（Gateway）** = 邮局本身，所有信件（消息）都要经过这里
-- **AI 助手** = 邮局里处理信件的工作人员
-- **通道（Telegram/WhatsApp等）** = 各种送信方式
-
-网关必须持续运行，AI 助手才能随时响应你的消息。
+**Gateway 是 OpenClaw 的常驻进程。它负责接收消息、管理通道、连接控制 UI、连接节点、调用 Agent，并把结果发回去。**
 
 ---
 
-## 快速检查：网关现在在运行吗？
+## 用一句人话解释
 
-打开终端，输入：
+把 OpenClaw 想成一家服务中心：
+
+- Gateway 是前台。
+- Control UI 是前台的电脑屏幕。
+- Telegram、WhatsApp、Discord 是不同入口。
+- Agent 是处理问题的人。
+- Node 是可以被前台联系的外部设备。
+
+前台关门了，所有入口都会受影响。
+
+## 新手只要先记 3 件事
+
+1. **Gateway 要开着。**
+   它停了，OpenClaw 就像没人接电话。
+
+2. **先用 `openclaw dashboard` 测试。**
+   浏览器能聊通，再去接 Telegram、WhatsApp。
+
+3. **远程访问先别急。**
+   默认只让本机访问是为了安全。想让手机或外网访问时，先看 Tailscale、VPN 或认证配置。
+
+---
+
+## 快速检查 Gateway 是否在运行
 
 ```bash
 openclaw gateway status
 ```
 
-- **看到 `Runtime: running`** → 网关正在运行，一切正常
-- **看到 `Runtime: stopped`** → 网关没有运行，需要启动
-- **提示"连接失败"** → 网关没有运行，需要启动
+常见结果：
 
----
+| 结果 | 意思 |
+|------|------|
+| `running` | Gateway 正在运行 |
+| `stopped` | Gateway 没启动 |
+| 连接失败 | 多半是 Gateway 没起来，或端口/认证配置不对 |
 
-## 如何启动网关？
-
-### 方式一：后台静默运行（推荐日常使用）
-
-如果你在[快速入门](/tutorials/getting-started/getting-started)时已经选择了"安装为服务"，网关会自动在后台运行，就像电脑开机自动连网一样，不需要你管。
-
-检查并重启服务：
-
-```bash
-# 查看状态
-openclaw gateway status
-
-# 重启（如果有问题）
-openclaw gateway restart
-
-# 停止
-openclaw gateway stop
-```
-
-### 方式二：在终端窗口中手动运行（适合测试）
-
-如果你只是想临时运行或者测试，可以直接在终端里启动：
-
-```bash
-openclaw gateway --port 18789
-```
-
-这样网关会在终端窗口里运行，关掉终端窗口就停止了。
-
-::: tip 什么时候用哪种方式？
-- **日常使用**：用后台服务（方式一）
-- **测试/排查问题**：用手动运行（方式二），这样可以实时看到日志信息
-:::
-
----
-
-## 设置开机自动启动
-
-让网关随电脑开机自动启动，这样你不用每次手动启动。
-
-**macOS 用户：**
-
-```bash
-openclaw gateway install
-```
-
-运行这个命令后，网关会被注册为系统服务，开机自动启动。
-
-**Linux 用户：**
-
-```bash
-openclaw gateway install
-```
-
-然后启用服务：
-
-```bash
-systemctl --user enable --now openclaw-gateway.service
-```
-
----
-
-## 检查所有东西是否正常
-
-一次性检查网关和所有连接的聊天软件是否正常：
+不确定问题在哪里时，先跑：
 
 ```bash
 openclaw doctor
 ```
 
-这个命令就像是"体检"，会自动找出问题并提示你怎么修复。
+---
+
+## 日常推荐启动方式
+
+第一次设置时推荐运行：
+
+```bash
+openclaw onboard --install-daemon
+```
+
+它会把 Gateway 安装成后台服务。之后你通常不用手动启动。
+
+日常常用命令：
+
+```bash
+openclaw gateway status
+openclaw gateway restart
+openclaw gateway stop
+```
 
 ---
 
-## 查看实时日志
+## 临时手动启动
 
-想看网关都在干什么？可以查看实时日志：
+排查问题时，可以让 Gateway 在当前终端前台运行：
 
 ```bash
-openclaw logs --follow
+openclaw gateway --port 18789 --verbose
 ```
 
-按 `Ctrl + C` 退出日志查看。
+这样日志会直接显示在终端里。关掉这个终端，Gateway 也会停止。
+
+---
+
+## Gateway 默认地址
+
+默认本地地址是：
+
+```text
+http://127.0.0.1:18789/
+```
+
+这里有两层含义：
+
+1. `127.0.0.1` 表示只给本机访问。
+2. `18789` 是 Gateway 默认端口。
+
+打开控制 UI 的推荐命令是：
+
+```bash
+openclaw dashboard
+```
+
+---
+
+## Gateway 负责哪些事情
+
+| 事情 | 人话解释 |
+|------|----------|
+| 长连接通信 | 让控制 UI、命令行、手机节点能一直和 Gateway 保持联系 |
+| 网页服务 | 打开浏览器控制面板，也接收一些外部请求 |
+| 通道管理 | 连接 Telegram、WhatsApp、Discord 等聊天软件 |
+| Agent 调度 | 把消息交给 AI 助手，并把回复一段段拿回来 |
+| 会话管理 | 记住每个聊天的上下文，避免把 A 的话回给 B |
+| 节点管理 | 管理 iOS、Android、macOS、远程机器等外接设备 |
+| 安全认证 | 检查 token、密码、Tailscale、可信代理和配对关系 |
+| 状态通知 | 把在线状态、回复进度、健康信息推给客户端 |
+
+这些事情看起来多，但你日常只需要知道：Gateway 是总服务台，所有入口都先找它。
+
+---
+
+## 远程访问要小心
+
+不要直接把 `18789` 暴露到公网。
+
+这句话很重要。
+`18789` 后面连着你的控制 UI、会话和工具能力。把它不加保护地放到公网，就像把家门钥匙挂在门口。
+
+推荐远程方式：
+
+1. Tailscale 或 VPN。
+2. SSH 隧道。
+3. 可信反向代理，并明确配置认证和 allowed origins。
+
+最简单的 SSH 隧道例子：
+
+```bash
+ssh -N -L 18789:127.0.0.1:18789 user@gateway-host
+```
+
+然后在本地打开：
+
+```text
+http://127.0.0.1:18789/
+```
 
 ---
 
 ## 常见问题
 
-::: details 网关启动失败，提示"端口已被占用"？
+::: details 端口 18789 被占用怎么办？
 
-有另一个程序占用了 18789 端口，或者你已经有一个网关在运行了。
-
-强制关闭占用端口的进程并重新启动：
+先确认是不是已有 Gateway 在运行：
 
 ```bash
-openclaw gateway --force
+openclaw gateway status
 ```
 
-或者换一个端口：
+如果只是测试，可以换端口：
 
 ```bash
 openclaw gateway --port 18790
@@ -137,60 +173,64 @@ openclaw gateway --port 18790
 
 :::
 
-::: details 网关一直崩溃，怎么排查？
+::: details Gateway 在运行，但控制 UI 打不开？
 
-先运行自动诊断：
+按顺序检查：
 
-```bash
-openclaw doctor
-```
-
-然后查看详细日志：
-
-```bash
-openclaw logs --follow
-```
-
-如果还是解决不了，可以在 [GitHub Issues](https://github.com/openclaw/openclaw/issues) 提问，把日志内容贴上去。
+1. `openclaw gateway status`
+2. `openclaw dashboard`
+3. `openclaw logs --follow`
+4. 是否改过 `gateway.controlUi.enabled`
+5. 是否用了非本机访问但没有配置认证或 allowed origins
 
 :::
 
-::: details 网关在运行，但 AI 没有回复？
+::: details Gateway 在运行，但聊天软件没有回复？
 
-检查聊天软件（通道）是否正常连接：
+先检查通道：
 
 ```bash
 openclaw channels status --probe
 ```
 
-如果某个通道显示错误，参考对应通道的故障排查文档：[通道故障排查](/tutorials/channels/troubleshooting)
+再检查是否有配对请求：
 
-:::
-
-::: details 想从外网（比如在公司）访问家里的 OpenClaw？
-
-推荐使用 Tailscale（一种安全的内网穿透工具）来实现远程访问。
-
-基本步骤：
-1. 在运行 OpenClaw 的电脑上安装 Tailscale
-2. 配置 OpenClaw 使用 Tailscale 地址
-3. 在另一台设备上也安装 Tailscale，就可以通过 Tailscale 内网地址访问了
-
-详细配置：[认证与安全](/tutorials/gateway/authentication)
+```bash
+openclaw pairing list
+```
 
 :::
 
 ---
 
-## 常用命令速查表
+## 常用命令速查
 
 | 命令 | 作用 |
 |------|------|
-| `openclaw gateway status` | 查看网关运行状态 |
-| `openclaw gateway start` | 启动网关 |
-| `openclaw gateway stop` | 停止网关 |
-| `openclaw gateway restart` | 重启网关 |
-| `openclaw gateway install` | 设置开机自启动 |
-| `openclaw logs --follow` | 实时查看日志 |
-| `openclaw doctor` | 自动诊断并修复问题 |
-| `openclaw dashboard` | 打开控制面板（浏览器） |
+| `openclaw gateway status` | 查看 Gateway 状态 |
+| `openclaw gateway restart` | 重启 Gateway |
+| `openclaw gateway stop` | 停止 Gateway |
+| `openclaw dashboard` | 打开浏览器控制 UI |
+| `openclaw doctor` | 自动诊断问题 |
+| `openclaw logs --follow` | 查看实时日志 |
+| `openclaw channels status --probe` | 检查通道连接 |
+
+---
+
+## 继续阅读
+
+- [Web 控制 UI](/tutorials/web/)
+- [节点入门](/tutorials/nodes/)
+- [认证与远程访问](/tutorials/gateway/authentication)
+- [Gateway 安全说明](/tutorials/gateway/security)
+- [Agent 配置](/tutorials/gateway/config-agents)
+- [Channel 配置](/tutorials/gateway/config-channels)
+- [Tools 配置](/tutorials/gateway/config-tools)
+- [密钥与 SecretRef](/tutorials/gateway/secrets)
+- [Secrets Apply Plan](/tutorials/gateway/secrets-plan-contract)
+- [Operator 权限范围](/tutorials/gateway/operator-scopes)
+- [OpenShell](/tutorials/gateway/openshell)
+- [Gateway 诊断包](/tutorials/gateway/diagnostics)
+- [Prometheus 指标](/tutorials/gateway/prometheus)
+- [OpenTelemetry 可观测性](/tutorials/gateway/opentelemetry)
+- [Tailscale 远程访问](/tutorials/gateway/tailscale)

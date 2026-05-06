@@ -1,130 +1,191 @@
 ---
 title: "快速开始"
 sidebarTitle: "快速开始"
-description: "OpenClaw 快速入门：快速开始。OpenClaw 是什么？"
+description: "OpenClaw 快速入门：用最少步骤安装 OpenClaw、完成 onboarding、打开控制 UI，并发出第一条消息。"
 ---
 
 # 快速开始
 
-**OpenClaw 是什么？**
+这篇先不讲复杂原理。你只要记住一句话：
 
-OpenClaw 是一个运行在你自己电脑上的 AI 助手平台。安装完成后，你可以在 Telegram、WhatsApp、Discord 等聊天软件里直接和 AI 对话——发消息、让它帮你写东西、查资料、执行任务，就像有一个随时待命的私人助手。
+**OpenClaw 是一个运行在你自己电脑上的 AI 助手。它有一个常驻的 Gateway 网关，负责接收消息、调用 AI、再把回复送回去。**
 
----
+第一次使用，按下面 5 步走就够了。
 
-## 第一步：准备 API 密钥
-
-OpenClaw 本身是免费的，但它需要借助第三方 AI 服务来产生智能回复。**你需要提前准备好一个 AI API 密钥。**
-
-::: info API 提供商不限于 Anthropic
-你可以自由选择任意支持的 AI 服务商，无需绑定某一家。下面列出了常见的几种选择，按需挑选即可。
-:::
-
-### 可选的 AI 提供商
-
-| 提供商 | 模型 | 特点 | 适合人群 |
-|--------|------|------|----------|
-| **Anthropic（Claude）** ⭐ | Claude 3.5 / 3 系列 | 中文能力强，推理准确，官方首选 | 追求综合质量 |
-| **DeepSeek** | DeepSeek-V3 / R1 | 价格极低，中文优秀，国内可直连 | 国内用户、性价比优先 |
-| **OpenAI（ChatGPT）** | GPT-4o / o1 系列 | 生态成熟，插件丰富 | 已有 OpenAI 账号 |
-| **Google Gemini** | Gemini 1.5 / 2.0 系列 | 多模态能力强，免费额度大 | 想免费试用 |
-| **阿里云百炼（通义千问）** | Qwen-Max / Plus | 国内服务，无需翻墙，支付宝充值 | 国内用户、合规需求 |
-
----
-
-### 各平台获取密钥方法
-
-::: details Anthropic（Claude）— 官方推荐
-1. 访问 [console.anthropic.com](https://console.anthropic.com)，注册并登录
-2. 点击左侧菜单 **"API Keys"** → **"Create Key"**
-3. 给密钥起个名字，点击确认
-4. **立刻复制**这串密钥（以 `sk-ant-` 开头）——**只显示一次！**
-
-> 需要信用卡充值，国内需要翻墙访问。
-:::
-
-::: details DeepSeek — 国内首选，超高性价比
-1. 访问 [platform.deepseek.com](https://platform.deepseek.com)，注册并登录
-2. 点击右上角头像 → **"API Keys"** → **"创建 API Key"**
-3. 复制密钥（以 `sk-` 开头）
-
-> 支持微信 / 支付宝充值，国内直连，价格极低。
-:::
-
-::: details OpenAI（ChatGPT）
-1. 访问 [platform.openai.com](https://platform.openai.com)，支持用 **Google / Microsoft 账号 OAuth 登录**，无需单独注册
-2. 点击左侧 **"API Keys"** → **"Create new secret key"**
-3. 复制密钥（以 `sk-` 开头）
-
-> 需要信用卡充值，国内需要翻墙访问。
-:::
-
-::: details Google Gemini
-1. 访问 [aistudio.google.com](https://aistudio.google.com)，用 Google 账号登录
-2. 点击左侧 **"Get API key"** → **"Create API key"**
-3. 复制生成的密钥
-
-> 有免费额度，国内需要翻墙访问。
-:::
-
-::: details 阿里云百炼（通义千问）
-1. 访问 [bailian.console.aliyun.com](https://bailian.console.aliyun.com)，用阿里云账号登录
-2. 点击右上角 **"API-KEY"** → **"创建 API-KEY"**
-3. 复制密钥（以 `sk-` 开头）
-
-> 国内直连，支持支付宝充值，有免费试用额度。
+::: tip 如果你完全没有技术背景
+先把这篇当成“照着做清单”。
+看不懂某个词时不要停，先继续复制命令。只要最后能打开浏览器控制 UI，并让 AI 回复一句话，就算成功。
 :::
 
 ---
 
-拿到密钥后，在安装配置时填入对应字段即可。
+## 先准备这 3 样东西
+
+1. 一台电脑
+   macOS、Linux、Windows 都可以。Windows 可以直接用，但完整体验更推荐 WSL2。
+
+2. Node.js
+   推荐 **Node 24**。如果你已经是 **Node 22.14+**，也可以继续用。
+
+3. 一个 AI 模型账号或 API key
+   新手可以先用你已经有账号的提供商。OpenClaw 支持 OpenAI、Anthropic、Google、Ollama、本地或兼容 OpenAI API 的服务。
+
+API key 可以先理解成“AI 服务的门钥匙”。OpenClaw 需要拿着这把钥匙，才能替你去问模型。
+
+检查 Node 版本：
+
+```bash
+node --version
+```
+
+如果显示 `v24.x.x`，很好。
+如果显示 `v22.14.0` 或更高，也可以。
+如果提示找不到 `node`，先看[安装 Node.js](/tutorials/installation/node)。
 
 ---
 
-## 第二步：选择安装方式
+## 第一步：安装 OpenClaw
 
-OpenClaw 提供两种安装方式，选一种适合你的就行：
+### macOS / Linux / WSL2
 
-### 方式一：macOS 桌面应用（图形界面）
+打开终端，复制这一行：
 
-**适合：** 不熟悉命令行的用户，或者只用 Mac 的用户
+```bash
+curl -fsSL https://openclaw.ai/install.sh | bash
+```
 
-- ✅ 有可视化界面，点一点就能完成配置
-- ✅ 自动管理后台服务，不用手动启动
-- ❌ 仅支持 **macOS**
+### Windows PowerShell
 
-**下载 macOS App：**
-前往 [GitHub Releases](https://github.com/openclaw/openclaw/releases) 页面，下载最新版本的 `.dmg` 文件，双击安装。
+打开 PowerShell，复制这一行：
 
-**→ [去 macOS App 首次启动指南](./onboarding)**
+```powershell
+iwr -useb https://openclaw.ai/install.ps1 | iex
+```
+
+如果你更喜欢 npm，也可以这样装：
+
+```bash
+npm install -g openclaw@latest
+```
 
 ---
 
-### 方式二：命令行安装（跨平台）
+## 第二步：运行新手向导
 
-**适合：** 开发者，或者在 Linux / Windows 上使用的用户
+安装完后，运行：
 
-- ✅ 支持 macOS、Linux、Windows（WSL2）
-- ✅ 灵活配置，适合高级用法
-- ⚠️ 需要使用终端（命令行），共 9 步，大约 10 分钟
+```bash
+openclaw onboard --install-daemon
+```
 
-::: warning Windows 用户注意
-OpenClaw **强烈推荐在 WSL2**（Windows 的 Linux 子系统）下运行，原生 Windows（CMD / PowerShell 直接运行）属于实验性支持，体验可能不稳定。
+这一步会帮你做 4 件事：
 
-如果你还没有安装 WSL2，建议先参考微软官方指引完成安装：
-[在 Windows 上安装 WSL](https://learn.microsoft.com/zh-cn/windows/wsl/install)（10 分钟，一条命令搞定）。
+1. 选择 AI 模型提供商。
+2. 保存 API key 或登录信息。
+3. 配置 Gateway 网关。
+4. 把 Gateway 安装成后台服务，让它开机后也能一直运行。
+
+你可以把它理解成“第一次开机设置”。跟着提示填就行，不需要提前懂所有选项。
+
+如果向导问到你不确定的内容，优先选默认值。默认值通常是给大多数人准备的安全路线。
+
+---
+
+## 第三步：确认 Gateway 正在运行
+
+Gateway 是 OpenClaw 的“总服务台”。
+它不运行，就像服务台没人值班，聊天软件、网页控制台、手机节点都会找不到 AI。
+
+运行：
+
+```bash
+openclaw gateway status
+```
+
+如果看到正在监听 `18789` 端口，说明 Gateway 已经起来了。
+
+如果不确定哪里出问题，先跑：
+
+```bash
+openclaw doctor
+```
+
+`doctor` 就像体检，会检查配置、服务、权限和常见风险。
+
+---
+
+## 第四步：打开控制 UI
+
+控制 UI 是浏览器里的管理界面。新手建议先在这里试第一句，不要一上来就接 Telegram 或 WhatsApp。
+
+运行：
+
+```bash
+openclaw dashboard
+```
+
+正常情况下，浏览器会打开：
+
+```text
+http://127.0.0.1:18789/
+```
+
+看到聊天界面后，输入一句：
+
+```text
+你好，帮我用一句话介绍 OpenClaw。
+```
+
+如果 AI 回复了，恭喜，你已经跑通最小闭环了。
+
+这个闭环的意思是：
+
+```text
+你在浏览器发消息 → OpenClaw 找 AI → AI 回复 → 浏览器看到答案
+```
+
+后面所有 Telegram、WhatsApp、手机节点，都是在这个基础上继续加东西。
+
+---
+
+## 第五步：再连接聊天软件
+
+控制 UI 能聊通之后，再接聊天软件会简单很多。
+
+推荐顺序：
+
+1. [Telegram](/tutorials/channels/telegram)
+   最适合新手，只需要 Bot Token。
+
+2. [Discord](/tutorials/channels/discord)
+   适合服务器和社区场景。
+
+3. [WhatsApp](/tutorials/channels/whatsapp)
+   适合日常手机聊天，但配置比 Telegram 多一步扫码。
+
+更多选择看[通道总览](/tutorials/channels/)。
+
+---
+
+## 最容易混淆的 4 个词
+
+| 名词 | 人话解释 |
+|------|----------|
+| Gateway 网关 | OpenClaw 的总服务台，负责接消息、管连接、发回复 |
+| Control UI | 浏览器里的控制面板，用来聊天、看配置、看会话 |
+| Channel 通道 | Telegram、WhatsApp、Discord 这些聊天入口 |
+| Node 节点 | 手机、Mac、远程机器等“可被 Gateway 指挥的设备” |
+
+::: tip 不用一次学完
+第一次使用只需要记住 Gateway 和 Control UI。
+Channel、Provider、Node 这些词，等你真的接聊天软件、换模型、连手机时再看。
 :::
 
-**→ [去命令行向导安装指南](./wizard)**
-
 ---
 
-## 安装完成后做什么？
+## 下一步读什么
 
-装好之后，下一步是把你的聊天软件连接上来，这样 AI 才能接收你的消息。推荐先接 Telegram，最简单：
-
-**→ [接入 Telegram（推荐新手，5 分钟搞定）](../channels/telegram)**
-
-如果安装过程中遇到了问题，或者想了解更多配置：
-
-**→ [安装后配置与常见问题](./setup)**
+- 想先稳稳装好：看[安装 OpenClaw](/tutorials/installation/)。
+- 想知道系统怎么工作：看[OpenClaw 是怎么工作的](/tutorials/concepts/architecture)。
+- 想从浏览器管理：看[Web 控制 UI](/tutorials/web/)。
+- 想连接手机或远程机器：看[节点入门](/tutorials/nodes/)。

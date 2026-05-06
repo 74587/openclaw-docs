@@ -5,15 +5,15 @@ description: "OpenClaw AI框架专项：工具与审批安全框架（tool polic
 
 ## 小白先懂（30秒）
 
-- 这套模块就是“工具防火墙 + 人工闸门”。  
-- 先决定哪些工具可用，再决定高风险命令是否需要人工同意。  
+- 这套模块就是“工具防火墙 + 人工闸门”。
+- 先决定哪些工具可用，再决定高风险命令是否需要人工同意。
 - 没被明确允许的能力，默认不要放行。
 
 ## 你先照着做（不求全懂）
 
-1. 先实现工具白名单过滤（不做审批也行）。  
-2. 再实现 `needsApproval(command)`。  
-3. 需要审批时，先创建审批记录再返回“等待中”。  
+1. 先实现工具白名单过滤（不做审批也行）。
+2. 再实现 `needsApproval(command)`。
+3. 需要审批时，先创建审批记录再返回“等待中”。
 4. 收到 `approve/deny` 后再继续执行或拒绝。
 
 对应核心代码：
@@ -25,15 +25,15 @@ description: "OpenClaw AI框架专项：工具与审批安全框架（tool polic
 
 ## 步骤一：执行链路拆解（具体到函数）
 
-1. 构建工具全集  
+1. 构建工具全集
 `createOpenClawCodingTools(...)` 先聚合 core + channel + plugin 工具。
-2. 策略过滤  
+2. 策略过滤
 `applyToolPolicyPipeline(...)` 按多层策略逐步过滤最终可用工具。
-3. 执行前审批判定  
+3. 执行前审批判定
 `resolveExecApprovals(...)` + `requiresExecApproval(...)` 判断是否必须审批。
-4. 网关审批流程  
+4. 网关审批流程
 `exec.approval.request` -> `ExecApprovalManager.register(...)` -> 等待决策。
-5. 决策回传  
+5. 决策回传
 审批端调用 `exec.approval.resolve`，网关唤醒等待方继续执行/拒绝。
 
 ## 步骤二：实现细节（真正会踩坑的点）

@@ -111,9 +111,7 @@ description: "OpenClaw 核心概念：会话修剪（Session Pruning）。会话
 
 ```json5
 {
-  agent: {
-    contextPruning: { mode: "off" },
-  },
+  agents: { defaults: { contextPruning: { mode: "off" } } },
 }
 ```
 
@@ -121,9 +119,7 @@ description: "OpenClaw 核心概念：会话修剪（Session Pruning）。会话
 
 ```json5
 {
-  agent: {
-    contextPruning: { mode: "cache-ttl", ttl: "5m" },
-  },
+  agents: { defaults: { contextPruning: { mode: "cache-ttl", ttl: "5m" } } },
 }
 ```
 
@@ -131,10 +127,12 @@ description: "OpenClaw 核心概念：会话修剪（Session Pruning）。会话
 
 ```json5
 {
-  agent: {
-    contextPruning: {
-      mode: "cache-ttl",
-      tools: { allow: ["exec", "read"], deny: ["*image*"] },
+  agents: {
+    defaults: {
+      contextPruning: {
+        mode: "cache-ttl",
+        tools: { allow: ["exec", "read"], deny: ["*image*"] },
+      },
     },
   },
 }

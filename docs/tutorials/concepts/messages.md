@@ -135,7 +135,7 @@ OpenClaw 可以暴露或隐藏模型推理：
 - 推理内容在模型产生时仍然计入 Token 使用。
 - Telegram 支持将推理流输入草稿气泡。
 
-详情：[思考 + 推理指令](/tutorials/tools/thinking) 和 [Token 使用](/reference/token-use)。
+详情：[思考 + 推理指令](/tutorials/tools/thinking) 和 [Token 使用](/tutorials/concepts/usage-tracking)。
 
 ---
 
@@ -146,4 +146,4 @@ OpenClaw 可以暴露或隐藏模型推理：
 - `messages.responsePrefix`、`channels.<channel>.responsePrefix` 和 `channels.<channel>.accounts.<id>.responsePrefix`（出站前缀级联），加上 `channels.whatsapp.messagePrefix`（WhatsApp 入站前缀）
 - 通过 `replyToMode` 和每通道默认值进行回复线程
 
-详情：[配置](/tutorials/gateway/configuration#messages) 和通道文档。
+详情：[配置](/tutorials/gateway/configuration) 和通道文档。

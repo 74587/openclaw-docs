@@ -8,6 +8,13 @@ description: "OpenClaw 核心概念：模型提供商（Model Providers）。本
 
 本页涵盖 **LLM/模型提供商（Provider）**（非 WhatsApp/Telegram 等聊天通道）。关于模型选择规则，参见 [/concepts/models](/tutorials/concepts/models)。
 
+::: tip 先用人话理解
+Provider 就是“AI 大脑从哪家公司来”。
+
+Telegram、WhatsApp、Discord 是消息从哪里进来；Provider 是 OpenClaw 把问题交给哪个模型回答。
+这两个不要混在一起。
+:::
+
 ---
 
 ## 快速规则
@@ -16,11 +23,24 @@ description: "OpenClaw 核心概念：模型提供商（Model Providers）。本
 - 如果设置了 `agents.defaults.models`，它会成为白名单。
 - CLI 辅助工具：`openclaw onboard`、`openclaw models list`、`openclaw models set <provider/model>`。
 
+新手可以按这个顺序做：
+
+```bash
+openclaw onboard
+openclaw models list
+openclaw models set <provider/model>
+openclaw doctor
+```
+
+不知道选哪个模型时，先选你已经有账号、网络能稳定访问、账单也能接受的那一家。
+
 ---
 
 ## 内置提供商（pi-ai 目录）
 
 OpenClaw 附带 pi-ai 目录。这些提供商 **不需要** `models.providers` 配置；只需设置认证 + 选择模型。
+
+这句话翻成人话就是：下面这些常见模型来源，OpenClaw 已经认识。你只需要给钥匙，也就是 API Key 或登录授权。
 
 ### OpenAI
 

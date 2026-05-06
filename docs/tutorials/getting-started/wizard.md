@@ -1,13 +1,12 @@
 ---
 title: "命令行向导安装指南"
 sidebarTitle: "命令行向导"
-description: "OpenClaw 快速入门：命令行向导安装指南。> 这是 方式二：命令行安装 的安装指南，支持 macOS、Linux、Windows。 > 如果你想用图形界面安装，请看 macOS App 首次启…"
+description: "OpenClaw 快速入门：命令行向导安装指南。推荐通过 openclaw onboard --install-daemon 完成 Gateway、控制 UI、模型和通道的首次配置。"
 ---
 
 # 命令行向导安装指南
 
-> 这是 **方式二：命令行安装** 的安装指南，支持 macOS、Linux、Windows（WSL2）。
-> 如果你想用图形界面安装，请看 [macOS App 首次启动指南](./onboarding)。
+> 这是当前最推荐的新手路径：命令行安装后运行 `openclaw onboard --install-daemon`。它支持 macOS、Linux、Windows；Windows 完整体验推荐 WSL2。
 
 通过运行一条命令，向导会一步步问你问题，你只需要回答，最后自动帮你配置好一切。全程大约 10 分钟。
 
@@ -17,9 +16,9 @@ description: "OpenClaw 快速入门：命令行向导安装指南。> 这是 方
 
 开始之前，你需要准备：
 
-- **一个 AI API 密钥**（推荐 Anthropic/Claude）— [还没有？先去获取](./getting-started#第一步准备-api-密钥)
+- **一个 AI API 密钥或可登录的模型账号** — [还没有？先看准备事项](./getting-started#先准备这-3-样东西)
 
-Node.js 是必需的运行环境（**推荐 v24，最低 v22.16 LTS**），安装方式见下方。
+Node.js 是必需的运行环境（**推荐 v24，也支持 v22.14+**），安装方式见下方。
 
 ---
 
@@ -41,7 +40,7 @@ iwr -useb https://openclaw.ai/install.ps1 | iex
 
 ::: tip 这条命令做了什么？
 1. 检测你的操作系统
-2. 如果没有安装 Node.js 22+，自动帮你安装
+2. 如果没有安装合适的 Node.js，优先帮你准备 Node 24
 3. 用 npm 全局安装 OpenClaw
 4. 启动设置向导（就是下面说的 9 步）
 
@@ -52,9 +51,9 @@ iwr -useb https://openclaw.ai/install.ps1 | iex
 
 ---
 
-### 方式 B：手动安装（已有 Node.js 22+）
+### 方式 B：手动安装（已有 Node.js 24 或 Node.js 22.14+）
 
-如果你已经安装了 Node.js 22 或更高版本，可以直接用 npm 安装：
+如果你已经安装了 Node.js 24，或至少 Node.js 22.14+，可以直接用 npm 安装：
 
 验证 Node.js 版本（在终端里输入）：
 
@@ -62,7 +61,7 @@ iwr -useb https://openclaw.ai/install.ps1 | iex
 node --version
 ```
 
-如果显示 `v24.x.x` 最佳；`v22.16.x` 以上也可使用。如果版本低于 22.16，请先升级 Node.js 或使用上面的方式 A（会自动处理）。
+如果显示 `v24.x.x` 最佳；`v22.14.x` 以上也可使用。如果版本低于 22.14，请先升级 Node.js 或使用上面的方式 A（会自动处理）。
 
 在终端里运行以下命令安装 OpenClaw：
 
@@ -120,7 +119,7 @@ Which AI provider do you want to use?
 ```
 中文意思：你想用哪家 AI？
 
-**推荐选择 Anthropic（Claude）**，Claude 中文能力强，也是 OpenClaw 官方首选。
+如果你不知道选哪个，可以从 Anthropic（Claude）或 OpenAI 开始；如果你更重视本地运行，可以选择 Ollama 或自定义兼容端点。
 
 选好后，向导会让你输入 API 密钥：
 ```text
@@ -275,8 +274,10 @@ openclaw configure
 **单独添加新的聊天软件：**
 
 ```bash
-openclaw channels login --channel telegram
+openclaw configure --section channels
 ```
+
+如果是 Telegram，请记住它不是扫码登录通道：把 BotFather Token 写进配置即可；不要用 `channels login --channel telegram`。
 
 **修改 AI 模型：**
 
@@ -299,7 +300,7 @@ openclaw configure --section model
 ```bash
 openclaw doctor           # 自动诊断所有问题
 openclaw gateway status   # 检查网关是否在运行
-openclaw channels status  # 检查通道连接是否正常
+openclaw channels status --probe  # 检查通道连接是否正常
 ```
 :::
 

@@ -26,7 +26,7 @@ description: "OpenClaw 核心概念：上下文（Context）。\"上下文\"是 
 - `/usage tokens` → 在正常回复后附加每次回复的用量信息。
 - `/compact` → 将较旧的历史记录摘要为紧凑条目以释放窗口空间。
 
-另见：[斜杠命令](/tutorials/tools/slash-commands)、[Token 使用与成本](/reference/token-use)、[压缩](/tutorials/concepts/compaction)。
+另见：[斜杠命令](/tutorials/tools/slash-commands)、[Token 使用与成本](/tutorials/concepts/usage-tracking)、[压缩](/tutorials/concepts/compaction)。
 
 ---
 

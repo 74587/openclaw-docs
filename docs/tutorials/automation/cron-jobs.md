@@ -299,7 +299,7 @@ openclaw cron history --limit 20
 
 ```bash
 openclaw gateway status
-openclaw gateway start  # 如果未运行则启动
+openclaw onboard --install-daemon  # 如果还没有安装后台服务
 ```
 :::
 

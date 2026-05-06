@@ -3,41 +3,110 @@ title: "帮助与故障排查"
 sidebarTitle: "帮助中心"
 ---
 
-# 帮助与故障排查（Help & Troubleshooting）
+# 帮助与故障排查
 
-这里是 OpenClaw 的帮助中心。无论你遇到配置疑惑、运行异常还是测试需求，都能在这里找到对应的指南。
-
----
-
-## 本模块包含的内容
-
-| 页面 | 说明 |
-|------|------|
-| [常见问题 FAQ](./faq) | 新手最常问的 10 个问题，快速解答 |
-| [调试指南](./debugging) | 如何开启调试模式、查看原始日志、定位问题根源 |
-| [故障排查](./troubleshooting) | Agent 不回复、Gateway 无法启动、通道断连等常见故障的处理步骤 |
-| [环境变量](./environment) | 配置环境变量的加载顺序、变量替代语法与安全使用建议 |
-| [脚本约定](./scripts) | 如何编写与 OpenClaw 配合使用的自动化脚本 |
-| [测试指南](./testing) | 单元测试、E2E 测试、Live 测试的运行方式 |
-| [Node.js 问题排查](./node-issue) | 解决 Node + tsx 运行时出现的 `__name is not a function` 崩溃 |
+OpenClaw 出问题时，不要先慌，也不要一上来就重装。
+先像检查家里电器一样，一层一层看：电源有没有、总开关有没有开、连接线有没有松、设备本身有没有报错。
 
 ---
 
-## 快速定位问题
+## 先跑这三步
 
-如果你不确定从哪里开始，按下面的路径判断：
+```bash
+openclaw doctor
+openclaw gateway status
+openclaw dashboard
+```
 
-- **刚安装完，什么都不工作** → 先看 [故障排查](./troubleshooting)
-- **不知道某个功能怎么用** → 先看 [常见问题 FAQ](./faq)
-- **想看详细日志排查问题** → 看 [调试指南](./debugging)
-- **配置文件里的变量不生效** → 看 [环境变量](./environment)
-- **要跑测试或验证改动** → 看 [测试指南](./testing)
-- **Node.js 报错 `__name is not a function`** → 看 [Node.js 问题排查](./node-issue)
+它们分别帮你确认：
 
-::: tip 还是解决不了？
-可以前往 [GitHub Issues](https://github.com/openclaw/openclaw/issues) 提交问题，或者加入社区讨论。
-:::
+1. **环境是否正常**：Node、依赖、配置有没有明显问题
+2. **网关是否活着**：OpenClaw 的总机有没有启动
+3. **控制台能否打开**：浏览器里能不能看到频道、会话、节点和错误信息
+
+默认控制台地址通常是：
+
+```text
+http://127.0.0.1:18789/
+```
 
 ---
 
-_下一步：[常见问题 FAQ](./faq)_
+## 常见入口
+
+| 问题 | 先看哪里 |
+|------|----------|
+| 刚安装完，不知道下一步 | [快速入门](/tutorials/getting-started/getting-started) |
+| 网关启动不了 | [网关故障排查](/tutorials/gateway/troubleshooting) |
+| Agent 不回复 | [故障排查](/tutorials/help/troubleshooting) |
+| 聊天频道断开 | [频道总览](/tutorials/channels/) 和对应频道页面 |
+| 模型报错或扣费异常 | [模型提供商](/tutorials/providers/) |
+| API Key 不生效 | [环境变量](/tutorials/help/environment) |
+| 想看详细日志 | [调试指南](/tutorials/help/debugging) |
+| 自动化任务没跑 | [自动化故障排查](/tutorials/automation/troubleshooting) |
+| Node.js 运行时报错 | [Node.js 问题排查](/tutorials/help/node-issue) |
+
+---
+
+## 本模块包含
+
+- [常见问题 FAQ](/tutorials/help/faq)：新手最常问的问题
+- [调试指南](/tutorials/help/debugging)：如何看日志、开调试、定位根因
+- [故障排查](/tutorials/help/troubleshooting)：Agent 不回复、Gateway 异常、通道断连
+- [环境变量](/tutorials/help/environment)：变量加载顺序、密钥保存、替代语法
+- [脚本约定](/tutorials/help/scripts)：自动化脚本怎么写得更稳
+- [测试指南](/tutorials/help/testing)：单元测试、E2E、Live 测试
+- [Node.js 问题排查](/tutorials/help/node-issue)：解决 Node + tsx 相关崩溃
+
+---
+
+## 排查顺序
+
+### 1. 先看环境
+
+```bash
+openclaw doctor
+node -v
+```
+
+当前 OpenClaw 推荐 Node 24，至少需要 Node 22.14+。
+如果 Node 版本太旧，很多奇怪问题都会出现。
+
+### 2. 再看网关
+
+```bash
+openclaw gateway status
+```
+
+网关是总机。总机没启动，频道、模型、工具都不会正常工作。
+
+### 3. 再看控制台
+
+```bash
+openclaw dashboard
+```
+
+控制台里通常能看到频道状态、会话状态、节点连接和明显错误。
+
+### 4. 最后看具体模块
+
+- 模型错了，看 Provider 配置
+- 频道错了，看 Channel 配置
+- 工具错了，看 Tool 权限
+- 自动化错了，看 Cron / Heartbeat / Webhook 配置
+
+---
+
+## 仍然解决不了
+
+去 [OpenClaw GitHub Issues](https://github.com/openclaw/openclaw/issues) 搜索同类问题。
+提问时尽量带上：
+
+- OpenClaw 版本
+- Node 版本
+- 操作系统
+- 你运行的命令
+- 报错日志里最关键的几行
+- 你使用的频道和模型提供商
+
+这样别人更容易帮你定位问题。

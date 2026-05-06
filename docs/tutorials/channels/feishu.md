@@ -35,14 +35,14 @@ openclaw plugins install ./extensions/feishu
 如果你刚安装 OpenClaw，运行向导：
 
 ```bash
-openclaw onboard
+openclaw onboard --install-daemon
 ```
 
 向导将引导你完成：
 
 1. 创建 Feishu 应用并收集凭证
 2. 在 OpenClaw 中配置应用凭证
-3. 启动网关（Gateway）
+3. 安装并启动 Gateway 后台服务
 
 **配置完成后**，检查网关（Gateway）状态：
 
@@ -220,12 +220,12 @@ export FEISHU_APP_SECRET="xxx"
 
 ---
 
-## 步骤 3：启动 + 测试
+## 步骤 3：重启 + 测试
 
-### 1. 启动网关（Gateway）
+### 1. 重启网关（Gateway），让配置生效
 
 ```bash
-openclaw gateway
+openclaw gateway restart
 ```
 
 ### 2. 发送测试消息
@@ -334,7 +334,7 @@ openclaw pairing approve feishu <CODE>
 
 **方法 1（推荐）**
 
-1. 启动网关（Gateway）并在群组中 @提及机器人
+1. 确认 Gateway 正在运行，并在群组中 @提及机器人
 2. 运行 `openclaw logs --follow` 查找 `chat_id`
 
 **方法 2**
@@ -347,7 +347,7 @@ openclaw pairing approve feishu <CODE>
 
 **方法 1（推荐）**
 
-1. 启动网关（Gateway）并私聊机器人
+1. 确认 Gateway 正在运行，并私聊机器人
 2. 运行 `openclaw logs --follow` 查找 `open_id`
 
 **方法 2**
@@ -375,7 +375,7 @@ openclaw pairing list feishu
 | 命令                       | 描述            |
 | -------------------------- | --------------- |
 | `openclaw gateway status`  | 显示网关（Gateway）状态 |
-| `openclaw gateway install` | 安装/启动网关服务 |
+| `openclaw onboard --install-daemon` | 安装并启动 Gateway 后台服务 |
 | `openclaw gateway stop`    | 停止网关服务     |
 | `openclaw gateway restart` | 重启网关服务     |
 | `openclaw logs --follow`   | 实时查看网关日志  |

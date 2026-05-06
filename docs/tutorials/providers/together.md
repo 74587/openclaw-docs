@@ -51,7 +51,7 @@ openclaw onboard --non-interactive \
 
 ## 环境说明
 
-如果 Gateway 作为守护进程运行（launchd/systemd），请确保 `TOGETHER_API_KEY` 对该进程可用（例如，在 `~/.clawdbot/.env` 中或通过 `env.shellEnv`）。
+如果 Gateway 作为守护进程运行（launchd/systemd），请确保 `TOGETHER_API_KEY` 对该进程可用（例如，在 `~/.openclaw/.env` 中或通过 `env.shellEnv`）。
 
 ---
 

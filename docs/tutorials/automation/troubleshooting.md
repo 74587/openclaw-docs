@@ -59,7 +59,7 @@ openclaw config show
 
 | 问题 | 可能原因 | 解决方法 |
 |------|---------|---------|
-| Cron 任务不执行 | Gateway 未运行 | `openclaw gateway start` |
+| Cron 任务不执行 | Gateway 未运行 | 先 `openclaw gateway status`，未安装后台服务则运行 `openclaw onboard --install-daemon` |
 | Cron 任务不执行 | cron 表达式错误 | 用 crontab.guru 验证表达式 |
 | Cron 任务不执行 | 时区错误导致时间不对 | 配置 `timezone: "Asia/Shanghai"` |
 | Cron 任务不执行 | Agent 名称拼写错误 | `openclaw agents list` 确认名称 |
@@ -88,7 +88,7 @@ openclaw gateway status
 
 如果未运行：
 ```bash
-openclaw gateway start
+openclaw onboard --install-daemon
 ```
 
 **检查 2：查看 Cron 任务列表和下次执行时间**
@@ -128,18 +128,18 @@ openclaw agents list
 ```bash
 # 查看所有运行中的 Gateway 进程
 ps aux | grep "openclaw gateway"
-# 或
-openclaw gateway list-instances
+# 或查看 Gateway 状态
+openclaw gateway status
 ```
 
 **解决：** 停止多余的 Gateway 实例，确保只有一个在运行：
 
 ```bash
-# 停止所有 Gateway
-openclaw gateway stop --all
+# 停止当前受管 Gateway
+openclaw gateway stop
 
-# 重新启动单个 Gateway
-openclaw gateway start
+# 重新启动受管 Gateway
+openclaw gateway restart
 ```
 :::
 

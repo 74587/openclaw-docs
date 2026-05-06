@@ -1,26 +1,36 @@
 ---
 title: "Microsoft Teams"
 sidebarTitle: "Microsoft Teams"
-description: "OpenClaw 通道接入：Microsoft Teams（插件）。> \"进入此门者，须弃一切希望。\""
+description: "OpenClaw 通道接入：Microsoft Teams（bundled plugin）。使用 Teams CLI 或 Azure/Teams 开发者门户创建 Bot、配置回调地址并接入 Gateway。"
 ---
 
 # Microsoft Teams（插件）
 
-> "进入此门者，须弃一切希望。"
-
-更新时间：2026-01-21
-
-状态：支持文本和私聊附件；频道/群组文件发送需要 `sharePointSiteId` + Graph 权限（参见[在群聊中发送文件](#在群聊中发送文件)）。投票通过 Adaptive Cards 发送。
+状态：支持文本、私聊附件和 Adaptive Cards 投票。频道/群组文件发送需要 `sharePointSiteId` + Microsoft Graph 权限（参见[在群聊中发送文件](#在群聊中发送文件)）。
 
 ---
 
-## 需要安装插件
+## 新手先读这段
 
-Microsoft Teams 作为插件发布，不包含在核心安装中。
+Microsoft Teams 接入比 Telegram、Discord、Slack 更复杂，因为它要经过 Microsoft 的应用、租户、Bot、权限和回调地址。
 
-**破坏性变更（2026.1.15）：** MS Teams 已从核心中移出。如果你使用它，必须安装插件。
+如果你只是第一次试 OpenClaw，不建议从 Teams 开始。
+更稳的顺序是：
 
-原因：保持核心安装更轻量，并让 MS Teams 依赖独立更新。
+```text
+先跑通控制 UI → 再接 Telegram 或 Discord → 最后再接 Teams
+```
+
+这样即使 Teams 卡住，你也知道 OpenClaw 本身是好的。
+
+---
+
+## 插件说明
+
+Microsoft Teams 在当前 OpenClaw 版本中作为 bundled plugin 提供。
+正常安装包里通常已经包含它，不需要额外安装。
+
+只有在旧版本、裁剪版或自定义构建里找不到 Teams 插件时，才手动安装：
 
 通过 CLI 安装（npm 注册表）：
 
@@ -31,22 +41,70 @@ openclaw plugins install @openclaw/msteams
 本地检出（从 git 仓库运行时）：
 
 ```bash
-openclaw plugins install ./extensions/msteams
+openclaw plugins install ./path/to/local/msteams-plugin
 ```
 
-如果你在配置/引导设置过程中选择 Teams，且检测到 git 检出，OpenClaw 将自动提供本地安装路径。
-
-详情：[插件](/tutorials/tools/plugin)
+详情：[插件专题](/tutorials/plugins/)
 
 ---
 
 ## 快速设置（新手）
 
-1. 安装 Microsoft Teams 插件。
-2. 创建一个 **Azure Bot**（App ID + 客户端密钥 + 租户 ID）。
-3. 使用这些凭证配置 OpenClaw。
-4. 通过公共 URL 或隧道暴露 `/api/messages`（默认端口 3978）。
-5. 安装 Teams 应用包并启动网关（Gateway）。
+官方最新推荐先用 Microsoft Teams CLI 生成应用、Bot 注册和凭证。
+它能少点很多 Azure Portal 里的按钮。
+
+### 1. 安装并登录 Teams CLI
+
+```bash
+npm install -g @microsoft/teams.cli@preview
+teams login
+teams status
+```
+
+`teams status` 能看到租户信息，说明登录成功。
+
+::: warning 预览版提醒
+`@microsoft/teams.cli` 仍是 preview，命令和参数未来可能变化。
+如果命令报错，先看 Teams CLI 输出，不要急着改 OpenClaw 配置。
+:::
+
+### 2. 准备公网回调地址
+
+Teams 不能访问你电脑上的 `localhost`。
+本地开发时可以用 devtunnel、ngrok 或 Tailscale Funnel。
+
+devtunnel 示例：
+
+```bash
+devtunnel create my-openclaw-bot --allow-anonymous
+devtunnel port create my-openclaw-bot -p 3978 --protocol auto
+devtunnel host my-openclaw-bot
+```
+
+你需要得到类似这样的地址：
+
+```text
+https://<tunnel-id>.devtunnels.ms/api/messages
+```
+
+### 3. 创建 Teams App
+
+```bash
+teams app create \
+  --name "OpenClaw" \
+  --endpoint "https://<your-tunnel-url>/api/messages"
+```
+
+这个命令会帮你创建：
+
+- Entra ID（Azure AD）应用
+- 客户端密钥
+- Teams 应用 manifest
+- Bot 注册
+
+命令输出里会出现 `CLIENT_ID`、`CLIENT_SECRET`、`TENANT_ID` 和 Teams App ID。请先保存好。
+
+### 4. 配置 OpenClaw
 
 最小配置：
 
@@ -55,8 +113,8 @@ openclaw plugins install ./extensions/msteams
   channels: {
     msteams: {
       enabled: true,
-      appId: "<APP_ID>",
-      appPassword: "<APP_PASSWORD>",
+      appId: "<CLIENT_ID>",
+      appPassword: "<CLIENT_SECRET>",
       tenantId: "<TENANT_ID>",
       webhook: { port: 3978, path: "/api/messages" },
     },
@@ -64,7 +122,37 @@ openclaw plugins install ./extensions/msteams
 }
 ```
 
-注意：群聊默认被阻止（`channels.msteams.groupPolicy: "allowlist"`）。要允许群组回复，请设置 `channels.msteams.groupAllowFrom`（或使用 `groupPolicy: "open"` 允许任何成员，需提及门控）。
+也可以使用环境变量：
+
+```bash
+MSTEAMS_APP_ID=...
+MSTEAMS_APP_PASSWORD=...
+MSTEAMS_TENANT_ID=...
+```
+
+### 5. 安装并检查 Teams App
+
+`teams app create` 通常会提示你安装到 Teams。
+如果跳过了，可以之后拿安装链接：
+
+```bash
+teams app get <teamsAppId> --install-link
+```
+
+最后运行 Teams 诊断：
+
+```bash
+teams app doctor <teamsAppId>
+```
+
+然后重启 OpenClaw：
+
+```bash
+openclaw gateway restart
+openclaw channels status --probe
+```
+
+注意：群聊默认被阻止（`channels.msteams.groupPolicy: "allowlist"`）。要允许群组回复，请设置 `channels.msteams.groupAllowFrom`（或使用 `groupPolicy: "open"` 允许任何成员，仍建议保留提及门控）。
 
 ---
 
@@ -95,7 +183,9 @@ openclaw plugins install ./extensions/msteams
 **私聊访问**
 
 - 默认：`channels.msteams.dmPolicy = "pairing"`。未知发送者在批准之前将被忽略。
-- `channels.msteams.allowFrom` 接受 AAD 对象 ID、UPN 或显示名称。当凭证允许时，向导通过 Microsoft Graph 将名称解析为 ID。
+- `channels.msteams.allowFrom` 推荐使用稳定的 AAD 对象 ID。
+- 不要依赖 UPN 或显示名称做白名单，因为名字会变。只有明确知道风险时，才启用 `channels.msteams.dangerouslyAllowNameMatching: true`。
+- 当凭证允许时，向导可以通过 Microsoft Graph 将名称解析为 ID。
 
 **群组访问**
 
@@ -120,10 +210,10 @@ openclaw plugins install ./extensions/msteams
 **团队 + 频道允许列表**
 
 - 通过在 `channels.msteams.teams` 下列出团队和频道来限定群组/频道回复范围。
-- 键可以是团队 ID 或名称；频道键可以是会话 ID 或名称。
+- 键推荐使用稳定的 Teams conversation ID，不推荐只写会变化的显示名称。
 - 当 `groupPolicy="allowlist"` 且存在团队允许列表时，仅接受已列出的团队/频道（需提及门控）。
 - 配置向导接受 `Team/Channel` 条目并为你存储。
-- 启动时，OpenClaw 将团队/频道和用户允许列表名称解析为 ID（当 Graph 权限允许时），并记录映射；未解析的条目保持原样。
+- 启动时，OpenClaw 会在 Graph 权限允许时解析团队、频道和用户名称，并记录映射；未解析的名称默认不会可靠参与路由，除非你明确启用 `dangerouslyAllowNameMatching`。
 
 示例：
 
@@ -148,18 +238,25 @@ openclaw plugins install ./extensions/msteams
 
 ## 工作原理
 
-1. 安装 Microsoft Teams 插件。
-2. 创建一个 **Azure Bot**（App ID + 密钥 + 租户 ID）。
-3. 构建一个引用该机器人的 **Teams 应用包**，并包含下面的 RSC 权限。
-4. 将 Teams 应用上传/安装到团队中（或个人范围用于私聊）。
-5. 在 `~/.openclaw/openclaw.json`（或环境变量）中配置 `msteams` 并启动网关（Gateway）。
-6. 网关默认在 `/api/messages` 上监听 Bot Framework Webhook 流量。
+1. Teams 用户给 Teams App 发消息。
+2. Microsoft Bot Framework 把消息 POST 到你的 `/api/messages` 回调地址。
+3. OpenClaw Gateway 接住这条消息。
+4. Gateway 把消息交给 Agent。
+5. Agent 生成回复。
+6. Gateway 再通过 Teams 通道把回复发回去。
+
+所以 Teams 接入最关键的不是“AI 怎么回复”，而是这三件事：
+
+- Teams App 和 Bot 注册正确。
+- `/api/messages` 地址能被 Teams 访问。
+- OpenClaw 里 `channels.msteams` 的凭证和端口路径正确。
 
 ---
 
-## Azure Bot 设置（前提条件）
+## Azure Bot 设置（传统替代方案）
 
-在配置 OpenClaw 之前，你需要创建一个 Azure Bot 资源。
+优先使用上面的 Teams CLI 流程。
+如果你所在组织不能使用 Teams CLI，或者你需要手动控制 Azure 资源，可以使用 Azure Portal 创建 Azure Bot。
 
 ### 步骤 1：创建 Azure Bot
 
@@ -257,11 +354,16 @@ tailscale funnel 3978
 
 ## 设置（最小纯文本）
 
-1. **安装 Microsoft Teams 插件**
-   - 从 npm：`openclaw plugins install @openclaw/msteams`
-   - 从本地检出：`openclaw plugins install ./extensions/msteams`
+如果你不用 Teams CLI，手动设置时请按这个顺序检查。
 
-2. **机器人注册**
+1. **确认插件可用**
+
+   当前 OpenClaw 正常安装包通常已经内置 Teams bundled plugin。只有插件不存在时才手动安装：
+
+   - 从 npm：`openclaw plugins install @openclaw/msteams`
+   - 从本地检出：`openclaw plugins install ./path/to/local/msteams-plugin`
+
+2. **Bot 注册**
    - 创建 Azure Bot（参见上方）并记录：
      - App ID
      - 客户端密钥（App password）
@@ -277,15 +379,17 @@ tailscale funnel 3978
 
 4. **配置 OpenClaw**
 
-   ```json
+   ```json5
    {
-     "msteams": {
-       "enabled": true,
-       "appId": "<APP_ID>",
-       "appPassword": "<APP_PASSWORD>",
-       "tenantId": "<TENANT_ID>",
-       "webhook": { "port": 3978, "path": "/api/messages" }
-     }
+     channels: {
+       msteams: {
+         enabled: true,
+         appId: "<APP_ID>",
+         appPassword: "<APP_PASSWORD>",
+         tenantId: "<TENANT_ID>",
+         webhook: { port: 3978, path: "/api/messages" },
+       },
+     },
    }
    ```
 
@@ -532,20 +636,22 @@ Teams 最近在同一底层数据模型上引入了两种频道 UI 样式：
 
 **解决方案：** 根据频道的设置方式按频道配置 `replyStyle`：
 
-```json
+```json5
 {
-  "msteams": {
-    "replyStyle": "thread",
-    "teams": {
-      "19:abc...@thread.tacv2": {
-        "channels": {
-          "19:xyz...@thread.tacv2": {
-            "replyStyle": "top-level"
-          }
-        }
-      }
-    }
-  }
+  channels: {
+    msteams: {
+      replyStyle: "thread",
+      teams: {
+        "19:abc...@thread.tacv2": {
+          channels: {
+            "19:xyz...@thread.tacv2": {
+              replyStyle: "top-level",
+            },
+          },
+        },
+      },
+    },
+  },
 }
 ```
 

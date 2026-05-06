@@ -5,15 +5,15 @@ description: "OpenClaw AI框架专项：会话与并发框架（session key + la
 
 ## 小白先懂（30秒）
 
-- 这套模块就是“排队系统”。  
-- 同一个会话必须按顺序排队，不同会话可以并行。  
+- 这套模块就是“排队系统”。
+- 同一个会话必须按顺序排队，不同会话可以并行。
 - `sessionKey` 决定排到哪条队，`lane` 决定这条队能同时跑几个任务。
 
 ## 你先照着做（不求全懂）
 
-1. 先固定生成 `sessionKey`（同会话永远同 key）。  
-2. 再实现 `enqueueCommandInLane(sessionLane, task)`。  
-3. 再给全局 lane 加并发上限。  
+1. 先固定生成 `sessionKey`（同会话永远同 key）。
+2. 再实现 `enqueueCommandInLane(sessionLane, task)`。
+3. 再给全局 lane 加并发上限。
 4. 最后实现 `runId -> sessionKey` 反查缓存。
 
 对应核心代码：
@@ -25,15 +25,15 @@ description: "OpenClaw AI框架专项：会话与并发框架（session key + la
 
 ## 步骤一：执行链路拆解（具体到函数）
 
-1. 生成会话键  
+1. 生成会话键
 `resolveSessionKey(...)`（`src/config/sessions/session-key.ts`）生成稳定 `sessionKey`。
-2. 解析 lane  
+2. 解析 lane
 `resolveSessionLane(...)` + `resolveGlobalLane(...)`。
-3. 入队执行  
+3. 入队执行
 `enqueueCommandInLane(...)`（`src/process/command-queue.ts`）。
-4. 应用并发配置  
+4. 应用并发配置
 `applyGatewayLaneConcurrency(...)` 设置 `Cron/Main/Subagent` 三类并发。
-5. run 反查 session  
+5. run 反查 session
 `resolveSessionKeyForRun(runId)` 从 run context 缓存和 session store 反查。
 
 ## 步骤二：实现细节（内部结构）

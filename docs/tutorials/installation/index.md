@@ -5,150 +5,201 @@ sidebarTitle: "安装"
 
 # 安装 OpenClaw
 
-这篇文章教你怎么把 OpenClaw 装到你的电脑上。总共有三种方式，**大多数人用第一种就够了**。
+这篇只解决一件事：把 OpenClaw 装好，并确认它真的能打开。
+
+如果你是第一次用，推荐路线是：
+
+```text
+安装 OpenClaw → 运行 onboard → 打开 dashboard → 发第一条消息
+```
+
+::: tip 新手先别纠结安装方式
+如果你不知道该选 npm、Docker、云服务器还是 Kubernetes，就选“一键安装脚本”。
+你现在的目标不是研究部署方式，而是先让 OpenClaw 在电脑上跑起来。
+:::
 
 ---
 
-## 先检查：你的电脑能不能用？
+## 先检查电脑环境
 
-OpenClaw 支持以下操作系统：
+OpenClaw 支持：
 
-- **macOS**（苹果电脑）✓
-- **Linux**（Ubuntu、Debian 等）✓
-- **Windows**（推荐使用 WSL2，见下方说明）✓
+- macOS
+- Linux
+- Windows
 
-**Node.js 版本要求：v22 LTS 以上（推荐 v24）。**
+Windows 可以直接用 PowerShell 安装；如果你后面要做更完整的开发和本地工具调用，WSL2 通常更稳。
 
-怎么检查是否已安装？打开终端，输入：
+如果你只是想先聊天、先体验控制 UI，Windows PowerShell 也可以开始，不必一上来安装一整套开发环境。
+
+### Node.js 版本
+
+官方当前推荐：
+
+- **Node 24**：推荐版本
+- **Node 22.14+**：兼容版本
+
+检查命令：
 
 ```bash
 node --version
 ```
 
-- 看到 `v24.x.x` → 最佳，推荐版本
-- 看到 `v22.x.x`（需 22.16+）→ 也可以正常使用
-- 版本低于 22 或"找不到命令" → 先看[安装 Node.js](./node)
-
-::: info Windows 用户特别说明
-在 Windows 上，我们**强烈建议**用 WSL2（Windows 的 Linux 子系统）来运行 OpenClaw。
-WSL2 的安装方法：用管理员权限打开 PowerShell，输入 `wsl --install`，重启后即可。
-
-不熟悉 WSL2？可以先阅读微软的[官方教程](https://learn.microsoft.com/zh-cn/windows/wsl/install)。
-:::
+如果你还没有 Node.js，先看[安装 Node.js](./node)。
 
 ---
 
-## 方法一：一键安装脚本（推荐，大多数人用这个）
+## 方法一：一键安装脚本（最推荐）
 
-这是最简单的方式，脚本会自动帮你处理所有事情。
-
-**macOS / Linux / WSL2：**
-
-打开终端，复制粘贴这行命令，按回车：
+### macOS / Linux / WSL2
 
 ```bash
 curl -fsSL https://openclaw.ai/install.sh | bash
 ```
 
-**Windows（在 PowerShell 里运行）：**
+### Windows PowerShell
 
 ```powershell
 iwr -useb https://openclaw.ai/install.ps1 | iex
 ```
 
-**这个脚本会做什么？**
-
-1. 检查你有没有 Node.js，没有的话自动帮你装
-2. 安装 OpenClaw 软件
-3. 自动启动设置向导，引导你完成首次配置
-
-**安装成功后会看到：**
-
-```text
-✓ OpenClaw installed successfully!
-Run "openclaw onboard" to get started.
-```
+这个脚本会帮你处理安装细节。新手不用纠结 npm、pnpm、路径这些问题。
 
 ---
 
-## 方法二：手动用 npm 安装
+## 方法二：用 npm 安装
 
-如果你已经有 Node.js 22+，也可以用 npm 手动安装：
+如果你已经熟悉 Node.js，也可以手动装。
+如果你不知道 npm 是什么，请回到“一键安装脚本”。
 
 ```bash
 npm install -g openclaw@latest
 openclaw onboard --install-daemon
 ```
 
-安装完后，运行第二行命令来启动设置向导。
-
-::: tip 遇到安装错误？
-如果提示 `sharp` 相关错误，试试这个命令：
-```bash
-SHARP_IGNORE_GLOBAL_LIBVIPS=1 npm install -g openclaw@latest
-```
-:::
+第二行很重要。它会启动新手向导，并把 Gateway 装成后台服务。
 
 ---
 
-## 方法三：其他高级安装方式
+## 方法三：其他安装方式
+
+下面这些方式不是给第一天的新手准备的。
+它们适合你已经知道自己为什么需要容器、云服务器或集群时再选。
 
 | 方式 | 适合谁 |
 |------|--------|
-| [Docker 部署](./docker) | 想在容器里运行的技术用户 |
-| [Nix 安装](./nix) | 使用 Nix 包管理器的用户 |
-| [从源码编译](/tutorials/getting-started/setup) | 开发者，想改代码的人 |
+| [Docker 部署](./docker) | 想把 OpenClaw 放进容器里运行 |
+| [ClawDock](./clawdock) | Docker 用户想用短命令管理容器 |
+| [Docker VM Runtime](./docker-vm-runtime) | 云 VM + Docker 长期运行 |
+| [Nix 安装](./nix) | 已经在使用 Nix 的用户 |
+| [Bun 安装](./bun) | 想尝试 Bun 的用户 |
+| [GCP](./gcp)、[Azure](./azure)、[DigitalOcean](./digitalocean)、[Oracle](./oracle)、[Hetzner](./hetzner) | 想把 Gateway 放到云服务器上的用户 |
+| [Northflank](./northflank)、[Railway](./railway)、[Render](./render) | 想用一键云平台模板 |
+| [Hostinger](./hostinger) | 想用托管面板或 VPS |
+| [Raspberry Pi](./raspberry-pi) | 想在家里放一台小网关 |
+| [Kubernetes](./kubernetes) | 团队已有集群 |
+
+如果你只是想先用起来，不需要从这里开始。
 
 ---
 
-## 安装完成后：验证一切是否正常
+## 安装后必须做的 3 个检查
 
-安装并完成初始设置后，用这三个命令检查状态：
+安装命令跑完，不代表事情结束。
+请一定做下面 3 个检查，它们能告诉你“真的装好了没有”。
+
+### 1. 运行体检
 
 ```bash
-openclaw doctor         # 自动检测和修复配置问题
-openclaw status         # 查看网关（指挥部）是否在运行
-openclaw dashboard      # 打开控制面板（会自动打开浏览器）
+openclaw doctor
 ```
 
-**全部正常的话：**
-- `doctor` 会显示"没有发现问题"
-- `status` 会显示"running"（运行中）
-- `dashboard` 会打开浏览器，显示控制面板界面
+它会检查配置、服务、权限和常见风险。
+
+### 2. 查看 Gateway 状态
+
+```bash
+openclaw gateway status
+```
+
+Gateway 是 OpenClaw 的总服务台。它在，OpenClaw 才能接消息。
+
+### 3. 打开控制 UI
+
+```bash
+openclaw dashboard
+```
+
+浏览器能打开控制 UI，并且能发出第一条消息，就说明安装主链路已经成功。
+
+成功标准很简单：你能在浏览器里问一句话，AI 能回一句话。
+如果还没做到，先不要继续接 Telegram、WhatsApp 或远程访问。
 
 ---
 
 ## 常见问题
 
-::: details 安装完后输入 "openclaw" 提示找不到命令？
+::: details 安装完后提示 `openclaw: command not found`
 
-这是因为系统不知道 openclaw 安装在哪里。需要告诉它：
+这通常是系统 PATH 没找到 npm 的全局命令目录。
+
+先看 npm 全局目录：
 
 ```bash
-# 先查看 npm 的安装路径
 npm prefix -g
-
-# 然后把这个路径加到系统路径里
-# 把下面这行加到 ~/.zshrc 或 ~/.bashrc 文件末尾
-export PATH="$(npm prefix -g)/bin:$PATH"
-
-# 让修改立即生效
-source ~/.zshrc   # 或者 source ~/.bashrc
 ```
 
-然后重新打开终端，再试一次 `openclaw --version`。
+再把它的 `bin` 加到 PATH。以 zsh 为例：
+
+```bash
+echo 'export PATH="$(npm prefix -g)/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+```
+
+重新打开终端后再试：
+
+```bash
+openclaw --version
+```
 
 :::
 
-::: details 安装过程中断，怎么重新安装？
+::: details 我已经装过旧版本，怎么升级？
 
-直接重新运行安装命令就可以，不需要先卸载。安装脚本会自动覆盖旧版本。
+最简单是重新运行安装脚本：
+
+```bash
+curl -fsSL https://openclaw.ai/install.sh | bash
+```
+
+或者：
+
+```bash
+openclaw update
+openclaw doctor
+openclaw gateway restart
+```
+
+更完整的说明看[更新](/tutorials/installation/updating)。
+
+:::
+
+::: details 我从 Claude 或 Hermes 迁移过来怎么办？
+
+先用 dry-run 预览迁移计划：
+
+```bash
+openclaw migrate claude --dry-run
+openclaw migrate hermes --dry-run
+```
+
+详细说明看 [从 Claude 迁移](/tutorials/installation/migrating-claude) 和 [从 Hermes 迁移](/tutorials/installation/migrating-hermes)。
 
 :::
 
 ::: details 想卸载怎么办？
 
-参考[卸载说明](./uninstall)。
+看[卸载说明](./uninstall)。
 
 :::
 
@@ -156,4 +207,4 @@ source ~/.zshrc   # 或者 source ~/.bashrc
 
 ## 下一步
 
-安装好了？直接去[快速入门教程](/tutorials/getting-started/getting-started)完成初始配置，5 分钟内就能和 AI 说话！
+安装完成后，回到[快速开始](/tutorials/getting-started/getting-started)，先用控制 UI 发出第一条消息，再去接 Telegram 或 WhatsApp。

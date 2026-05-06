@@ -8,16 +8,51 @@ description: "OpenClaw 核心概念：OpenClaw 系统架构详解。本文从技
 
 本文从技术视角全面剖析 OpenClaw 的系统架构，适合希望深入理解或二次开发的读者。
 
+::: tip 如果你不是程序员，先看这里
+这一页会出现很多源码名和英文术语。你不需要一次全懂。
+
+先记住这条主线：
+
+```text
+聊天软件收到消息 → Gateway 接住消息 → Agent 思考 → 模型生成回复 → Gateway 把回复发回聊天软件
+```
+
+后面所有架构图，都只是在解释这条线里的每一段由谁负责。
+:::
+
+## 先把几个词翻成人话
+
+| 文档里的词 | 人话解释 |
+|------------|----------|
+| Gateway | 总服务台。所有消息、控制 UI、节点和插件都先找它 |
+| Control UI | 浏览器里的控制面板 |
+| Channel | 聊天入口，比如 Telegram、WhatsApp、Discord |
+| Agent | 真正负责思考和回复的 AI 助手 |
+| Provider | AI 大脑从哪里来，比如 Claude、DeepSeek、Ollama |
+| Tool | Agent 可以做的动作，比如读文件、跑命令、查网页 |
+| Node | 接入 Gateway 的外部设备或远程机器 |
+| Session | 一段独立聊天，防止不同人的上下文混在一起 |
+
+如果你只是想配置 OpenClaw，看到这里已经够用了。
+如果你想读源码、改插件、做二次开发，再继续往下看。
+
 ---
 
 ## 一、架构总览
 
 OpenClaw 是一个**多通道 AI 助手运行时**，核心设计目标：
 
-- **多通道统一接入**：Telegram、WhatsApp、Discord、iMessage 等，使用同一套内核
-- **高可扩展插件化**：通道、工具、Provider、Hooks 均可通过插件注入
-- **长连接控制平面**：Gateway 以 WebSocket 为核心，支持流式事件与状态广播
-- **智能体内核稳定运行**：Lane 队列、上下文守护、模型回退，保证长期可靠执行
+- **自托管 Gateway**：一个长期运行的 Gateway 统一管理会话、通道、节点、控制 UI 和事件流。
+- **多通道统一接入**：Telegram、WhatsApp、Discord、Slack、Signal、iMessage、WebChat 等使用同一套控制面。
+- **插件化扩展**：通道、工具、Provider、语音、媒体、搜索、后台服务都可以通过插件能力接入。
+- **节点能力扩展**：iOS、Android、macOS、远程机器都可以作为 Node 连接 Gateway，提供 Canvas、相机、语音或远程执行能力。
+- **智能体内核稳定运行**：Lane 队列、上下文守护、模型回退、工具审批，保证长期可靠执行。
+
+如果只用一句话概括最新版架构：
+
+```text
+Gateway 是总服务台；Control UI、CLI、聊天通道和节点都连到它；Agent 在它背后调用模型、工具和记忆。
+```
 
 ### 整体分层
 
@@ -27,10 +62,10 @@ OpenClaw 是一个**多通道 AI 助手运行时**，核心设计目标：
 │        entry.ts → run-main.ts → command-registry    │
 ├─────────────────────────────────────────────────────┤
 │                  Gateway 层（控制平面）               │
-│    WebSocket 服务 · HTTP 服务 · 通道管理 · 热重载     │
+│  WebSocket · HTTP/Control UI · 通道管理 · 节点管理     │
 ├──────────────┬──────────────┬────────────────────────┤
 │  Channel 层  │   Routing 层 │    Plugin 层            │
-│  多通道适配  │  路由 + 会话键│  工具/通道/Provider 注册 │
+│  多通道适配  │  路由 + 会话键│  manifest + 能力注册     │
 ├──────────────┴──────────────┴────────────────────────┤
 │               Auto-Reply / Agent 执行层               │
 │   dispatch → get-reply → agent-runner → embedded PI  │
@@ -38,8 +73,8 @@ OpenClaw 是一个**多通道 AI 助手运行时**，核心设计目标：
 │                AI Provider 层                        │
 │    Anthropic · OpenAI · Ollama · Bedrock · ...       │
 ├─────────────────────────────────────────────────────┤
-│              持久化 / 基础设施层                       │
-│       Config · Sessions · Media · Security · Cron    │
+│        节点 / 媒体 / 持久化 / 基础设施层                │
+│ Nodes · Canvas · Config · Sessions · Security · Cron  │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -61,10 +96,11 @@ flowchart LR
   subgraph 网关层
     F -->|gateway 命令| G[startGatewayServer]
     G --> H[WebSocket 服务]
-    G --> I[HTTP 服务]
+    G --> I[HTTP 服务 + Control UI]
     G --> J[ChannelManager]
-    G --> K[ConfigReloader]
-    G --> L[Sidecars]
+    G --> K[NodeRegistry]
+    G --> L[ConfigReloader]
+    G --> Q[PluginMetadataSnapshot]
   end
 
   subgraph 消息处理
@@ -88,6 +124,11 @@ flowchart LR
     Y[(Sessions)] -.-> T
     Z[(Media)] -.-> V
   end
+
+  subgraph 节点
+    K --> AA[iOS / Android / macOS / node host]
+    AA --> AB[Canvas / Camera / Voice / system.run]
+  end
 ```
 
 ---
@@ -99,6 +140,9 @@ flowchart LR
 **源码位置**：`src/entry.ts`、`src/cli/`
 
 CLI 是系统的启动入口，负责环境初始化和命令分发。
+
+人话解释：CLI 就是你在终端里输入的 `openclaw ...` 命令。
+你输入命令后，CLI 先判断你想做什么，再把任务交给对应模块。
 
 ```text
 入口流程：
@@ -129,10 +173,13 @@ entry.ts
 
 Gateway 是整个系统的核心，**必须常驻运行**。它暴露两个接口：
 
+人话解释：Gateway 要像电话总机一样一直开着。
+它停了，控制 UI、聊天通道、节点和自动任务都会受影响。
+
 | 接口 | 默认地址 | 用途 |
 |------|----------|------|
 | WebSocket | `127.0.0.1:18789` | 主控制协议，所有方法调用、事件推送 |
-| HTTP | 同端口 | Hooks 回调、工具调用、Slack、OpenResponses |
+| HTTP | 同端口 | Control UI、Hooks 回调、工具调用、Webhook、OpenResponses |
 
 #### Gateway 启动序列
 
@@ -188,9 +235,15 @@ flowchart TD
 
 ### 2.3 Channel 层（通道适配器）
 
-**源码位置**：`src/channels/`、各通道插件目录（`src/discord/`、`src/imessage/` 等）
+**源码位置**：`src/channels/`、`extensions/*/`、`src/plugin-sdk/`
 
-通道是消息的"入口"与"出口"。每个通道以插件形式注册：
+通道是消息的"入口"与"出口"。最新版架构里，通道边界更清晰：
+
+- 核心负责统一会话、路由、权限、消息工具和回复流。
+- 通道插件负责平台自己的协议细节，比如 Telegram Bot API、Slack Socket Mode、Matrix homeserver、WhatsApp QR 连接等。
+- 插件通过 `openclaw.plugin.json` 先声明自己，再通过 SDK 注册能力。
+
+通道通常以能力注册的形式进入系统：
 
 ```typescript
 // 通道注册示意
@@ -203,24 +256,42 @@ registerChannel({
 })
 ```
 
-**内置通道（`src/channels/registry.ts` CHAT_CHANNEL_ORDER）：**
+**常见通道：**
 
 | 通道 | selectionLabel | 说明 |
 |------|----------------|------|
 | Telegram | Telegram (Bot API) | 官方 Bot，入门首选 |
 | WhatsApp | WhatsApp (QR link) | 绑定手机号，推荐独立设备 |
 | Discord | Discord (Bot API) | 官方 Bot，支持良好 |
-| IRC | IRC (Server + Nick) | 经典聊天室协议 |
-| Google Chat | Google Chat (Chat API) | Google Workspace HTTP Webhook |
 | Slack | Slack (Socket Mode) | 企业通讯，Socket Mode |
+| Google Chat | Google Chat (Chat API) | Google Workspace |
 | Signal | Signal (signal-cli) | 私密通讯，需额外配置 |
-| iMessage | iMessage (imsg) | 仅 macOS，仍在完善中 |
+| BlueBubbles | BlueBubbles iMessage | 推荐的 iMessage 路线 |
+| WebChat | WebChat | 浏览器聊天入口 |
+| Matrix / Mattermost / Teams / LINE / Zalo / QQ / WeChat | 插件通道 | 通过插件能力接入 |
 
 **账号是一级实体**：同一通道可运行多个 `accountId`，每个账号独立运行状态，故障隔离。
 
 ---
 
-### 2.4 Routing 层（路由与会话键）
+### 2.4 Node 层（节点能力）
+
+**源码位置**：`src/node-host/`、`src/gateway/server-methods/nodes.ts`、`src/gateway/node-registry.ts`、`apps/`
+
+节点是连接到 Gateway 的设备或远程执行宿主。节点不是另一个 Gateway，而是 Gateway 的外接能力。
+
+典型节点：
+
+- iOS 节点：Canvas、相机、语音、位置等。
+- Android 节点：聊天、语音、Canvas、相机、设备命令等。
+- macOS 节点：菜单栏应用、Canvas、桌面能力。
+- headless node host：远程命令执行或自动化宿主。
+
+节点连接时会声明 `role: "node"`，并上报自己的 commands/caps。Gateway 端通过设备配对批准它，再按权限调用。
+
+---
+
+### 2.5 Routing 层（路由与会话键）
 
 **源码位置**：`src/routing/`
 
@@ -259,7 +330,7 @@ Session Key 是并发隔离和持久化分区的核心。格式（`src/routing/s
 
 ---
 
-### 2.5 Auto-Reply / Agent 执行层
+### 2.6 Auto-Reply / Agent 执行层
 
 **源码位置**：`src/auto-reply/`、`src/agents/`
 
@@ -364,7 +435,16 @@ runWithModelFallback():
 
 **源码位置**：`src/plugins/`
 
-插件是 OpenClaw 的扩展骨架，支持 5 种注入点：
+插件是 OpenClaw 的扩展骨架。最新版不要只理解成“加载一个 JS 文件”，而要理解成四层：
+
+```text
+manifest 元数据
+  → 启用/加载规划
+  → runtime register(api)
+  → registry / lookup table 被 Gateway、CLI、Agent 消费
+```
+
+常见注入点包括：
 
 ```text
 插件可注入：
@@ -375,14 +455,18 @@ runWithModelFallback():
   ⑤ http-route → 新 HTTP 路由（Webhook 处理等）
 ```
 
-**插件加载流程**：
+**插件加载流程（最新版心智模型）**：
 
 ```text
 loadGatewayPlugins()
-  → 扫描 bundled 插件 + 用户安装插件
-  → 执行插件 manifest 校验
-  → 注册到全局 registry
-  → 冲突检测（同名注册报错）
+  → 构建 PluginMetadataSnapshot
+  → 扫描 bundled / workspace / global / config 插件
+  → 读取 openclaw.plugin.json
+  → 校验 manifest + config schema
+  → 按当前场景做 activation planning
+  → 加载需要的插件运行时代码
+  → register(api) 注册能力
+  → registry / lookup table 供 Gateway、CLI、Agent 使用
 ```
 
 ---

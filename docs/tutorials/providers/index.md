@@ -3,140 +3,200 @@ title: "选择 AI 大脑（模型提供商）"
 sidebarTitle: "选择 AI 大脑"
 ---
 
-# 选择 AI 大脑——模型提供商
+# 选择 AI 大脑：模型提供商
 
-## 什么是"模型提供商"？
+OpenClaw 自己不是大模型。
+它更像一个可靠的“总管”：收到消息，整理上下文，调用工具，然后把任务交给后面的 AI 大脑。
 
-OpenClaw 本身只是一个"管家"，它把消息传递给真正的 AI 模型，AI 模型处理后再把回复传回来。
-
-**"模型提供商"就是你租用 AI 大脑的地方。** 就像手机需要 SIM 卡才能打电话，OpenClaw 需要你提供一个 AI 服务的"密钥"才能让 AI 帮你干活。
-
-常见的选择：
-- **Anthropic（Claude）**——Anthropic 公司的 Claude 模型，能力强，中文好
-- **OpenAI（ChatGPT）**——OpenAI 公司的 GPT 模型，最知名
-- **Ollama（本地运行）**——完全免费，在你自己的电脑上运行，不需要联网，但对电脑性能要求高
+这个 AI 大脑可以来自 OpenAI、Anthropic、Google、OpenRouter，也可以是你自己用 Ollama、vLLM、SGLang 之类服务跑起来的本地模型。
 
 ---
 
-## 我该选哪个？
+## 先讲人话
 
-| 提供商 | 特点 | 是否收费 | 推荐程度 |
-|--------|------|---------|---------|
-| **Anthropic (Claude)** | 能力强，中文优秀 | 按使用量收费 | ⭐⭐⭐ 推荐 |
-| **OpenAI (ChatGPT)** | 最知名，功能全面 | 按使用量收费 | ⭐⭐⭐ 推荐 |
-| **Ollama（本地）** | 完全免费，隐私好 | 完全免费 | ⭐⭐ 适合有高配电脑的用户 |
-| **OpenRouter** | 汇聚多家模型，按需选 | 按使用量收费 | ⭐⭐ 适合想灵活选模型的用户 |
-| **Moonshot (Kimi)** | 中国团队，中文好 | 按使用量收费 | ⭐⭐ 国内用户可考虑 |
-| **Qwen（通义千问）** | 阿里巴巴，中文好 | 按使用量收费 | ⭐⭐ 国内用户可考虑 |
+你问 OpenClaw 一个问题时，OpenClaw 本身负责“接待、整理、转交、回复”。
+真正写答案的，是后面的模型服务。
 
-> **不知道选哪个？** 从 **Anthropic (Claude)** 开始，它是 OpenClaw 官方推荐的首选。
+Provider 就是“这颗 AI 大脑由谁提供”。
+比如：
+
+- OpenAI 提供 ChatGPT 系列模型。
+- Anthropic 提供 Claude 系列模型。
+- Ollama 让模型在你自己电脑上跑。
+- OpenRouter 像模型超市，一个账号能试很多家。
+
+第一次只要选一个能稳定访问、能正常付费或能本地运行的 Provider。
 
 ---
 
-## 如何配置？
+## 新手怎么选
 
-### 第一步：获取 API 密钥
+如果你只是想先跑起来，不要一上来纠结几十个模型。
 
-根据你选择的提供商，去对应的官网注册并创建 API 密钥：
+| 场景 | 推荐选择 | 为什么 |
+|------|----------|--------|
+| 第一次使用，想少折腾 | OpenAI 或 Anthropic | 文档多、能力强、问题好排查 |
+| 想一个账号试很多模型 | OpenRouter | 像模型超市，方便切换 |
+| 更重视数据留在自己机器 | Ollama | 本地运行，不把内容发给外部模型服务 |
+| 有服务器和显卡 | vLLM / SGLang / LiteLLM | 适合自托管和团队统一入口 |
+| 国内网络访问海外服务不稳定 | Qwen、Moonshot、GLM、MiniMax 等 | 中文体验和访问稳定性通常更友好 |
 
-- **Anthropic**：[console.anthropic.com](https://console.anthropic.com) → API Keys → Create Key
-- **OpenAI**：[platform.openai.com](https://platform.openai.com) → API Keys → Create New
-
-::: tip API 密钥长什么样？
-- Anthropic 密钥：以 `sk-ant-` 开头
-- OpenAI 密钥：以 `sk-` 开头
-
-**请妥善保管，不要分享给别人！** 别人用了你的密钥，费用会算在你头上。
+::: tip 最简单的判断
+能稳定访问哪家，就先用哪家。
+OpenClaw 支持以后再换模型，不需要第一天就做“终身选择”。
 :::
 
-### 第二步：填入 OpenClaw
+---
 
-运行配置命令：
+## 配置方式
+
+最推荐从向导开始：
 
 ```bash
-openclaw configure
+openclaw onboard --install-daemon
 ```
 
-向导会问你选择哪个提供商，然后让你输入 API 密钥，按提示操作就好。
+向导会带你完成几件事：
+
+1. 选择模型提供商
+2. 填入 API Key 或本地模型地址
+3. 保存配置
+4. 安装并启动 Gateway 后台服务
+5. 打开 Web 控制 UI 检查状态
+
+已经装好以后，也可以打开控制台：
+
+```bash
+openclaw dashboard
+```
+
+默认地址通常是：
+
+```text
+http://127.0.0.1:18789/
+```
+
+如果你不知道该在哪里填 API Key，先运行向导，不要手动翻配置文件。向导就是给第一次配置准备的。
 
 ---
 
-## 各提供商详细配置
+## API Key 是什么
 
-### 主流推荐
+API Key 就像模型服务的“门钥匙”。
+OpenClaw 拿着这把钥匙去请求模型，模型服务按你的账号计费。
 
-- [Anthropic (Claude)](/tutorials/providers/anthropic) — 推荐新手从这里开始
-- [OpenAI (ChatGPT)](/tutorials/providers/openai) — OpenAI API 配置
-- [Mistral](/tutorials/providers/mistral) — 文本、图像、音频转录一体化
-- [Ollama（本地模型，完全免费）](/tutorials/providers/ollama) — 在自己电脑上运行 AI
-- [OpenRouter](/tutorials/providers/openrouter) — 一个账号访问多家 AI
+常见入口：
 
-### 国内模型
+- OpenAI：[platform.openai.com](https://platform.openai.com)
+- Anthropic：[console.anthropic.com](https://console.anthropic.com)
+- OpenRouter：[openrouter.ai](https://openrouter.ai)
 
-- [Moonshot (Kimi)](/tutorials/providers/moonshot) — 国内用户友好
-- [通义千问 (Qwen)](/tutorials/providers/qwen) — 阿里巴巴的 AI 模型
-- [GLM（智谱 AI）](/tutorials/providers/glm) — 智谱 AI
-- [MiniMax（海螺 AI）](/tutorials/providers/minimax) — 国内模型
-- [百度千帆 (Qianfan)](/tutorials/providers/qianfan) — 百度 AI 开放平台
-- [小米 AI](/tutorials/providers/xiaomi) — 小米大模型
-- [ZAI](/tutorials/providers/zai) — ZAI 模型服务
+::: warning 把钥匙收好
+API Key 不要发到群里，不要写进公开仓库，也不要贴到截图里。
+别人拿到你的 Key，就可能花你的钱。
+:::
 
-### 云平台与企业方案
+---
 
-- [AWS Bedrock](/tutorials/providers/bedrock) — 亚马逊云 AI 服务
-- [Cloudflare AI Gateway](/tutorials/providers/cloudflare-ai-gateway) — Cloudflare AI 网关代理
-- [Vercel AI Gateway](/tutorials/providers/vercel-ai-gateway) — Vercel AI 网关代理
-- [Kilo Gateway](/tutorials/providers/kilocode) — 统一 API Key 访问多家模型
-- [NVIDIA](/tutorials/providers/nvidia) — NVIDIA NIM 推理服务
-- [GitHub Copilot](/tutorials/providers/github-copilot) — GitHub Copilot API
-- [HuggingFace](/tutorials/providers/huggingface) — HuggingFace 推理端点
+## 主流提供商
 
-### 本地与自托管
+下面是“云端模型”。你的消息会发到对应服务商，由它们返回答案。
 
-- [vLLM](/tutorials/providers/vllm) — 高性能本地大模型推理
-- [LiteLLM](/tutorials/providers/litellm) — 统一接口代理多家模型
-- [Together AI](/tutorials/providers/together) — Together 推理服务
-- [Venice AI](/tutorials/providers/venice) — Venice 隐私优先推理
-- [OpenCode](/tutorials/providers/opencode) — OpenCode 兼容端点
-- [OpenCode Go](/tutorials/providers/opencode-go) — OpenCode 的 Go 模型目录
+- [OpenAI](/tutorials/providers/openai)：OpenAI API、兼容端点和常见配置
+- [Anthropic](/tutorials/providers/anthropic)：Claude 系列模型
+- [Google Gemini](/tutorials/providers/google)：文本、多模态与媒体能力
+- [OpenRouter](/tutorials/providers/openrouter)：一个入口访问多家模型
+- [Mistral](/tutorials/providers/mistral)：Mistral 系列模型
+- [Groq](/tutorials/providers/groq)：高速推理
+- [Cerebras](/tutorials/providers/cerebras)：高速推理服务
 
-### 自定义接入
+---
 
-- [自定义模型提供商](/tutorials/providers/custom) — 接入任意 OpenAI / Anthropic 兼容 API，或自建推理服务
+## 国内模型
 
-### 其他与特殊用途
+- [Moonshot / Kimi](/tutorials/providers/moonshot)
+- [通义千问 Qwen](/tutorials/providers/qwen)
+- [GLM 智谱](/tutorials/providers/glm)
+- [DeepSeek](/tutorials/providers/deepseek)
+- [MiniMax](/tutorials/providers/minimax)
+- [百度千帆 Qianfan](/tutorials/providers/qianfan)
+- [StepFun 阶跃星辰](/tutorials/providers/stepfun)
+- [Tencent](/tutorials/providers/tencent)
+- [Volcengine 火山引擎](/tutorials/providers/volcengine)
+- [Alibaba Model Studio](/tutorials/providers/alibaba)
+- [小米 AI](/tutorials/providers/xiaomi)
+- [ZAI](/tutorials/providers/zai)
 
-- [Claude Max API 代理](/tutorials/providers/claude-max-api-proxy) — 通过代理访问 Claude Max
-- [Deepgram](/tutorials/providers/deepgram) — 语音转文字（ASR）
-- [Synthetic（测试用）](/tutorials/providers/synthetic) — 本地测试 / 模拟回复
-- [模型选择参考](/tutorials/providers/models) — 各模型能力与适用场景对比
+这些提供商更适合国内网络环境，也常常有不错的中文能力。
+
+---
+
+## 本地与自托管
+
+下面是“自己管模型”的路线。
+它更可控，但也更像自己在家照顾一台机器：要关心模型文件、内存、显卡和服务是否在线。
+
+- [Ollama](/tutorials/providers/ollama)：最容易上手的本地模型方式
+- [vLLM](/tutorials/providers/vllm)：适合服务器和高性能推理
+- [SGLang](/tutorials/providers/sglang)：自托管推理服务路线
+- [LM Studio](/tutorials/providers/lmstudio)：桌面本地模型入口
+- [LiteLLM](/tutorials/providers/litellm)：把多家模型包装成统一接口
+- [Together AI](/tutorials/providers/together)
+- [HuggingFace](/tutorials/providers/huggingface)
+- [NVIDIA NIM](/tutorials/providers/nvidia)
+- [DeepInfra](/tutorials/providers/deepinfra)
+- [Fireworks](/tutorials/providers/fireworks)
+- [Chutes](/tutorials/providers/chutes)
+- [Inferrs](/tutorials/providers/inferrs)
+
+自托管的好处是可控，代价是你要自己照顾机器、显卡、模型文件和服务稳定性。
+
+---
+
+## 网关与代理
+
+如果你们是团队，常见做法不是每个人都直接填自己的模型 Key，而是先接一个统一网关。
+
+把它想成公司统一买了一张门禁卡，大家通过公司入口访问模型。这样更方便统计费用，也更容易统一管理权限。
+
+- [Cloudflare AI Gateway](/tutorials/providers/cloudflare-ai-gateway)
+- [Vercel AI Gateway](/tutorials/providers/vercel-ai-gateway)
+- [Kilo Gateway](/tutorials/providers/kilocode)
+- [自定义模型提供商](/tutorials/providers/custom)
+
+---
+
+## 语音与媒体 Provider
+
+- [Azure Speech](/tutorials/providers/azure-speech)
+- [ElevenLabs](/tutorials/providers/elevenlabs)
+- [Gradium](/tutorials/providers/gradium)
+- [SenseAudio](/tutorials/providers/senseaudio)
+- [ComfyUI](/tutorials/providers/comfy)
+- [fal](/tutorials/providers/fal)
+- [Runway](/tutorials/providers/runway)
+- [Vydra](/tutorials/providers/vydra)
+- [xAI](/tutorials/providers/xai)
+- [Inworld](/tutorials/providers/inworld)
+
+这样做的好处是：统一计费、统一限流、统一审计，也更方便替换后端模型。
 
 ---
 
 ## 常见问题
 
-::: details API 密钥需要花多少钱？
-
-大多数 AI 服务都是"按量计费"——你用多少，付多少。每次对话消耗的钱非常少（通常是几分到几毛钱人民币）。
-
-如果你只是个人日常使用，每月花费通常在 1-10 美元之间。
-
-很多服务还有免费额度，Anthropic 和 OpenAI 新用户都有一定的免费试用额度。
-
+::: details 可以同时配置多个模型吗？
+可以。OpenClaw 支持多提供商和模型回退。主模型失败时，可以切到备用模型。
 :::
 
-::: details 能同时配置多个提供商吗？
-
-可以！OpenClaw 支持配置多个提供商，如果主要提供商不可用，可以自动切换到备用提供商（"模型回退"功能）。
-
+::: details 本地模型是不是一定更便宜？
+不一定。个人电脑上用 Ollama 可能很省钱；但如果你买云服务器和显卡，机器费用也要算进去。
 :::
 
-::: details 想完全免费用，怎么办？
+::: details 哪个模型最强？
+这个问题会随时间变化。更稳妥的做法是：选一个当前稳定可用的主模型，再配一个备用模型。本站会尽量讲配置方法，不把某个模型写成永久答案。
+:::
 
-使用 Ollama 可以在本地运行开源 AI 模型，完全免费，数据也不会上传到外部服务器。
-
-缺点：需要较好的电脑（建议显卡内存 8GB 以上），并且开源模型的能力可能不如 Claude 或 GPT-4 强。
-
-[查看 Ollama 配置教程](/tutorials/providers/ollama)
-
+::: details OpenClaw 支持 OpenAI 兼容接口吗？
+支持。很多服务都提供 OpenAI 兼容接口，你可以参考 [自定义模型提供商](/tutorials/providers/custom) 接入。
 :::

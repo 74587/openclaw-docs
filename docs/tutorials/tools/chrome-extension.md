@@ -82,11 +82,11 @@ C:\Users\<你的用户名>\.openclaw\extensions\chrome
 如果远程实例没有公网访问，可以通过 SSH 端口转发建立连接：
 
 ```bash
-# 将远程 3000 端口映射到本地
-ssh -N -L 3000:localhost:3000 user@your-server.example.com
+# 将远程 18789 端口映射到本地
+ssh -N -L 18789:localhost:18789 user@your-server.example.com
 ```
 
-然后在扩展中填写本地地址 `ws://localhost:3000/gateway`。
+然后在扩展中填写本地地址 `ws://localhost:18789/gateway`。
 :::
 
 ---

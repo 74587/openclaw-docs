@@ -92,7 +92,7 @@ OpenClaw 按以下优先级从低到高加载环境变量，**后者会覆盖前
 
 ```bash
 export OPENCLAW_HOME=/data/openclaw
-openclaw gateway start
+openclaw onboard --install-daemon
 ```
 
 ---

@@ -63,7 +63,7 @@ openclaw --profile rescue gateway install
 ```bash
 # 主机器人（已有或全新，无 --profile 参数）
 # 运行在端口 18789 + Chrome CDC/Canvas/... 端口
-openclaw onboard
+openclaw onboard --install-daemon
 openclaw gateway install
 
 # 救援机器人（隔离的 profile + 端口）

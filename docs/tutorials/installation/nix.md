@@ -91,5 +91,5 @@ apps/macos/Sources/OpenClaw/Resources/Info.plist
 ## 相关链接
 
 - [nix-openclaw](https://github.com/openclaw/nix-openclaw) — 完整设置指南
-- [向导](/start/wizard) — 非 Nix CLI 设置
-- [Docker](/install/docker) — 容器化设置
+- [向导](/tutorials/getting-started/wizard) — 非 Nix CLI 设置
+- [Docker](/tutorials/installation/docker) — 容器化设置

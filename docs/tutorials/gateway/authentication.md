@@ -45,7 +45,7 @@ openclaw doctor
 如果你不想自己管理环境变量，引导向导可以为守护进程使用存储
 API 密钥：`openclaw onboard`。
 
-环境变量继承详情（`env.shellEnv`、`~/.openclaw/.env`、systemd/launchd）请参阅[帮助](/help)。
+环境变量继承详情（`env.shellEnv`、`~/.openclaw/.env`、systemd/launchd）请参阅[帮助](/tutorials/help/)。
 
 ---
 

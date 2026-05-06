@@ -7,7 +7,7 @@ description: "OpenClaw 通道接入：iMessage（旧版：imsg）。对于新的
 # iMessage（旧版：imsg）
 
 ::: warning 注意
-对于新的 iMessage 部署，请使用 <a href="/channels/bluebubbles">BlueBubbles</a>。
+对于新的 iMessage 部署，请使用 <a href="/tutorials/channels/bluebubbles">BlueBubbles</a>。
 
 `imsg` 集成是旧版，可能在未来版本中移除。
 :::
@@ -20,7 +20,7 @@ description: "OpenClaw 通道接入：iMessage（旧版：imsg）。对于新的
 
   - [配对](/tutorials/channels/pairing) — iMessage 私信默认为配对模式。
 
-  - [配置参考](/tutorials/gateway/configuration-reference#imessage) — 完整的 iMessage 字段参考。
+  - [配置参考](/tutorials/gateway/configuration-reference) — 完整的 iMessage 字段参考。
 
 ---
 
@@ -55,11 +55,11 @@ imsg rpc --help
 ```
 
 
-      ### 步骤 3：启动网关
+      ### 步骤 3：重启网关，让配置生效
 
 
 ```bash
-openclaw gateway
+openclaw gateway restart
 ```
 
 
@@ -189,7 +189,7 @@ imsg send <handle> "test"
 
     首次运行可能需要在该机器人用户会话中进行 GUI 批准（自动化 + 完全磁盘访问）。
 
-  
+
 
 :::
 
@@ -226,7 +226,7 @@ exec ssh -T bot@mac-mini.tailnet-1234.ts.net imsg "$@"
 
     使用 SSH 密钥以确保 SSH 和 SCP 都是非交互式的。
 
-  
+
 
 :::
 
@@ -237,7 +237,7 @@ exec ssh -T bot@mac-mini.tailnet-1234.ts.net imsg "$@"
 
     每个账户可以覆盖 `cliPath`、`dbPath`、`allowFrom`、`groupPolicy`、`mediaMaxMb` 和历史设置等字段。
 
-  
+
 
 :::
 
@@ -251,7 +251,7 @@ exec ssh -T bot@mac-mini.tailnet-1234.ts.net imsg "$@"
     - 入站附件摄取是可选的：`channels.imessage.includeAttachments`
     - 当设置了 `remoteHost` 时，可通过 SCP 获取远程附件路径
     - 出站媒体大小使用 `channels.imessage.mediaMaxMb`（默认 16 MB）
-  
+
 
 :::
 
@@ -262,7 +262,7 @@ exec ssh -T bot@mac-mini.tailnet-1234.ts.net imsg "$@"
     - 分块模式：`channels.imessage.chunkMode`
       - `length`（默认）
       - `newline`（段落优先分割）
-  
+
 
 :::
 
@@ -285,7 +285,7 @@ exec ssh -T bot@mac-mini.tailnet-1234.ts.net imsg "$@"
 imsg chats --limit 20
 ```
 
-  
+
 
 :::
 
@@ -323,7 +323,7 @@ openclaw channels status --probe
 
     如果探测报告 RPC 不支持，请更新 `imsg`。
 
-  
+
 
 :::
 
@@ -336,7 +336,7 @@ openclaw channels status --probe
     - `channels.imessage.allowFrom`
     - 配对批准（`openclaw pairing list imessage`）
 
-  
+
 
 :::
 
@@ -350,7 +350,7 @@ openclaw channels status --probe
     - `channels.imessage.groups` 白名单行为
     - 提及模式配置（`agents.list[].groupChat.mentionPatterns`）
 
-  
+
 
 :::
 
@@ -363,7 +363,7 @@ openclaw channels status --probe
     - 从网关主机到运行 Messages 的 Mac 的 SSH/SCP 密钥认证
     - 远程路径在运行 Messages 的 Mac 上的可读性
 
-  
+
 
 :::
 
@@ -379,7 +379,7 @@ imsg send <handle> "test"
 
     确认运行 OpenClaw/`imsg` 的进程上下文已授予完全磁盘访问 + 自动化权限。
 
-  
+
 
 :::
 
@@ -387,7 +387,7 @@ imsg send <handle> "test"
 
 ## 配置参考指引
 
-- [配置参考 - iMessage](/tutorials/gateway/configuration-reference#imessage)
+- [配置参考 - iMessage](/tutorials/gateway/configuration-reference)
 - [网关配置](/tutorials/gateway/configuration)
 - [配对](/tutorials/channels/pairing)
 - [BlueBubbles](/tutorials/channels/bluebubbles)

@@ -19,7 +19,7 @@ description: "OpenClaw 帮助：故障排查（Troubleshooting）。大多数问
 | Gateway 启动失败 | 配置文件语法、端口冲突 |
 | 通道断连 | Token 是否过期、重新登录 |
 | Cron 不触发 | 时区设置、cron 表达式 |
-| Node 工具报错 | Node.js 版本（推荐 v24，最低 v22.16） |
+| Node 工具报错 | Node.js 版本（推荐 v24，最低 v22.14） |
 | Browser 工具报错 | Chrome/Chromium 是否安装 |
 
 ---
@@ -63,9 +63,9 @@ description: "OpenClaw 帮助：故障排查（Troubleshooting）。大多数问
    openclaw gateway status
    ```
 
-2. 检查 Gateway 默认端口（3000）是否被其他进程占用：
+2. 检查 Gateway 默认端口（18789）是否被其他进程占用：
    ```bash
-   lsof -i :3000
+   lsof -i :18789
    ```
 
 3. 如果端口被占用，可在配置中修改端口后重启 Gateway。
@@ -79,7 +79,7 @@ description: "OpenClaw 帮助：故障排查（Troubleshooting）。大多数问
 ```json5
 {
   gateway: {
-    port: 3001  // 改为未被占用的端口
+    port: 18790  // 改为未被占用的端口
   }
 }
 ```
@@ -102,9 +102,9 @@ description: "OpenClaw 帮助：故障排查（Troubleshooting）。大多数问
    openclaw logs --filter gateway
    ```
 
-3. 检查是否有端口冲突（默认端口 3000）：
+3. 检查是否有端口冲突（默认端口 18789）：
    ```bash
-   lsof -i :3000
+   lsof -i :18789
    ```
 
 4. 如果配置文件损坏，可以重置后重新配置：
@@ -124,7 +124,7 @@ description: "OpenClaw 帮助：故障排查（Troubleshooting）。大多数问
 
 1. 查看通道当前状态：
    ```bash
-   openclaw channels status
+   openclaw channels status --probe
    ```
 
 2. 重新登录对应通道：
@@ -167,7 +167,7 @@ description: "OpenClaw 帮助：故障排查（Troubleshooting）。大多数问
 
 **步骤：**
 
-1. 检查 Node.js 版本，OpenClaw 推荐 **v24**，最低支持 **v22.16 LTS**：
+1. 检查 Node.js 版本，OpenClaw 推荐 **v24**，最低支持 **v22.14**：
    ```bash
    node --version
    ```

@@ -33,9 +33,23 @@ interface SidebarItem {
 
 function listMdItems(dir: string): SidebarItem[] {
   const abs = resolve(__dirname, '..', dir)
-  const files = readdirSync(abs)
-    .filter((f) => f.endsWith('.md') && f !== 'README.md' && f !== 'index.md')
-    .sort(sortByPrefix)
+  const files: string[] = []
+
+  function walk(currentAbs: string, currentRel = '') {
+    for (const entry of readdirSync(currentAbs, { withFileTypes: true })) {
+      const rel = currentRel ? `${currentRel}/${entry.name}` : entry.name
+      if (entry.isDirectory()) {
+        walk(resolve(currentAbs, entry.name), rel)
+        continue
+      }
+      if (entry.isFile() && entry.name.endsWith('.md') && entry.name !== 'README.md' && entry.name !== 'index.md') {
+        files.push(rel)
+      }
+    }
+  }
+
+  walk(abs)
+  files.sort(sortByPrefix)
 
   return files.map((f) => {
     const name = f.replace(/\.md$/, '')
@@ -65,8 +79,9 @@ const frameworkItems = listMdItems('beginner-openclaw-framework-focus')
 const tutGettingStarted = listMdItems('tutorials/getting-started')
 // 快速入门核心 4 页（固定顺序）
 const tutGettingStartedCore: SidebarItem[] = [
-  { text: '快速开始（选安装方式）', link: '/tutorials/getting-started/getting-started' },
-  { text: 'macOS App 首次启动', link: '/tutorials/getting-started/onboarding' },
+  { text: '零基础照着做', link: '/tutorials/getting-started/grandma-guide' },
+  { text: '快速开始（先跑通控制 UI）', link: '/tutorials/getting-started/getting-started' },
+  { text: '安装 OpenClaw', link: '/tutorials/installation/' },
   { text: '命令行向导安装', link: '/tutorials/getting-started/wizard' },
   { text: '安装后配置与常见问题', link: '/tutorials/getting-started/setup' },
 ]
@@ -87,6 +102,14 @@ const tutConcepts = listMdItems('tutorials/concepts')
 const tutAutomation = listMdItems('tutorials/automation')
 const tutHelp = listMdItems('tutorials/help')
 const tutTools = listMdItems('tutorials/tools')
+const tutPlugins = listMdItems('tutorials/plugins')
+const tutCli = listMdItems('tutorials/cli')
+const tutReference = listMdItems('tutorials/reference')
+const tutPlatforms = listMdItems('tutorials/platforms')
+const tutDiagnostics = listMdItems('tutorials/diagnostics')
+const tutPlan = listMdItems('tutorials/plan')
+const tutWeb = listMdItems('tutorials/web')
+const tutNodes = listMdItems('tutorials/nodes')
 
 const SITE_URL = 'https://openclaw-docs.dx3n.cn'
 
@@ -99,7 +122,7 @@ const jsonLd = JSON.stringify({
       url: `${SITE_URL}/`,
       name: 'OpenClaw 中文文档',
       alternateName: ['ClawdBot 文档', 'ClawdBot Docs', 'openclaw docs', 'OpenClaw 源码剖析'],
-      description: 'OpenClaw 中文完整文档，276篇深度教程，覆盖安装部署、源码剖析、Gateway配置、多通道接入与AI模型集成。原名 ClawdBot。',
+      description: 'OpenClaw 中文完整文档，704篇教程，覆盖安装部署、源码剖析、Gateway配置、Web控制UI、节点、多通道接入与AI模型集成。',
       inLanguage: 'zh-CN',
       potentialAction: {
         '@type': 'SearchAction',
@@ -124,7 +147,7 @@ const jsonLd = JSON.stringify({
           name: 'OpenClaw 是什么？',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'OpenClaw（原名 ClawdBot）是一款开源的多通道 AI 智能体框架，支持 WhatsApp、Telegram、Discord、Slack、Signal、iMessage、飞书等平台，可接入 Claude、GPT、DeepSeek、Ollama 等 AI 模型，让你的 AI 助手在任意通讯平台上运行。',
+            text: 'OpenClaw 是一款自托管的多通道 AI 助手平台，通过 Gateway 统一连接控制 UI、聊天通道、节点、工具和模型，让你的 AI 助手在浏览器、手机和常用聊天软件中运行。',
           },
         },
         {
@@ -148,7 +171,7 @@ const jsonLd = JSON.stringify({
           name: 'OpenClaw 怎么安装？',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'OpenClaw 安装只需一行命令：npm install -g openclaw@latest，然后运行 openclaw onboard 按向导完成配置。支持 macOS、Linux、Windows（WSL2）。',
+            text: 'OpenClaw 推荐通过安装脚本或 npm 安装，然后运行 openclaw onboard --install-daemon 完成向导配置并安装 Gateway 后台服务。支持 macOS、Linux、Windows，Windows 完整体验推荐 WSL2。',
           },
         },
         {
@@ -209,7 +232,7 @@ export default withMermaid(defineConfig({
   lang: 'zh-CN',
   title: 'OpenClaw 中文文档 | 源码剖析 · 安装教程 · AI智能体框架',
   titleTemplate: ':title | OpenClaw 中文文档',
-  description: 'OpenClaw 中文完整文档，276篇深度教程，覆盖安装部署、源码剖析、Gateway配置、WhatsApp/Telegram/Discord/飞书多通道接入，支持 Claude、DeepSeek、Ollama 本地模型。原名 ClawdBot。',
+  description: 'OpenClaw 中文完整文档，704篇教程，覆盖安装部署、源码剖析、Gateway配置、Web控制UI、节点、WhatsApp/Telegram/Discord/飞书多通道接入，支持 Claude、DeepSeek、Ollama 本地模型。',
   cleanUrls: true,
   lastUpdated: true,
   ignoreDeadLinks: true,
@@ -259,7 +282,7 @@ export default withMermaid(defineConfig({
       .replace(/\.md$/, '')
     const canonical = path ? `${SITE_URL}/${path}` : `${SITE_URL}/`
     const ogTitle = title || 'OpenClaw 中文文档 | 源码剖析 · 安装教程 · AI智能体框架'
-    const ogDesc = pageDesc || 'OpenClaw 中文完整文档，276篇深度教程，覆盖安装部署、源码剖析、Gateway配置、WhatsApp/Telegram/Discord/飞书多通道接入，支持 Claude、DeepSeek、Ollama 本地模型。原名 ClawdBot。'
+    const ogDesc = pageDesc || 'OpenClaw 中文完整文档，704篇教程，覆盖安装部署、源码剖析、Gateway配置、Web控制UI、节点、WhatsApp/Telegram/Discord/飞书多通道接入，支持 Claude、DeepSeek、Ollama 本地模型。'
     return [
       ['link', { rel: 'canonical', href: canonical }],
       ['meta', { property: 'og:url', content: canonical }],
@@ -290,13 +313,21 @@ export default withMermaid(defineConfig({
         text: '教程',
         items: [
           { text: '教程中心', link: '/tutorials/' },
-          { text: '快速入门', link: '/tutorials/getting-started/getting-started' },
+          { text: '零基础照着做', link: '/tutorials/getting-started/grandma-guide' },
           { text: '安装部署', link: '/tutorials/installation/' },
           { text: '网关配置', link: '/tutorials/gateway/' },
           { text: '通道接入', link: '/tutorials/channels/' },
           { text: 'AI 模型', link: '/tutorials/providers/' },
           { text: '核心概念', link: '/tutorials/concepts/' },
           { text: '工具系统', link: '/tutorials/tools/' },
+          { text: '插件专题', link: '/tutorials/plugins/' },
+          { text: 'CLI 命令', link: '/tutorials/cli/' },
+          { text: '参考资料', link: '/tutorials/reference/' },
+          { text: '平台支持', link: '/tutorials/platforms/' },
+          { text: '诊断专题', link: '/tutorials/diagnostics/' },
+          { text: '架构计划', link: '/tutorials/plan/' },
+          { text: 'Web 控制 UI', link: '/tutorials/web/' },
+          { text: '节点', link: '/tutorials/nodes/' },
           { text: '自动化', link: '/tutorials/automation/' },
           { text: '帮助与调试', link: '/tutorials/help/' },
         ],
@@ -377,6 +408,86 @@ export default withMermaid(defineConfig({
           items: [
             { text: '教程中心', link: '/tutorials/' },
             ...tutTools,
+          ],
+        },
+      ],
+      '/tutorials/plugins/': [
+        {
+          text: '插件专题',
+          items: [
+            { text: '教程中心', link: '/tutorials/' },
+            { text: '插件专题', link: '/tutorials/plugins/' },
+            ...tutPlugins,
+          ],
+        },
+      ],
+      '/tutorials/cli/': [
+        {
+          text: 'CLI 命令专题',
+          items: [
+            { text: '教程中心', link: '/tutorials/' },
+            { text: 'CLI 命令专题', link: '/tutorials/cli/' },
+            ...tutCli,
+          ],
+        },
+      ],
+      '/tutorials/reference/': [
+        {
+          text: '参考资料专题',
+          items: [
+            { text: '教程中心', link: '/tutorials/' },
+            { text: '参考资料专题', link: '/tutorials/reference/' },
+            ...tutReference,
+          ],
+        },
+      ],
+      '/tutorials/platforms/': [
+        {
+          text: '平台支持',
+          items: [
+            { text: '教程中心', link: '/tutorials/' },
+            { text: '平台支持', link: '/tutorials/platforms/' },
+            ...tutPlatforms,
+          ],
+        },
+      ],
+      '/tutorials/diagnostics/': [
+        {
+          text: '诊断专题',
+          items: [
+            { text: '教程中心', link: '/tutorials/' },
+            { text: '诊断专题', link: '/tutorials/diagnostics/' },
+            ...tutDiagnostics,
+          ],
+        },
+      ],
+      '/tutorials/plan/': [
+        {
+          text: '架构计划',
+          items: [
+            { text: '教程中心', link: '/tutorials/' },
+            { text: '架构计划', link: '/tutorials/plan/' },
+            ...tutPlan,
+          ],
+        },
+      ],
+      '/tutorials/web/': [
+        {
+          text: 'Web 控制 UI',
+          items: [
+            { text: '教程中心', link: '/tutorials/' },
+            { text: 'Web 控制 UI', link: '/tutorials/web/' },
+            ...tutWeb,
+          ],
+        },
+      ],
+      '/tutorials/nodes/': [
+        {
+          text: '节点',
+          items: [
+            { text: '教程中心', link: '/tutorials/' },
+            { text: '节点入门', link: '/tutorials/nodes/' },
+            ...tutNodes,
           ],
         },
       ],

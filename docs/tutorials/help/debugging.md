@@ -37,15 +37,15 @@ openclaw gateway restart
 
 ---
 
-## Gateway 监视模式（Watch Mode）
+## Gateway 实时日志
 
-不需要重启，实时查看 Gateway 事件流：
+不需要重启，实时查看 Gateway 日志：
 
 ```bash
-openclaw gateway --watch
+openclaw logs --follow
 ```
 
-这会在终端中持续打印 Gateway 接收和发送的事件，适合快速排查消息路由问题。
+这会在终端中持续打印日志，适合快速排查消息路由、通道连接和模型报错。
 
 ---
 
@@ -116,8 +116,8 @@ openclaw logs --follow
 
 ::: details 消息未送达
 1. 开启 `verbose: true`，查看消息路由日志
-2. 确认通道连接状态：`openclaw channels status`
-3. 查看 Gateway 事件：`openclaw gateway --watch`
+2. 确认通道连接状态：`openclaw channels status --probe`
+3. 查看 Gateway 日志：`openclaw logs --follow`
 4. 检查通道 Token 是否过期
 :::
 

@@ -140,7 +140,7 @@ fly logs
 你应该看到：
 
 ```text
-[gateway] listening on ws://0.0.0.0:3000 (PID xxx)
+[gateway] listening on ws://0.0.0.0:18789 (PID xxx)
 [discord] logged in to discord as xxx
 ```
 
@@ -429,10 +429,10 @@ v6       fdaa:x:x:x:x::x      private          global
 **方式 1：本地代理（最简单）**
 
 ```bash
-# 将本地端口 3000 转发到应用
-fly proxy 3000:3000 -a my-openclaw
+# 将本地端口 18789 转发到应用
+fly proxy 18789:18789 -a my-openclaw
 
-# 然后在浏览器中打开 http://localhost:3000
+# 然后在浏览器中打开 http://localhost:18789
 ```
 
 **方式 2：WireGuard VPN**
@@ -442,7 +442,7 @@ fly proxy 3000:3000 -a my-openclaw
 fly wireguard create
 
 # 导入到 WireGuard 客户端，然后通过内部 IPv6 访问
-# 示例：http://[fdaa:x:x:x:x::x]:3000
+# 示例：http://[fdaa:x:x:x:x::x]:18789
 ```
 
 **方式 3：仅 SSH**

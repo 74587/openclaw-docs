@@ -32,7 +32,7 @@ description: "OpenClaw Gateway：健康检查（CLI）。用于验证通道（Ch
 ## 故障处理
 
 - `logged out` 或状态 409-515 → 使用 `openclaw channels logout` 然后 `openclaw channels login` 重新关联。
-- 网关（Gateway）不可达 → 启动它：`openclaw gateway --port 18789`（如果端口被占用使用 `--force`）。
+- 网关（Gateway）不可达 → 先看状态：`openclaw gateway status`；如果还没有安装后台服务，运行 `openclaw onboard --install-daemon`。
 - 无入站消息 → 确认关联的手机在线且发送者被允许（`channels.whatsapp.allowFrom`）；对于群聊，确保白名单 + 提及规则匹配（`channels.whatsapp.groups`、`agents.list[].groupChat.mentionPatterns`）。
 
 ---

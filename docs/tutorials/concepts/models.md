@@ -39,7 +39,7 @@ OpenClaw 按以下顺序选择模型：
 如果不想手动编辑配置，运行入门向导：
 
 ```bash
-openclaw onboard
+openclaw onboard --install-daemon
 ```
 
 它可以为常见提供商设置模型 + 认证，包括 **OpenAI Code (Codex) 订阅**（OAuth）和 **Anthropic**（推荐 API 密钥；也支持 `claude setup-token`）。
@@ -55,7 +55,7 @@ openclaw onboard
 
 模型引用会规范化为小写。提供商别名如 `z.ai/*` 规范化为 `zai/*`。
 
-提供商配置示例（包括 OpenCode Zen）位于 [/gateway/configuration](/tutorials/gateway/configuration#opencode-zen-multi-model-proxy)。
+提供商配置示例（包括 OpenCode Zen）位于 [/gateway/configuration](/tutorials/gateway/configuration)。
 
 ---
 
@@ -77,11 +77,13 @@ Model "provider/model" is not allowed. Use /model to list available models.
 
 ```json5
 {
-  agent: {
-    model: { primary: "anthropic/claude-sonnet-4-5" },
-    models: {
-      "anthropic/claude-sonnet-4-5": { alias: "Sonnet" },
-      "anthropic/claude-opus-4-6": { alias: "Opus" },
+  agents: {
+    defaults: {
+      model: { primary: "anthropic/claude-sonnet-4-5" },
+      models: {
+        "anthropic/claude-sonnet-4-5": { alias: "Sonnet" },
+        "anthropic/claude-opus-4-6": { alias: "Opus" },
+      },
     },
   },
 }

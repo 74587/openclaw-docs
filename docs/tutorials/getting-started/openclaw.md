@@ -1,12 +1,13 @@
 ---
 title: "个人助手设置"
 sidebarTitle: "个人助手设置"
-description: "OpenClaw 快速入门：使用 OpenClaw 构建个人助手。OpenClaw 是一个面向 Pi 智能体（Agent）的 WhatsApp + Telegram + Discord + iMes…"
+description: "OpenClaw 快速入门：使用 OpenClaw 构建个人助手。用 Gateway、Web 控制 UI、频道、模型和工具搭建自己的全天候 AI 助手。"
 ---
 
 # 使用 OpenClaw 构建个人助手
 
-OpenClaw 是一个面向 **Pi** 智能体（Agent）的 WhatsApp + Telegram + Discord + iMessage 网关（Gateway）。插件可添加 Mattermost 支持。本指南是"个人助手"设置方案：一个专用的 WhatsApp 号码，表现为你的全天候智能体。
+OpenClaw 可以把 Telegram、WhatsApp、Discord、Slack、Signal、BlueBubbles/WebChat 等入口连接到同一个 AI 助手。
+本指南讲的是“个人助手”方案：先跑通 Gateway 和 Web 控制 UI，再选一个你常用的频道，让它变成你的全天候 AI 助手。
 
 ---
 
@@ -14,22 +15,22 @@ OpenClaw 是一个面向 **Pi** 智能体（Agent）的 WhatsApp + Telegram + Di
 
 你正在让一个智能体具备以下能力：
 
-- 在你的机器上运行命令（取决于你的 Pi 工具设置）
+- 在你的机器上运行命令（取决于工具权限和审批设置）
 - 在你的工作区（Workspace）中读写文件
-- 通过 WhatsApp/Telegram/Discord/Mattermost（插件）发送消息
+- 通过 Telegram、WhatsApp、Discord、Slack、WebChat 等频道发送消息
 
 保守起步：
 
-- 始终设置 `channels.whatsapp.allowFrom`（永远不要在你的个人 Mac 上开放给所有人）。
-- 为助手使用专用的 WhatsApp 号码。
-- 心跳默认每 30 分钟一次。在你信任此设置之前，通过设置 `agents.defaults.heartbeat.every: "0m"` 禁用它。
+- 第一次建议先用 Web 控制 UI 或 Telegram 跑通，不要一上来开放给所有人。
+- 如果使用 WhatsApp，尽量为助手准备专用号码，不要直接接入你的私人主号。
+- 自动化和心跳先从关闭或低频开始，确认行为可靠后再放开。
 
 ---
 
 ## 前置条件
 
-- OpenClaw 已安装并完成入门引导 — 如果尚未完成，请参阅 [快速入门](/start/getting-started)
-- 一个用于助手的第二个手机号（SIM/eSIM/预付费）
+- OpenClaw 已安装并完成入门引导 — 如果尚未完成，请参阅 [快速入门](/tutorials/getting-started/getting-started)
+- 一个聊天入口。新手建议先用 Telegram；如果选择 WhatsApp，最好准备第二个手机号（SIM/eSIM/预付费）。
 
 ---
 
@@ -40,7 +41,7 @@ OpenClaw 是一个面向 **Pi** 智能体（Agent）的 WhatsApp + Telegram + Di
 ```mermaid
 flowchart TB
     A["<b>Your Phone (personal)<br></b><br>Your WhatsApp<br>+1-555-YOU"] -- message --> B["<b>Second Phone (assistant)<br></b><br>Assistant WA<br>+1-555-ASSIST"]
-    B -- linked via QR --> C["<b>Your Mac (openclaw)<br></b><br>Pi agent"]
+    B -- linked via QR --> C["<b>Your Mac / Server<br></b><br>OpenClaw Gateway"]
 ```
 
 如果你将个人 WhatsApp 链接到 OpenClaw，你收到的每条消息都会变成"智能体输入"。这通常不是你想要的。
@@ -49,19 +50,20 @@ flowchart TB
 
 ## 5 分钟快速开始
 
-1. 配对 WhatsApp Web（显示 QR 码；用助手手机扫描）：
+1. 先确保 Gateway 和控制 UI 跑起来：
 
 ```bash
-openclaw channels login
+openclaw onboard --install-daemon
+openclaw dashboard
 ```
 
-2. 启动网关（Gateway）（保持运行）：
+2. 选择一个频道。新手建议先用 Telegram；如果你要用 WhatsApp，再登录 WhatsApp Web：
 
 ```bash
-openclaw gateway --port 18789
+openclaw channels login --channel whatsapp
 ```
 
-3. 在 `~/.openclaw/openclaw.json` 中放入一个最简配置：
+3. 给频道加白名单。以 WhatsApp 为例，在 `~/.openclaw/openclaw.json` 中放入一个最简配置：
 
 ```json5
 {
@@ -94,9 +96,7 @@ openclaw setup
 
 ```json5
 {
-  agent: {
-    workspace: "~/.openclaw/workspace",
-  },
+  agents: { defaults: { workspace: "~/.openclaw/workspace" } },
 }
 ```
 
@@ -104,9 +104,7 @@ openclaw setup
 
 ```json5
 {
-  agent: {
-    skipBootstrap: true,
-  },
+  agents: { defaults: { skipBootstrap: true } },
 }
 ```
 
@@ -125,13 +123,15 @@ OpenClaw 默认就是一个不错的助手设置，但你通常需要调整：
 ```json5
 {
   logging: { level: "info" },
-  agent: {
-    model: "anthropic/claude-opus-4-6",
-    workspace: "~/.openclaw/workspace",
-    thinkingDefault: "high",
-    timeoutSeconds: 1800,
-    // Start with 0; enable later.
-    heartbeat: { every: "0m" },
+  agents: {
+    defaults: {
+      model: { primary: "anthropic/claude-opus-4-6" },
+      workspace: "~/.openclaw/workspace",
+      thinkingDefault: "high",
+      timeoutSeconds: 1800,
+      // Start with 0; enable later.
+      heartbeat: { every: "0m" },
+    },
   },
   channels: {
     whatsapp: {
@@ -141,7 +141,7 @@ OpenClaw 默认就是一个不错的助手设置，但你通常需要调整：
       },
     },
   },
-  routing: {
+  messages: {
     groupChat: {
       mentionPatterns: ["@openclaw", "openclaw"],
     },
@@ -182,9 +182,7 @@ OpenClaw 默认就是一个不错的助手设置，但你通常需要调整：
 
 ```json5
 {
-  agent: {
-    heartbeat: { every: "30m" },
-  },
+  agents: { defaults: { heartbeat: { every: "30m" } } },
 }
 ```
 
@@ -212,10 +210,10 @@ OpenClaw 会提取这些内容并随文本一起作为媒体发送。
 ## 运维清单
 
 ```bash
-openclaw status          # local status (creds, sessions, queued events)
-openclaw status --all    # full diagnosis (read-only, pasteable)
-openclaw status --deep   # adds gateway health probes (Telegram + Discord)
-openclaw health --json   # gateway health snapshot (WS)
+openclaw gateway status  # 查看 Gateway 是否在运行
+openclaw dashboard       # 打开 Web 控制 UI
+openclaw doctor          # 自动诊断常见问题
+openclaw logs --follow   # 查看实时日志
 ```
 
 日志存放在 `/tmp/openclaw/`（默认：`openclaw-YYYY-MM-DD.log`）。
@@ -224,12 +222,12 @@ openclaw health --json   # gateway health snapshot (WS)
 
 ## 后续步骤
 
-- WebChat：[WebChat](/web/webchat)
-- 网关运维：[网关运维手册](/gateway)
+- WebChat：[WebChat](/tutorials/web/)
+- 网关运维：[网关运维手册](/tutorials/gateway/)
 - 定时任务与唤醒：[定时任务](/tutorials/automation/cron-jobs)
-- macOS 菜单栏配套应用：[OpenClaw macOS 应用](/platforms/macos)
-- iOS 节点应用：[iOS 应用](/platforms/ios)
-- Android 节点应用：[Android 应用](/platforms/android)
-- Windows 状态：[Windows (WSL2)](/platforms/windows)
-- Linux 状态：[Linux 应用](/platforms/linux)
+- macOS 菜单栏配套应用：[OpenClaw macOS 应用](/tutorials/getting-started/onboarding)
+- iOS 节点应用：[iOS 应用](/tutorials/nodes/)
+- Android 节点应用：[Android 应用](/tutorials/nodes/)
+- Windows 状态：[Windows (WSL2)](/tutorials/installation/)
+- Linux 状态：[Linux 应用](/tutorials/installation/)
 - 安全：[安全](/tutorials/gateway/security)

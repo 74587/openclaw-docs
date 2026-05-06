@@ -42,8 +42,8 @@ description: "OpenClaw 通道接入：BlueBubbles（macOS REST）。状态：内
    }
    ```
 
-4. 将 BlueBubbles Webhook 指向你的网关（Gateway）（示例：`https://your-gateway-host:3000/bluebubbles-webhook?password=<password>`）。
-5. 启动网关（Gateway）；它将注册 Webhook 处理程序并开始配对。
+4. 将 BlueBubbles Webhook 指向你的网关（Gateway）（示例：`https://your-gateway-host:18789/bluebubbles-webhook?password=<password>`）。
+5. 重启 Gateway；它将注册 Webhook 处理程序并开始配对。
 
 安全提示：
 
@@ -132,7 +132,7 @@ launchctl load ~/Library/LaunchAgents/com.user.poke-messages.plist
 BlueBubbles 在交互式设置向导中可用：
 
 ```bash
-openclaw onboard
+openclaw onboard --install-daemon
 ```
 
 向导会提示以下内容：
@@ -350,7 +350,7 @@ OpenClaw 可能会显示_短_消息 ID（例如 `1`、`2`）以节省 Token。
 
 - Webhook 请求通过比较 `guid`/`password` 查询参数或请求头与 `channels.bluebubbles.password` 进行验证。来自 `localhost` 的请求也会被接受。
 - 请保密 API 密码和 Webhook 端点（视为凭证处理）。
-- Localhost 信任意味着同主机反向代理可能无意中绕过密码。如果你为网关（Gateway）设置代理，请在代理端要求认证并配置 `gateway.trustedProxies`。参见[网关安全](/tutorials/gateway/security#reverse-proxy-configuration)。
+- Localhost 信任意味着同主机反向代理可能无意中绕过密码。如果你为网关（Gateway）设置代理，请在代理端要求认证并配置 `gateway.trustedProxies`。参见[网关安全](/tutorials/gateway/security)。
 - 如果将 BlueBubbles 服务器暴露到局域网外，请启用 HTTPS + 防火墙规则。
 
 ---
@@ -365,4 +365,4 @@ OpenClaw 可能会显示_短_消息 ID（例如 `1`、`2`）以节省 Token。
 - OpenClaw 会根据 BlueBubbles 服务器的 macOS 版本自动隐藏已知不可用的操作。如果在 macOS 26（Tahoe）上编辑功能仍然显示，请手动通过 `channels.bluebubbles.actions.edit=false` 禁用它。
 - 查看状态/健康信息：`openclaw status --all` 或 `openclaw status --deep`。
 
-有关通道（Channel）工作流的一般参考，请参见[通道](/channels)和[插件](/tutorials/tools/plugin)指南。
+有关通道（Channel）工作流的一般参考，请参见[通道](/tutorials/channels/)和[插件专题](/tutorials/plugins/)指南。

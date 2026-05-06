@@ -10,6 +10,31 @@ description: "~/.openclaw/openclaw.json 的完整逐字段参考"
 
 配置格式为 **JSON5**（允许注释和尾逗号）。所有字段均为可选——省略时 OpenClaw 会使用安全的默认值。
 
+::: tip 这页应该怎么读
+这页像字典，不像小说。
+如果你是第一次配置 OpenClaw，不要从头读到尾，先去看[零基础照着做](/tutorials/getting-started/grandma-guide)或[配置入门](/tutorials/gateway/configuration)。
+
+当你已经知道自己要改哪个功能时，再回到这里查字段名。比如：
+
+- 想接 Telegram，就查 `channels.telegram`。
+- 想限制谁能私聊 AI，就查 `dmPolicy` 和 `allowFrom`。
+- 想改 Agent 默认模型，就查 `agents.defaults.model`。
+- 想控制工具权限，就查 `tools`。
+
+写配置前请先备份：
+
+```bash
+cp ~/.openclaw/openclaw.json ~/.openclaw/openclaw.json.bak
+```
+
+改完后一定运行：
+
+```bash
+openclaw doctor
+openclaw gateway restart
+```
+:::
+
 ---
 
 ## 通道（Channels）
@@ -1852,7 +1877,7 @@ Anthropic 兼容，内置提供商。快捷方式：`openclaw onboard --auth-cho
 - **配置变更需要重启网关。**
 - `allow`：可选白名单（仅列出的插件会加载）。`deny` 优先。
 
-参阅[插件（Plugins）](/tutorials/tools/plugin)。
+参阅[插件专题（Plugins）](/tutorials/plugins/)。
 
 ---
 

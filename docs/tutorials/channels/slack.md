@@ -8,12 +8,33 @@ description: "OpenClaw 通道接入：Slack。状态：通过 Slack 应用集成
 
 状态：通过 Slack 应用集成实现的私信 + 频道功能，已可投入生产使用。默认模式为 Socket Mode；HTTP Events API 模式也受支持。
 
+把它说简单一点：你在 Slack 里创建一个 App，把它当成 OpenClaw 的“Slack 账号”。
+同事在私信或频道里找这个 App，它就把消息转给 Gateway，再把 AI 回复发回 Slack。
+
+::: tip 新手先选 Socket Mode
+如果你不知道该选哪种模式，就选 **Socket Mode**。
+它不需要你准备公网域名，也不需要 Slack 从外网打到你的 Gateway。
+:::
+
 
   - [配对](/tutorials/channels/pairing) — Slack 私信默认为配对模式。
 
   - [斜杠命令](/tutorials/tools/slash-commands) — 原生命令行为和命令目录。
 
   - [通道故障排查](/tutorials/channels/troubleshooting) — 跨通道诊断和修复手册。
+
+---
+
+## 先选一种连接方式
+
+| 你现在的情况 | 推荐方式 | 原因 |
+|--------------|----------|------|
+| 个人电脑、办公室内网、没有公网域名 | Socket Mode | Slack 主动建立出站 WebSocket，最省事 |
+| 有公网 HTTPS 域名、反向代理或负载均衡 | HTTP Events API | Slack 通过 HTTPS 请求你的 Gateway |
+| 多个 Gateway 副本一起跑 | HTTP Events API | 更适合放在负载均衡后面 |
+| 只是先本地测试 | Socket Mode | 少一个公网回调地址问题 |
+
+两种方式都能收发消息。区别主要不是功能，而是网络连接方式。
 
 ---
 
@@ -27,6 +48,8 @@ description: "OpenClaw 通道接入：Slack。状态：通过 Slack 应用集成
 
         在 Slack 应用设置中：
 
+        - 打开 [api.slack.com/apps](https://api.slack.com/apps)
+        - 创建新应用，选择你的 workspace
         - 启用 **Socket Mode**
         - 创建 **App Token**（`xapp-...`），带 `connections:write` 权限
         - 安装应用并复制 **Bot Token**（`xoxb-...`）
@@ -70,11 +93,12 @@ SLACK_BOT_TOKEN=xoxb-...
         同时启用 App Home 的 **Messages Tab** 以支持私信。
 
 
-      ### 步骤 4：启动网关
+      ### 步骤 4：重启网关，让 Slack 配置生效
 
 
 ```bash
-openclaw gateway
+openclaw gateway restart
+openclaw channels status --probe
 ```
 
 
@@ -87,6 +111,7 @@ openclaw gateway
         - 将模式设为 HTTP（`channels.slack.mode="http"`）
         - 复制 Slack **Signing Secret**
         - 将 Event Subscriptions + Interactivity + Slash command Request URL 设为相同的 Webhook 路径（默认 `/slack/events`）
+        - 确认 Slack 能通过公网 HTTPS 访问这个路径
 
 
       ### 步骤 6：配置 OpenClaw HTTP 模式
@@ -247,7 +272,7 @@ openclaw gateway
 
     运行时入站大小上限默认为 `20MB`，除非通过 `channels.slack.mediaMaxMb` 覆盖。
 
-  
+
 
 :::
 
@@ -258,7 +283,7 @@ openclaw gateway
     - `channels.slack.chunkMode="newline"` 启用段落优先分割
     - 文件发送使用 Slack 上传 API，可包含线程回复（`thread_ts`）
     - 出站媒体上限在配置时遵循 `channels.slack.mediaMaxMb`；否则通道发送使用媒体管道的 MIME 类型默认值
-  
+
 
 :::
 
@@ -272,7 +297,7 @@ openclaw gateway
 
     Slack 私信在发送到用户目标时通过 Slack 会话 API 打开。
 
-  
+
 
 :::
 
@@ -376,7 +401,7 @@ Slack 操作由 `channels.slack.actions.*` 控制。
 }
 ```
 
-  
+
 
 :::
 
@@ -393,7 +418,7 @@ Slack 操作由 `channels.slack.actions.*` 控制。
     - `emoji:read`
     - `search:read`（如果你依赖 Slack 搜索读取）
 
-  
+
 
 :::
 
@@ -419,7 +444,7 @@ openclaw logs --follow
 openclaw doctor
 ```
 
-  
+
 
 :::
 
@@ -436,7 +461,7 @@ openclaw doctor
 openclaw pairing list slack
 ```
 
-  
+
 
 :::
 
@@ -444,7 +469,7 @@ openclaw pairing list slack
 ::: details Socket Mode 未连接
 
     验证机器人 + 应用 Token 以及 Slack 应用设置中的 Socket Mode 启用状态。
-  
+
 
 :::
 
@@ -458,7 +483,7 @@ openclaw pairing list slack
     - Slack Request URL（Events + Interactivity + Slash Commands）
     - 每个 HTTP 账户的唯一 `webhookPath`
 
-  
+
 
 :::
 
@@ -472,7 +497,7 @@ openclaw pairing list slack
 
     同时检查 `commands.useAccessGroups` 和频道/用户白名单。
 
-  
+
 
 :::
 
@@ -482,7 +507,7 @@ openclaw pairing list slack
 
 主要参考：
 
-- [配置参考 - Slack](/tutorials/gateway/configuration-reference#slack)
+- [配置参考 - Slack](/tutorials/gateway/configuration-reference)
 
   高信号 Slack 字段：
   - 模式/认证：`mode`、`botToken`、`appToken`、`signingSecret`、`webhookPath`、`accounts.*`

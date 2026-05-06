@@ -93,7 +93,7 @@ openclaw devices reject <requestId>
 ## 相关文档
 
 - 安全模型 + 提示注入：[安全](/tutorials/gateway/security)
-- 安全更新（运行 doctor）：[更新](/install/updating)
+- 安全更新（运行 doctor）：[更新](/tutorials/installation/updating)
 - 通道配置：
   - Telegram：[Telegram](/tutorials/channels/telegram)
   - WhatsApp：[WhatsApp](/tutorials/channels/whatsapp)

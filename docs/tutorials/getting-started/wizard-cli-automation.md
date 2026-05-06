@@ -45,7 +45,7 @@ openclaw onboard --non-interactive \
   --gateway-port 18789 \
   --gateway-bind loopback
 ```
-  
+
 
 :::
 
@@ -59,7 +59,7 @@ openclaw onboard --non-interactive \
   --gateway-port 18789 \
   --gateway-bind loopback
 ```
-  
+
 
 :::
 
@@ -73,7 +73,7 @@ openclaw onboard --non-interactive \
   --gateway-port 18789 \
   --gateway-bind loopback
 ```
-  
+
 
 :::
 
@@ -89,7 +89,7 @@ openclaw onboard --non-interactive \
   --gateway-port 18789 \
   --gateway-bind loopback
 ```
-  
+
 
 :::
 
@@ -103,7 +103,7 @@ openclaw onboard --non-interactive \
   --gateway-port 18789 \
   --gateway-bind loopback
 ```
-  
+
 
 :::
 
@@ -117,7 +117,7 @@ openclaw onboard --non-interactive \
   --gateway-port 18789 \
   --gateway-bind loopback
 ```
-  
+
 
 :::
 
@@ -131,7 +131,7 @@ openclaw onboard --non-interactive \
   --gateway-port 18789 \
   --gateway-bind loopback
 ```
-  
+
 
 :::
 
@@ -152,7 +152,7 @@ openclaw onboard --non-interactive \
 
     `--custom-api-key` 是可选的。如果省略，入门引导会检查 `CUSTOM_API_KEY`。
 
-  
+
 
 :::
 
@@ -187,6 +187,6 @@ openclaw agents add work \
 
 ## 相关文档
 
-- 入门引导中心：[入门引导向导 (CLI)](/start/wizard)
-- 完整参考：[CLI 入门引导参考](/start/wizard-cli-reference)
-- 命令参考：[`openclaw onboard`](/cli/onboard)
+- 入门引导中心：[入门引导向导 (CLI)](/tutorials/getting-started/wizard)
+- 完整参考：[CLI 入门引导参考](/tutorials/getting-started/wizard-cli-reference)
+- 命令参考：[`openclaw onboard`](/tutorials/getting-started/wizard-cli-reference)

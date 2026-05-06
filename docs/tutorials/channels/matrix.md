@@ -12,9 +12,9 @@ Matrix 是一个开放的去中心化消息协议。OpenClaw 以 Matrix **用户
 
 ---
 
-## 需要安装插件
+## 插件说明
 
-Matrix 作为插件发布，不包含在核心安装中。
+Matrix 通过插件提供。当前版本可能已随 OpenClaw 一起提供，也可能由向导提示你安装；如果你的环境里没有它，再按下面方式手动安装。
 
 通过 CLI 安装（npm 注册表）：
 
@@ -30,7 +30,7 @@ openclaw plugins install ./extensions/matrix
 
 如果你在配置/引导设置过程中选择 Matrix，且检测到 git 检出，OpenClaw 将自动提供本地安装路径。
 
-详情：[插件](/tutorials/tools/plugin)
+详情：[插件专题](/tutorials/plugins/)
 
 ---
 
@@ -129,7 +129,7 @@ E2EE 配置（启用端到端加密）：
 
 ## 多账户
 
-多账户支持：使用 `channels.matrix.accounts` 配置每个账户的凭证和可选的 `name`。参见 [`gateway/configuration`](/tutorials/gateway/configuration#telegramaccounts--discordaccounts--slackaccounts--signalaccounts--imessageaccounts) 了解共享模式。
+多账户支持：使用 `channels.matrix.accounts` 配置每个账户的凭证和可选的 `name`。参见 [`gateway/configuration`](/tutorials/gateway/configuration) 了解共享模式。
 
 每个账户作为独立的 Matrix 用户在任意 homeserver 上运行。每个账户的配置继承自顶级 `channels.matrix` 设置，并可覆盖任何选项（私聊策略、群组、加密等）。
 

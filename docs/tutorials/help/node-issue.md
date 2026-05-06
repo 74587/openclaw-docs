@@ -158,7 +158,7 @@ node dist/your-script.js
 
 - [tsx GitHub Issues](https://github.com/privatenumber/tsx/issues) —— 搜索 `__name` 查看相关 Issue
 - [ts-node 文档](https://typestrong.org/ts-node/) —— ts-node 配置参考
-- [Node.js 版本要求](../getting-started/index) —— OpenClaw 对 Node.js 版本的官方要求
+- [Node.js 版本要求](/tutorials/getting-started/getting-started) —— OpenClaw 对 Node.js 版本的官方要求
 
 ---
 

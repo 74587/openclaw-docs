@@ -1,233 +1,185 @@
 ---
 title: "插件系统"
 sidebarTitle: "插件系统"
-description: "OpenClaw 工具系统：插件系统（Plugin System）。插件系统让你能够在不修改 OpenClaw 核心代码的情况下，扩展其功能——添加新工具、接入新的模型提供商、创建新的聊天通道，甚至…"
+description: "OpenClaw 工具系统：用保姆级方式解释最新插件系统、manifest-first 架构、插件能力类型、常用命令和安全边界。"
 ---
 
-# 插件系统（Plugin System）
+# 插件系统
 
-插件系统让你能够在不修改 OpenClaw 核心代码的情况下，扩展其功能——添加新工具、接入新的模型提供商、创建新的聊天通道，甚至运行后台服务。
+插件就是给 OpenClaw 加能力的“小组件”。
 
----
+你不需要修改 OpenClaw 核心代码，就能通过插件增加：
 
-## 快速开始
-
-```bash
-# 查看已安装的插件
-openclaw plugins list
-
-# 安装插件
-openclaw plugins install <插件名称>
-
-# 启用/禁用插件
-openclaw plugins enable <插件名称>
-openclaw plugins disable <插件名称>
-
-# 卸载插件
-openclaw plugins uninstall <插件名称>
-```
+- 新模型提供商。
+- 新聊天通道。
+- 新工具。
+- 语音、转录、图片生成、视频生成。
+- 网页搜索、网页抓取。
+- 后台服务、Webhook、自动化能力。
 
 ---
 
-## 可用官方插件
+## 先用人话理解
 
-| 插件名称 | 功能 |
-|---------|------|
-| `lobster` | 工作流运行时 |
-| `firecrawl` | 高级网页抓取 |
-| `clawhub` | 技能包市场客户端 |
-| `reactions` | 消息表情回应 |
-| `thinking` | 扩展思考模式 |
+OpenClaw 核心像一台主机。插件像外接设备。
 
----
-
-## 发现与优先级（Discovery & Priority）
-
-OpenClaw 按以下顺序搜索插件：
-
-1. 项目级插件目录：`.openclaw/plugins/`
-2. 用户级插件目录：`~/.openclaw/plugins/`
-3. 系统级插件目录：`/etc/openclaw/plugins/`
-4. 官方插件注册表（ClawHub）
-
-优先级从高到低，项目级插件会覆盖同名的系统级插件。
-
----
-
-## 插件 ID 与命名
-
-每个插件有唯一的标识符，格式为：
+主机不需要把所有设备都焊死在里面，只要约定好接口：
 
 ```text
-<作者>/<插件名>[@版本]
+插件先说清楚：我是谁、我能做什么、我需要哪些配置。
+OpenClaw 再决定：要不要启用、能不能加载、该交给谁使用。
 ```
 
-例如：`openclaw/firecrawl@2.1.0`、`community/my-tool`
-
-官方插件可以省略作者前缀，直接使用插件名。
+这就是最新版很重要的 **manifest-first** 思路。
 
 ---
 
-## 插件配置（Config）
+## manifest-first 是什么？
 
-在全局配置文件中为插件提供配置：
+每个原生插件都有一个清单文件，通常叫：
 
-```json5
-{
-  plugins: {
-    "firecrawl": {
-      apiKey: "${FIRECRAWL_API_KEY}",
-      stealth: true
-    },
-    "lobster": {
-      maxParallelSteps: 5,
-      defaultTimeout: 60
-    }
-  }
-}
+```text
+openclaw.plugin.json
 ```
+
+这个文件会先告诉 OpenClaw：
+
+- 插件 ID 是什么。
+- 插件属于哪类能力。
+- 需要哪些配置项。
+- 提供哪些命令、通道、模型或工具。
+- 是否有启用条件。
+
+这样 OpenClaw 不必一上来就执行插件代码，也能先做配置校验、诊断提示和 UI 展示。
+
+对新手来说，你只要记住：
+
+**先看清单，再加载代码。这样更可控，也更容易排查问题。**
 
 ---
 
-## 插件槽（Plugin Slots）
+## 插件能提供哪些能力
 
-插件可以在以下系统钩子点（Slots）注入自定义逻辑：
-
-| 插件槽 | 触发时机 |
-|--------|----------|
-| `before-message` | Agent 接收消息前 |
-| `after-message` | Agent 响应消息后 |
-| `before-tool-call` | 工具调用前 |
-| `after-tool-call` | 工具调用后 |
-| `on-session-start` | 会话开始时 |
-| `on-session-end` | 会话结束时 |
-
----
-
-## 插件类型详解
-
-::: details Provider 插件：扩展模型提供商
-
-Provider 插件让你接入 OpenClaw 官方未支持的 LLM 服务：
-
-```json5
-// 插件配置示例
-{
-  type: "provider",
-  name: "my-llm",
-  endpoint: "https://api.my-llm.com/v1",
-  models: ["my-model-7b", "my-model-13b"]
-}
-```
-:::
-
-::: details 通道插件（Channel Plugin）：添加新聊天通道
-
-通道插件将 OpenClaw 接入新的消息平台：
-
-- 实现 `onMessage(msg)` 接收消息
-- 调用 `sendMessage(reply)` 发送响应
-- 注册到 `channel` 插件槽
-
-支持的通道类型：Webhook、WebSocket、轮询
-:::
-
-::: details Agent 工具插件：为 Agent 添加新工具
-
-```javascript
-// 工具插件示例结构
-module.exports = {
-  name: "my-tool",
-  description: "我的自定义工具",
-  parameters: {
-    input: { type: "string", description: "输入内容" }
-  },
-  async execute({ input }) {
-    // 工具逻辑
-    return { result: `处理结果: ${input}` };
-  }
-};
-```
-:::
-
-::: details 注册 Gateway RPC 方法
-
-插件可以向 Gateway 注册新的 API 方法，供外部系统调用：
-
-```javascript
-gateway.register("myPlugin.doSomething", async (params) => {
-  return { status: "ok", data: params };
-});
-```
-:::
-
-::: details 自动回复命令（斜杠命令）
-
-插件可以注册斜杠命令，用户在聊天中输入 `/命令名` 即可触发：
-
-```javascript
-plugin.registerCommand("/analyze", async (args, context) => {
-  return `分析结果：${args}`;
-});
-```
-:::
-
-::: details 后台服务
-
-插件可以运行持久化的后台进程，如定时任务、消息监听等：
-
-```javascript
-plugin.startService(async () => {
-  // 每分钟执行一次
-  setInterval(() => checkForUpdates(), 60000);
-});
-```
-:::
+| 能力 | 例子 |
+|------|------|
+| 模型提供商 | OpenAI、Anthropic、Google、Ollama、vLLM |
+| 通道 | Matrix、Mattermost、Twitch、Zalo、QQ、WeChat |
+| 语音 | TTS、语音识别、实时语音 |
+| 媒体 | 图片理解、图片生成、视频生成 |
+| 网页能力 | Web search、Web fetch、Firecrawl |
+| Gateway 发现 | Bonjour、远程发现 |
+| 后台服务 | Webhook、自动化、诊断服务 |
+| 工具 | Agent 可以调用的新能力 |
 
 ---
 
-## Control UI（界面管理）
+## 常用命令
 
-在 OpenClaw 的 Web 界面中，你可以通过"设置 → 插件"页面图形化管理插件：启用/禁用、查看日志、修改配置。
+```bash
+# 查看插件
+openclaw plugins list
 
----
+# 查看某个插件详情
+openclaw plugins inspect <插件ID>
 
-## Skills 集成
+# 安装插件
+openclaw plugins install <插件来源>
 
-插件可以通过 Skills 接口将其功能暴露为 Agent 可调用的技能：
+# 启用插件
+openclaw plugins enable <插件ID>
 
-```json5
-{
-  skills: {
-    "my-tool-skill": {
-      provider: "my-tool-plugin",
-      description: "使用我的工具处理数据"
-    }
-  }
-}
+# 禁用插件
+openclaw plugins disable <插件ID>
+
+# 检查插件问题
+openclaw plugins doctor
+```
+
+如果你不知道插件 ID，先运行：
+
+```bash
+openclaw plugins list
 ```
 
 ---
 
-## 分发（Distribution）
+## 常见插件状态怎么理解
 
-开发完成的插件可以通过以下方式分发：
+| 状态 | 意思 |
+|------|------|
+| enabled | 已启用 |
+| disabled | 已安装但未启用 |
+| blocked | 被配置或策略阻止 |
+| config valid | 配置能通过校验 |
+| compatibility advisory | 能用，但用了较旧模式 |
+| legacy warning | 能用，但建议迁移到新接口 |
+| hard error | 加载或配置有硬错误，需要处理 |
 
-1. **发布到 ClawHub**：通过 `openclaw clawhub publish` 提交审核
-2. **私有 npm 包**：发布到私有 npm 仓库，团队内共享
-3. **本地路径**：直接将插件目录放入 `.openclaw/plugins/`
-
----
-
-## 安全
-
-::: warning 插件安全审核
-- 安装第三方插件前，请阅读其源码和权限申请列表
-- 插件运行在与 OpenClaw 主进程相同的权限下，恶意插件可能访问系统资源
-- 优先选择 ClawHub 上标注为 "Verified" 的官方审核插件
-- 定期更新插件以获取安全补丁
-:::
+看到 warning 不一定代表坏了。先读提示，再决定是否需要改。
 
 ---
 
-_下一步：[工具系统总览](/tutorials/tools/)_
+## 插件和通道是什么关系？
+
+很多聊天通道现在都是插件化的。
+
+例如 Matrix、Mattermost、Nostr、Twitch、Zalo、QQ、WeChat 等，都可以通过插件接入。插件负责“怎么和这个平台说话”，Gateway 负责“把消息放进统一流程”。
+
+你可以这样理解：
+
+```text
+平台协议细节 → 通道插件负责
+统一会话、权限、回复流 → Gateway 负责
+```
+
+这样核心系统不用写死每个平台的特殊逻辑。
+
+---
+
+## 插件和工具是什么关系？
+
+工具是 Agent 能调用的动作。插件可以注册工具。
+
+例如：
+
+- 网页抓取插件提供 `web_fetch`。
+- 搜索插件提供搜索工具。
+- 通道插件提供消息动作。
+- 语音插件提供转录或朗读能力。
+
+Agent 看到的是“工具”，OpenClaw 背后会找到对应插件去执行。
+
+---
+
+## 插件安全
+
+插件运行时可能拥有和 OpenClaw 相近的权限。安装第三方插件前要谨慎。
+
+建议：
+
+1. 优先使用官方或可信来源。
+2. 看插件需要哪些权限。
+3. 不要随便安装来历不明的本地路径插件。
+4. 对高风险工具配合审批、allowlist 和沙箱。
+5. 出问题先跑 `openclaw doctor` 和 `openclaw plugins doctor`。
+
+---
+
+## 开发者该记住的边界
+
+如果你要写插件，记住这几条：
+
+- 插件通过 `openclaw/plugin-sdk/*` 和核心通信。
+- 插件自己的逻辑留在插件目录里。
+- 核心不应该写死某个插件 ID。
+- 新能力尽量通过清单和能力注册表达。
+- 兼容老 hook，但新插件优先用明确能力注册。
+
+---
+
+## 继续阅读
+
+- [工具系统总览](/tutorials/tools/)
+- [创建 Skills](/tutorials/tools/creating-skills)
+- [通道总览](/tutorials/channels/)
+- [功能特性](/tutorials/concepts/features)

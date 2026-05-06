@@ -1,223 +1,172 @@
 ---
 title: "文档中心"
 sidebarTitle: "文档中心"
-description: "OpenClaw 快速入门：文档中心。如果你是 OpenClaw 的新用户，请从 快速入门 开始。"
+description: "OpenClaw 中文文档站的完整导览：从安装、Web 控制 UI、频道、模型、网关、节点到源码剖析。"
 ---
 
 # 文档中心
 
-::: info 说明
-如果你是 OpenClaw 的新用户，请从 [快速入门](/start/getting-started) 开始。
+如果你第一次打开 OpenClaw，不要急着把所有页面都看完。
+先记住一句话：**OpenClaw 是一个运行在你自己电脑或服务器上的 AI 助手总机。**
+
+它把 Telegram、WhatsApp、Slack、Discord、WebChat 等聊天入口接进来，再把消息交给后面的 AI 模型和工具去处理。你可以把它想成家里的“总开关”：灯、空调、门铃都接到这里，你只需要知道开关在哪。
+
+::: tip 新手路线
+第一次使用，建议按这个顺序走：
+
+1. [快速入门](/tutorials/getting-started/getting-started)
+2. [安装 OpenClaw](/tutorials/installation/)
+3. [打开 Web 控制 UI](/tutorials/web/)
+4. [连接一个聊天频道](/tutorials/channels/)
+5. [选择一个 AI 大脑](/tutorials/providers/)
+6. [遇到问题看帮助中心](/tutorials/help/)
 :::
 
+---
 
-使用这些中心页面来发现每一个页面，包括深入探讨和参考文档中未出现在左侧导航栏的内容。
+## 先把 OpenClaw 跑起来
+
+这些页面解决“我电脑上怎么有一个能工作的 OpenClaw”。
+
+- [快速入门](/tutorials/getting-started/getting-started)：最短路线，适合第一次安装
+- [安装 OpenClaw](/tutorials/installation/)：脚本安装、npm 安装、检查环境
+- [安装向导](/tutorials/getting-started/wizard)：用 `openclaw onboard --install-daemon` 一步步配置
+- [基础设置](/tutorials/getting-started/setup)：装好之后要检查什么
+- [更新与回滚](/tutorials/installation/updating)：以后升级时看这里
+- [Docker 部署](/tutorials/installation/docker)：想放到服务器或容器里运行
+- [Nix 安装](/tutorials/installation/nix)：适合熟悉 Nix 的用户
 
 ---
 
-## 从这里开始
+## 认识核心架构
 
-- [首页](/)
-- [快速入门](/start/getting-started)
-- [快速开始](/start/quickstart)
-- [入门引导](/start/onboarding)
-- [向导](/start/wizard)
-- [设置](/start/setup)
-- [仪表盘（本地网关）](http://127.0.0.1:18789/)
-- [帮助](/help)
-- [文档目录](/start/docs-directory)
-- [配置](/tutorials/gateway/configuration)
-- [配置示例](/tutorials/gateway/configuration-examples)
-- [OpenClaw 助手](/start/openclaw)
-- [展示案例](/start/showcase)
-- [背景故事](/start/lore)
+这些页面解决“它到底是怎么工作的”。
+
+- [通俗架构说明](/tutorials/concepts/architecture)：用前台、总机、后厨的比喻理解 OpenClaw
+- [系统架构设计](/tutorials/concepts/system-architecture)：更适合开发者的源码级结构
+- [功能特性](/tutorials/concepts/features)：当前 OpenClaw 能做什么
+- [智能体循环](/tutorials/concepts/agent-loop)：一条消息从进来到回复出去的过程
+- [会话管理](/tutorials/concepts/session)：为什么 OpenClaw 能记住一段对话
+- [多智能体路由](/tutorials/concepts/multi-agent)：多个 AI 助手如何分工
+- [模型故障转移](/tutorials/concepts/model-failover)：主模型不可用时如何切到备用模型
 
 ---
 
-## 安装与更新
+## Web 控制 UI
 
-- [Docker](/install/docker)
-- [Nix](/install/nix)
-- [更新/回滚](/install/updating)
-- [Bun 工作流（实验性）](/install/bun)
+新版 OpenClaw 很强调浏览器控制台。它不是装饰品，而是日常管理入口。
 
----
+- [Web 控制 UI 总览](/tutorials/web/)：从浏览器查看网关、频道、会话和配置
+- 默认地址：`http://127.0.0.1:18789/`
+- 常用命令：`openclaw dashboard`
 
-## 核心概念
-
-- [架构](/tutorials/concepts/architecture)
-- [功能特性](/tutorials/concepts/features)
-- [网络中心](/network)
-- [智能体（Agent）运行时](/tutorials/concepts/agent)
-- [智能体（Agent）工作区](/tutorials/concepts/agent-workspace)
-- [记忆](/tutorials/concepts/memory)
-- [智能体（Agent）循环](/tutorials/concepts/agent-loop)
-- [流式传输与分块](/tutorials/concepts/streaming)
-- [多智能体路由](/tutorials/concepts/multi-agent)
-- [压缩](/tutorials/concepts/compaction)
-- [会话（Session）](/tutorials/concepts/session)
-- [会话（Session）（别名）](/tutorials/concepts/sessions)
-- [会话（Session）修剪](/tutorials/concepts/session-pruning)
-- [会话（Session）工具](/tutorials/concepts/session-tool)
-- [队列](/tutorials/concepts/queue)
-- [斜杠命令](/tutorials/tools/slash-commands)
-- [RPC 适配器](/reference/rpc)
-- [TypeBox 模式](/tutorials/concepts/typebox)
-- [时区处理](/tutorials/concepts/timezone)
-- [在线状态](/tutorials/concepts/presence)
-- [发现与传输](/tutorials/gateway/discovery)
-- [Bonjour](/tutorials/gateway/bonjour)
-- [通道（Channel）路由](/tutorials/channels/channel-routing)
-- [群组](/tutorials/channels/groups)
-- [群消息](/tutorials/channels/group-messages)
-- [模型故障转移](/tutorials/concepts/model-failover)
-- [OAuth](/tutorials/concepts/oauth)
+如果你不知道现在 OpenClaw 有没有跑起来，先打开这里看一眼，通常比翻日志更直观。
 
 ---
 
-## 提供商与接入
+## 网关与运维
 
-- [聊天通道（Channel）中心](/channels)
-- [模型提供商中心](/tutorials/providers/models)
-- [WhatsApp](/tutorials/channels/whatsapp)
-- [Telegram](/tutorials/channels/telegram)
-- [Telegram (grammY 说明)](/tutorials/channels/grammy)
-- [Slack](/tutorials/channels/slack)
-- [Discord](/tutorials/channels/discord)
-- [Mattermost](/tutorials/channels/mattermost)（插件）
-- [Signal](/tutorials/channels/signal)
-- [BlueBubbles (iMessage)](/tutorials/channels/bluebubbles)
-- [iMessage（旧版）](/tutorials/channels/imessage)
-- [位置解析](/tutorials/channels/location)
-- [WebChat](/web/webchat)
-- [Webhook](/tutorials/automation/webhook)
-- [Gmail Pub/Sub](/tutorials/automation/gmail-pubsub)
+网关是 OpenClaw 的“总机”。它负责收消息、分发任务、管理频道、连接节点、保存运行状态。
+
+- [网关运维手册](/tutorials/gateway/)：状态检查、启动停止、重启和常用命令
+- [配置文件](/tutorials/gateway/configuration)：OpenClaw 的配置放在哪里、怎么改
+- [配置示例](/tutorials/gateway/configuration-examples)：照着改的样板
+- [发现与传输](/tutorials/gateway/discovery)：本机和局域网里如何找到网关
+- [配对](/tutorials/gateway/pairing)：设备和网关如何建立信任
+- [远程访问](/tutorials/gateway/remote)：把 OpenClaw 放到服务器时要注意什么
+- [安全](/tutorials/gateway/security)：不要把总机裸奔到公网
+- [网关故障排查](/tutorials/gateway/troubleshooting)：启动失败、断连、端口占用
 
 ---
 
-## 网关（Gateway）与运维
+## 聊天频道
 
-- [网关（Gateway）运维手册](/gateway)
-- [网络模型](/tutorials/gateway/network-model)
-- [网关（Gateway）配对](/tutorials/gateway/pairing)
-- [网关（Gateway）锁](/tutorials/gateway/gateway-lock)
-- [后台进程](/tutorials/gateway/background-process)
-- [健康检查](/tutorials/gateway/health)
-- [心跳](/tutorials/gateway/heartbeat)
-- [Doctor 诊断](/tutorials/gateway/doctor)
-- [日志](/tutorials/gateway/logging)
-- [沙箱（Sandbox）](/tutorials/gateway/sandboxing)
-- [仪表盘](/web/dashboard)
-- [控制面板 UI](/web/control-ui)
-- [远程访问](/tutorials/gateway/remote)
-- [远程网关 README](/tutorials/gateway/remote-gateway-readme)
-- [Tailscale](/tutorials/gateway/tailscale)
-- [安全](/tutorials/gateway/security)
-- [故障排查](/tutorials/gateway/troubleshooting)
+频道就是 OpenClaw 和外界说话的“门口”。你可以只开一个频道，也可以同时开很多个。
+
+- [频道总览](/tutorials/channels/)：不知道选哪个入口时先看这里
+- [Telegram](/tutorials/channels/telegram)：新手最推荐，配置清楚，反馈快
+- [WhatsApp](/tutorials/channels/whatsapp)：适合手机即时通讯场景
+- [Discord](/tutorials/channels/discord)：适合社区、群组和开发者服务器
+- [Slack](/tutorials/channels/slack)：适合团队协作
+- [Signal](/tutorials/channels/signal)：适合更重视隐私的用户
+- [BlueBubbles / iMessage](/tutorials/channels/bluebubbles)：适合 Apple 生态
+- [Mattermost](/tutorials/channels/mattermost)、[Matrix](/tutorials/channels/matrix)、[Teams](/tutorials/channels/msteams)：适合团队和自托管协作场景
+
+频道在新版 OpenClaw 中多由插件承载。普通用户只需要知道：**能在向导里启用的，就按向导来；向导找不到的，再看对应插件说明。**
 
 ---
 
-## 工具与自动化
+## AI 模型和提供商
 
-- [工具界面](/tools)
-- [OpenProse](/prose)
-- [CLI 参考](/cli)
-- [Exec 工具](/tutorials/tools/exec)
-- [提权模式](/tutorials/tools/elevated)
-- [定时任务](/tutorials/automation/cron-jobs)
-- [定时任务 vs 心跳](/tutorials/automation/cron-vs-heartbeat)
-- [思考与详细模式](/tutorials/tools/thinking)
-- [模型](/tutorials/concepts/models)
-- [子智能体](/tutorials/tools/subagents)
-- [Agent Send CLI](/tutorials/tools/agent-send)
-- [终端 UI](/web/tui)
-- [浏览器控制](/tutorials/tools/browser)
-- [浏览器（Linux 故障排查）](/tutorials/tools/browser-linux-troubleshooting)
-- [投票](/tutorials/automation/poll)
+模型提供商就是 OpenClaw 后面的“AI 大脑”。OpenClaw 负责调度，真正写代码、总结、分析的是模型。
+
+- [选择 AI 大脑](/tutorials/providers/)：新手从这里开始
+- [OpenAI](/tutorials/providers/openai)：OpenAI API 和兼容端点
+- [Anthropic](/tutorials/providers/anthropic)：Claude 系列模型
+- [OpenRouter](/tutorials/providers/openrouter)：一个入口访问多家模型
+- [Ollama](/tutorials/providers/ollama)：在自己电脑上跑本地模型
+- [vLLM](/tutorials/providers/vllm)：自托管高性能推理
+- [LiteLLM](/tutorials/providers/litellm)：统一代理多家模型
+- [自定义模型提供商](/tutorials/providers/custom)：接入 OpenAI 兼容或 Anthropic 兼容服务
 
 ---
 
-## 节点、媒体、语音
+## 工具、插件与节点
 
-- [节点概述](/nodes)
-- [摄像头](/nodes/camera)
-- [图片](/nodes/images)
-- [音频](/nodes/audio)
-- [位置命令](/nodes/location-command)
-- [语音唤醒](/nodes/voicewake)
-- [对话模式](/nodes/talk)
+工具让 AI 不只会聊天，还能做事。插件让 OpenClaw 能扩展新能力。节点让手机、桌面应用或远程设备也能参与进来。
 
----
-
-## 平台
-
-- [平台概述](/platforms)
-- [macOS](/platforms/macos)
-- [iOS](/platforms/ios)
-- [Android](/platforms/android)
-- [Windows (WSL2)](/platforms/windows)
-- [Linux](/platforms/linux)
-- [Web 界面](/web)
+- [工具系统](/tutorials/tools/)：浏览器、命令、网页、画布、技能等能力概览
+- [插件专题](/tutorials/plugins/)：理解 `openclaw.plugin.json`、能力注册和插件加载
+- [浏览器工具](/tutorials/tools/browser)：让 Agent 操作网页
+- [Exec 命令工具](/tutorials/tools/exec)：让 Agent 在允许范围内运行命令
+- [技能系统](/tutorials/tools/skills)：给 Agent 加一份“做事说明书”
+- [子智能体](/tutorials/tools/subagents)：把复杂任务拆给多个 Agent
+- [节点总览](/tutorials/nodes/)：手机、桌面或远程设备如何连接网关
+- [Canvas 工具](/tutorials/tools/canvas)：在节点上展示交互式画布
 
 ---
 
-## macOS 配套应用（高级）
+## 自动化
 
-- [macOS 开发设置](/platforms/mac/dev-setup)
-- [macOS 菜单栏](/platforms/mac/menu-bar)
-- [macOS 语音唤醒](/platforms/mac/voicewake)
-- [macOS 语音浮层](/platforms/mac/voice-overlay)
-- [macOS WebChat](/platforms/mac/webchat)
-- [macOS Canvas](/platforms/mac/canvas)
-- [macOS 子进程](/platforms/mac/child-process)
-- [macOS 健康检查](/platforms/mac/health)
-- [macOS 图标](/platforms/mac/icon)
-- [macOS 日志](/platforms/mac/logging)
-- [macOS 权限](/platforms/mac/permissions)
-- [macOS 远程](/platforms/mac/remote)
-- [macOS 签名](/platforms/mac/signing)
-- [macOS 发布](/platforms/mac/release)
-- [macOS 网关（launchd）](/platforms/mac/bundled-gateway)
-- [macOS XPC](/platforms/mac/xpc)
-- [macOS 技能](/platforms/mac/skills)
-- [macOS Peekaboo](/platforms/mac/peekaboo)
+自动化适合“到点做”“有事件就做”“外部系统通知后做”的任务。
+
+- [自动化总览](/tutorials/automation/)：先理解 Hooks、Cron、Webhook、Heartbeat
+- [Hooks 事件钩子](/tutorials/automation/hooks)：系统发生事情时自动触发
+- [Cron 定时任务](/tutorials/automation/cron-jobs)：每天、每周、每小时运行
+- [Cron vs Heartbeat](/tutorials/automation/cron-vs-heartbeat)：什么时候用哪一种
+- [后台任务 Tasks](/tutorials/automation/tasks)：查看后台任务是否成功
+- [Task Flow 任务流](/tutorials/automation/taskflow)：跟踪多步骤流程
+- [Standing Orders 长期指令](/tutorials/automation/standing-orders)：给 Agent 长期授权和边界
+- [Webhook](/tutorials/automation/webhook)：让 GitHub、监控系统或其他服务触发 OpenClaw
+- [自动化故障排查](/tutorials/automation/troubleshooting)：任务不执行时从哪里查
 
 ---
 
-## 工作区（Workspace）与模板
+## 源码剖析
 
-- [技能](/tutorials/tools/skills)
-- [ClawHub](/tutorials/tools/clawhub)
-- [技能配置](/tutorials/tools/skills-config)
-- [默认 AGENTS](/reference/AGENTS.default)
-- [模板：AGENTS](/reference/templates/AGENTS)
-- [模板：BOOTSTRAP](/reference/templates/BOOTSTRAP)
-- [模板：HEARTBEAT](/reference/templates/HEARTBEAT)
-- [模板：IDENTITY](/reference/templates/IDENTITY)
-- [模板：SOUL](/reference/templates/SOUL)
-- [模板：TOOLS](/reference/templates/TOOLS)
-- [模板：USER](/reference/templates/USER)
+如果你不只是想用，还想读懂 OpenClaw 源码，可以走这两条线。
+
+- [完整工程主线](/beginner-openclaw-guide/)：从入口、配置、通道、插件、队列一路读到实现细节
+- [AI 核心框架主线](/beginner-openclaw-framework-focus/)：更聚焦 Agent、模型、上下文、工具调用
+
+这两部分不是官方文档翻译，而是本站按“慢慢讲清楚”的方式整理的源码导读。
 
 ---
 
-## 实验（探索性）
+## 遇到问题
 
-- [入门引导配置协议](/experiments/onboarding-config-protocol)
-- [定时任务加固说明](/experiments/plans/cron-add-hardening)
-- [群组策略加固说明](/experiments/plans/group-policy-hardening)
-- [研究：记忆](/experiments/research/memory)
-- [模型配置探索](/experiments/proposals/model-config)
+- [帮助中心](/tutorials/help/)：先从这里判断问题类型
+- [常见问题 FAQ](/tutorials/help/faq)：新手最常问的问题
+- [调试指南](/tutorials/help/debugging)：看日志、开调试、定位异常
+- [故障排查](/tutorials/help/troubleshooting)：Agent 不回复、频道断连、网关起不来
+- [环境变量](/tutorials/help/environment)：密钥和配置不生效时看这里
 
----
+记住一个最朴素的排查顺序：
 
-## 项目
+```bash
+openclaw doctor
+openclaw gateway status
+openclaw dashboard
+```
 
-- [致谢](/reference/credits)
-
----
-
-## 测试与发布
-
-- [测试](/reference/test)
-- [发布清单](/reference/RELEASING)
-- [设备型号](/reference/device-models)
+先确认环境，再确认网关，最后进浏览器看状态。这样最省力。

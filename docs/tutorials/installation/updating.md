@@ -31,7 +31,7 @@ curl -fsSL https://openclaw.ai/install.sh | bash
   安装脚本会**仅在**仓库是干净状态时执行 `git pull --rebase`。
 
 - 对于**全局安装**，脚本底层使用 `npm install -g openclaw@latest`。
-- 历史说明：`clawdbot` 作为兼容性垫片仍然可用。
+- 历史说明：如果你的旧环境里仍有 `clawdbot` 命令，它只是兼容性垫片；新文档和新命令统一使用 `openclaw`。
 
 ---
 
@@ -70,7 +70,7 @@ openclaw update --channel stable
 
 使用 `--tag <dist-tag|version>` 进行一次性安装标签/版本。
 
-参见 [开发通道](/install/development-channels) 了解通道语义和发行说明。
+参见 [开发通道](/tutorials/installation/development-channels) 了解通道语义和发行说明。
 
 注意：对于 npm 安装，网关启动时会记录更新提示（检查当前通道标签）。通过 `update.checkOnStart: false` 禁用。
 
@@ -106,6 +106,21 @@ openclaw update
 - 默认重启网关（使用 `--no-restart` 跳过）。
 
 如果你通过 **npm/pnpm** 安装（无 git 元数据），`openclaw update` 会尝试通过你的包管理器更新。如果无法检测安装方式，请使用"更新（全局安装）"。
+
+### dev 通道 fetch 失败时
+
+最新版 `openclaw update` 在 dev 通道下会更保守：如果 `git fetch --all --prune --tags` 失败，会立刻停止更新，不再继续 preflight、rebase 或 build。
+
+这通常是好事。它避免在 refs 已经过期或 tag 冲突时继续操作，导致你以为更新了，其实 Gateway 还在旧 runtime 上。
+
+如果你看到 `fetch-failed`：
+
+```bash
+git fetch --all --prune --tags
+openclaw update --dry-run
+```
+
+先解决 git 报错，例如 tag 冲突、远端不可达、权限问题，再重新运行 `openclaw update`。
 
 ---
 
@@ -188,7 +203,7 @@ openclaw logs --follow
 - Windows（WSL2）：`systemctl --user restart openclaw-gateway[-<profile>].service`
   - `launchctl`/`systemctl` 仅在服务已安装时有效；否则运行 `openclaw gateway install`。
 
-运行手册 + 确切服务标签：[网关运行手册](/gateway)
+运行手册 + 确切服务标签：[网关运行手册](/tutorials/gateway/)
 
 ---
 

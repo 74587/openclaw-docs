@@ -158,8 +158,8 @@ openclaw plugins install ./openclaw-dingtalk
 ### 启动并测试
 
 ```bash
-# 启动网关
-openclaw gateway
+# 重启网关，让配置生效
+openclaw gateway restart
 
 # 查看日志确认连接状态
 openclaw logs --follow

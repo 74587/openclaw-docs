@@ -56,6 +56,6 @@ description: "OpenClaw 核心概念：会话（Sessions）。会话（Session）
 
 ## 相关文档
 
-- [会话管理配置](/tutorials/gateway/session) — 详细的会话配置选项
+- [会话管理配置](/tutorials/concepts/session) — 详细的会话配置选项
 - [记忆功能](/tutorials/concepts/memory) — AI 如何记住重要信息
 - [会话压缩](/tutorials/concepts/compaction) — 长对话的自动压缩机制

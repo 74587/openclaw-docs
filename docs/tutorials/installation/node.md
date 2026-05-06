@@ -1,14 +1,14 @@
 ---
 title: "安装 Node.js"
 sidebarTitle: "安装 Node.js"
-description: "OpenClaw 安装部署：安装 Node.js。OpenClaw 需要 Node.js 22 LTS 以上（推荐 v24）。这篇文章教你怎么安装它。"
+description: "OpenClaw 安装部署：安装 Node.js。OpenClaw 推荐 Node.js 24，也支持 Node.js 22.14+。这篇文章教你怎么安装它。"
 ---
 
 # 安装 Node.js
 
-OpenClaw 需要 **Node.js 22 LTS 以上**（推荐 v24）。这篇文章教你怎么安装它。
+OpenClaw 推荐 **Node.js 24**，也支持 **Node.js 22.14+**。这篇文章教你怎么安装它。
 
-> **已经装好了？** 先用 `node -v` 确认版本，看到 `v22.16.x` 或更大的数字就可以跳过这篇。推荐安装 v24。
+> **已经装好了？** 先用 `node -v` 确认版本。看到 `v24.x.x` 最好；看到 `v22.14.x` 或更高也可以使用。
 
 ---
 
@@ -21,8 +21,8 @@ node -v
 ```
 
 - 看到 `v24.x.x` → 最佳，推荐版本
-- 看到 `v22.16.x` 或更大 → 可以使用（v22 LTS 最低需要 22.16）
-- 看到 `v22.x.x`（低于 22.16）或更小版本 → 需要升级
+- 看到 `v22.14.x` 或更大 → 可以使用
+- 看到 `v22.x.x`（低于 22.14）或更小版本 → 需要升级
 - 提示"找不到命令" → 没有安装，按下面步骤安装
 
 ---
@@ -115,7 +115,7 @@ npm -v
 # 安装 fnm
 curl -fsSL https://fnm.vercel.app/install | bash
 
-# 安装并使用 Node 22
+# 安装并使用 Node 24
 fnm install 24
 fnm use 24
 ```
@@ -126,7 +126,7 @@ fnm use 24
 # 安装 nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
 
-# 重新打开终端，然后安装 Node 22
+# 重新打开终端，然后安装 Node 24
 nvm install 24
 nvm use 24
 ```

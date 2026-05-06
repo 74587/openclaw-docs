@@ -12,9 +12,9 @@ Mattermost 是一个可自托管的团队消息平台；详见官方网站
 
 ---
 
-## 需要插件
+## 插件说明
 
-Mattermost 作为插件提供，不包含在核心安装中。
+Mattermost 通过插件提供。当前版本可能已随 OpenClaw 一起提供，也可能由向导提示你安装；如果你的环境里没有它，再按下面方式手动安装。
 
 通过 CLI 安装（npm 注册表）：
 
@@ -31,7 +31,7 @@ openclaw plugins install ./extensions/mattermost
 如果你在配置/引导向导中选择 Mattermost 且检测到 git 检出，
 OpenClaw 会自动提供本地安装路径。
 
-详情：[插件](/tutorials/tools/plugin)
+详情：[插件专题](/tutorials/plugins/)
 
 ---
 
@@ -40,7 +40,7 @@ OpenClaw 会自动提供本地安装路径。
 1. 安装 Mattermost 插件。
 2. 创建 Mattermost 机器人账户并复制 **Bot Token**。
 3. 复制 Mattermost **基础 URL**（如 `https://chat.example.com`）。
-4. 配置 OpenClaw 并启动网关。
+4. 配置 OpenClaw，然后重启 Gateway，让配置生效。
 
 最小配置：
 

@@ -146,7 +146,7 @@ ansible-galaxy collection install -r requirements.yml
 
 ## 更新 OpenClaw
 
-Ansible 安装器会将 OpenClaw 设置为手动更新。参见 [更新](/install/updating) 了解标准更新流程。
+Ansible 安装器会将 OpenClaw 设置为手动更新。参见 [更新](/tutorials/installation/updating) 了解标准更新流程。
 
 要重新运行 Ansible playbook（例如用于配置变更）：
 
@@ -222,6 +222,6 @@ openclaw channels login
 ## 相关链接
 
 - [openclaw-ansible](https://github.com/openclaw/openclaw-ansible) — 完整部署指南
-- [Docker](/install/docker) — 容器化网关设置
+- [Docker](/tutorials/installation/docker) — 容器化网关设置
 - [沙箱](/tutorials/gateway/sandboxing) — 智能体沙箱配置
 - [多智能体沙箱与工具](/tutorials/tools/multi-agent-sandbox-tools) — 按智能体隔离

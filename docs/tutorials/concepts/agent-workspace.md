@@ -22,9 +22,7 @@ description: "OpenClaw 核心概念：智能体工作区（Agent Workspace）。
 
 ```json5
 {
-  agent: {
-    workspace: "~/.openclaw/workspace",
-  },
+  agents: { defaults: { workspace: "~/.openclaw/workspace" } },
 }
 ```
 
@@ -33,7 +31,7 @@ description: "OpenClaw 核心概念：智能体工作区（Agent Workspace）。
 如果你已经自行管理工作区文件，可以禁用引导文件创建：
 
 ```json5
-{ agent: { skipBootstrap: true } }
+{ agents: { defaults: { skipBootstrap: true } } }
 ```
 
 ---

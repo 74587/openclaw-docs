@@ -6,21 +6,35 @@ description: "OpenClaw 快速入门：安装后配置与常见问题。完成首
 
 # 安装后配置与常见问题
 
-完成首次安装后，这里汇总了你最可能需要做的事情：连接聊天软件、验证运行状态、日常管理命令，以及常见问题解决方法。
+完成首次安装后，这里汇总了你最可能需要做的事情：打开控制 UI、连接聊天软件、验证运行状态、日常管理命令，以及常见问题解决方法。
 
 ---
 
-## 第一件事：连接聊天软件
+## 第一件事：先打开控制 UI
+
+安装完先不要急着接 Telegram 或 WhatsApp。先打开浏览器控制 UI，确认主链路能工作：
+
+```bash
+openclaw dashboard
+```
+
+如果能在浏览器里发消息并收到回复，说明 Gateway、Agent 和模型基本没问题。
+
+---
+
+## 第二件事：连接聊天软件
 
 安装完 OpenClaw 只是第一步。要让 AI 能接收你的消息，还需要把你的聊天软件（通道）连接上来。
 
 **推荐先接 Telegram，最简单：**
 
 ```bash
-openclaw channels login --channel telegram
+openclaw config set channels.telegram.enabled true
+openclaw config set channels.telegram.botToken "把你的Token粘贴到这里"
+openclaw config set channels.telegram.dmPolicy pairing
 ```
 
-运行后按提示输入你的 Telegram Bot Token，完成后重启网关：
+Telegram 不走扫码登录。把 BotFather 给你的 Token 写进配置后，重启网关：
 
 ```bash
 openclaw gateway restart
@@ -30,11 +44,11 @@ openclaw gateway restart
 
 **支持的其他聊天软件：**
 
-| 软件 | 命令 |
-|------|------|
-| Discord | `openclaw channels login --channel discord` |
-| WhatsApp | `openclaw channels login --channel whatsapp` |
-| 飞书 | [查看飞书接入教程](../channels/feishu) |
+| 软件 | 新手怎么开始 |
+|------|--------------|
+| Discord | 需要创建 Discord Bot，再把 Bot Token 写入配置。看[接入 Discord](../channels/discord) |
+| WhatsApp | 用 `openclaw channels login --channel whatsapp` 扫码登录 |
+| 飞书 | 需要飞书应用凭证。看[飞书接入教程](../channels/feishu) |
 
 ---
 
@@ -52,7 +66,8 @@ openclaw doctor
 
 ```bash
 openclaw gateway status    # 检查网关是否在运行
-openclaw channels status   # 检查所有通道的连接状态
+openclaw channels status --probe  # 检查所有通道的连接状态
+openclaw dashboard         # 打开控制 UI
 ```
 
 ---
@@ -62,7 +77,7 @@ openclaw channels status   # 检查所有通道的连接状态
 ### 网关管理
 
 ```bash
-openclaw gateway start     # 启动网关
+openclaw onboard --install-daemon  # 首次安装后台服务
 openclaw gateway stop      # 停止网关
 openclaw gateway restart   # 重启网关
 openclaw gateway status    # 查看状态
@@ -129,12 +144,23 @@ openclaw configure --section model
 
 ## 如何更新 OpenClaw
 
+推荐重新运行安装脚本，或使用内置更新命令：
+
 ```bash
-npm install -g openclaw@latest
+openclaw update
+openclaw doctor
 openclaw gateway restart
 ```
 
-更新后网关自动应用新版本，不需要重新配置。
+如果你是 npm 全局安装，也可以：
+
+```bash
+npm install -g openclaw@latest
+openclaw doctor
+openclaw gateway restart
+```
+
+更完整的流程看[更新指南](/tutorials/installation/updating)。
 
 ---
 
@@ -143,7 +169,7 @@ openclaw gateway restart
 ::: details 网关停止了怎么重启？
 
 ```bash
-openclaw gateway start
+openclaw onboard --install-daemon
 ```
 
 如果已经安装为系统服务，重启电脑后会自动恢复。

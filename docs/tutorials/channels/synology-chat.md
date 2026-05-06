@@ -6,14 +6,14 @@ description: "OpenClaw 通道接入：Synology Chat（插件）。通过 Synolog
 
 # Synology Chat（插件）
 
-状态：通过插件支持（Webhook 私信通道）。  
+状态：通过插件支持（Webhook 私信通道）。
 OpenClaw 接收 Synology Chat 的 outgoing webhook 入站消息，再通过 incoming webhook 发送回复。
 
 ---
 
-## 需要插件
+## 插件说明
 
-Synology Chat 作为插件提供，不包含在核心安装中。
+Synology Chat 通过插件提供。当前版本可能已随 OpenClaw 一起提供，也可能由向导提示你安装；如果你的环境里没有它，再按下面方式手动安装。
 
 从 git 仓库运行时，可使用本地安装路径：
 
@@ -21,7 +21,7 @@ Synology Chat 作为插件提供，不包含在核心安装中。
 openclaw plugins install ./extensions/synology-chat
 ```
 
-详情可参考：[插件](/tutorials/tools/plugin)
+详情可参考：[插件专题](/tutorials/plugins/)
 
 ---
 

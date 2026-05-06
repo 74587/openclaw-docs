@@ -10,11 +10,27 @@ Docker 是**可选的**。仅当你需要容器化网关（Gateway）或验证 D
 
 ---
 
+## 先说结论
+
+如果你只是想在自己的电脑上把 OpenClaw 跑起来，请先回到[安装总览](/tutorials/installation/)用一键脚本。
+Docker 不是新手必选项。
+
+Docker 更像给 OpenClaw 准备一个独立盒子：
+盒子里运行 OpenClaw，盒子外是你的电脑。这样更容易搬走、重建、隔离，但也多了一层 Docker 的学习成本。
+
+---
+
 ## Docker 适合我吗？
 
-- **是**：你想要一个隔离的、可随时丢弃的网关环境，或者想在不进行本地安装的主机上运行 OpenClaw。
-- **否**：你在自己的机器上运行，只想获得最快的开发循环。请使用常规安装流程。
-- **沙箱说明**：智能体（Agent）沙箱（Sandbox）也使用 Docker，但它**不**要求整个网关在 Docker 中运行。参见 [沙箱](/tutorials/gateway/sandboxing)。
+| 情况 | 建议 |
+|------|------|
+| 我只想最快用起来 | 不用 Docker，走一键安装脚本 |
+| 我想在 VPS 或服务器上长期跑 | 可以考虑 Docker |
+| 我想随时删掉重建环境 | Docker 合适 |
+| 我不懂 Docker 是什么 | 先别用 Docker |
+| 我只是想开沙箱 | 不需要把整个 Gateway 放进 Docker |
+
+沙箱说明：智能体沙箱也使用 Docker，但它**不**要求整个网关在 Docker 中运行。参见 [沙箱](/tutorials/gateway/sandboxing)。
 
 本指南涵盖：
 
@@ -50,6 +66,9 @@ Docker 是**可选的**。仅当你需要容器化网关（Gateway）或验证 D
 - 通过 Docker Compose 启动网关
 - 生成网关 Token 并写入 `.env`
 
+跑完以后，不要急着改 compose 文件。
+先打开控制面板，确认 Gateway 能正常访问。
+
 可选环境变量：
 
 - `OPENCLAW_DOCKER_APT_PACKAGES` — 构建时安装额外的 apt 包
@@ -62,12 +81,14 @@ Docker 是**可选的**。仅当你需要容器化网关（Gateway）或验证 D
 - 将 Token 粘贴到控制面板（Settings → token）。
 - 需要再次获取 URL？运行 `docker compose run --rm openclaw-cli dashboard --no-open`。
 
+Token 可以理解成“控制面板门钥匙”。看到 unauthorized 时，通常不是坏了，而是还没把钥匙填进去或设备还没批准。
+
 配置和工作区（Workspace）写入主机：
 
 - `~/.openclaw/`
 - `~/.openclaw/workspace`
 
-在 VPS 上运行？参见 [Hetzner（Docker VPS）](/install/hetzner)。
+在 VPS 上运行？参见 [Hetzner（Docker VPS）](/tutorials/installation/hetzner)。
 
 ### Shell 辅助工具（可选）
 
@@ -86,6 +107,9 @@ echo 'source ~/.clawdock/clawdock-helpers.sh' >> ~/.zshrc && source ~/.zshrc
 然后使用 `clawdock-start`、`clawdock-stop`、`clawdock-dashboard` 等命令。运行 `clawdock-help` 查看所有命令。
 
 详见 [`ClawDock` 辅助工具 README](https://github.com/openclaw/openclaw/blob/main/scripts/shell-helpers/README.md)。
+
+如果你刚开始学 Docker，可以先跳过 ClawDock。
+等你每天都要启动、停止、查看面板时，再装这个辅助工具。
 
 ### 手动流程（compose）
 
@@ -113,13 +137,16 @@ docker compose run --rm openclaw-cli devices list
 docker compose run --rm openclaw-cli devices approve <requestId>
 ```
 
-更多详情：[面板](/web/dashboard)、[设备](/cli/devices)。
+更多详情：[面板](/tutorials/web/)、[设备](/tutorials/nodes/)。
 
 ### 额外挂载（可选）
 
 如果你想将额外的主机目录挂载到容器中，在运行 `docker-setup.sh` 之前设置
 `OPENCLAW_EXTRA_MOUNTS`。它接受逗号分隔的 Docker 绑定挂载列表，并通过生成
 `docker-compose.extra.yml` 应用到 `openclaw-gateway` 和 `openclaw-cli`。
+
+挂载就是把你电脑上的某个文件夹“递给”容器。
+只读挂载 `:ro` 更安全；读写挂载 `:rw` 更方便，但容器里的程序也能改这些文件。
 
 示例：
 
@@ -219,6 +246,9 @@ docker compose run --rm openclaw-cli \
 ### 权限 + EACCES
 
 镜像以 `node`（uid 1000）用户运行。如果你在 `/home/node/.openclaw` 上看到权限错误，确保你的主机绑定挂载的所有者是 uid 1000。
+
+`EACCES` 基本可以先理解成“没有权限碰这个文件”。
+遇到它时，先检查挂载目录的所有者和权限。
 
 示例（Linux 主机）：
 

@@ -88,7 +88,7 @@ openclaw gateway status --json
 
 相关：
 
-- [/web/control-ui](/web/control-ui)
+- [/web/control-ui](/tutorials/web/)
 - [/gateway/authentication](/tutorials/gateway/authentication)
 - [/gateway/remote](/tutorials/gateway/remote)
 
@@ -219,8 +219,8 @@ openclaw status
 
 相关：
 
-- [/nodes/troubleshooting](/nodes/troubleshooting)
-- [/nodes/index](/nodes/index)
+- [/nodes/troubleshooting](/tutorials/nodes/)
+- [/nodes/index](/tutorials/nodes/)
 - [/tools/exec-approvals](/tutorials/tools/exec-approvals)
 
 ---

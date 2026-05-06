@@ -91,7 +91,7 @@ description: "OpenClaw 通道接入：Signal（signal-cli）。状态：外部 C
 1. 安装 `signal-cli`（JVM 或原生构建）。
 2. 链接机器人账户：
    - `signal-cli link -n "OpenClaw"` 然后在 Signal 中扫描 QR 码。
-3. 配置 Signal 并启动网关。
+3. 配置 Signal 并重启 Gateway。
 
 示例：
 
@@ -109,7 +109,7 @@ description: "OpenClaw 通道接入：Signal（signal-cli）。状态：外部 C
 }
 ```
 
-多账户支持：使用 `channels.signal.accounts` 进行按账户配置和可选的 `name`。参见 [`gateway/configuration`](/tutorials/gateway/configuration#telegramaccounts--discordaccounts--slackaccounts--signalaccounts--imessageaccounts) 了解共享模式。
+多账户支持：使用 `channels.signal.accounts` 进行按账户配置和可选的 `name`。参见 [`gateway/configuration`](/tutorials/gateway/configuration) 了解共享模式。
 
 ---
 

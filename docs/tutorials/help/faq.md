@@ -68,7 +68,7 @@ Agent 不回复通常有以下几个原因，按顺序逐一检查：
    ```bash
    openclaw gateway status
    ```
-   如果 Gateway 未运行，执行 `openclaw gateway start` 启动它。
+   如果 Gateway 未运行，先执行 `openclaw onboard --install-daemon` 安装后台服务；已经安装过服务时，执行 `openclaw gateway restart`。
 
 4. **查看日志定位具体错误**
    ```bash
@@ -151,7 +151,7 @@ OpenClaw 支持多种 AI 模型后端：
 
 ```bash
 # 在其他设备上配对到远程 Gateway
-openclaw pairing --gateway https://your-gateway-host:3000
+openclaw pairing --gateway https://your-gateway-host:18789
 ```
 
 更多内容请参考 [Gateway 配置指南](../gateway/index)。

@@ -1,20 +1,19 @@
 ---
 title: "macOS App 首次启动指南"
 sidebarTitle: "macOS App 首次启动"
-description: "OpenClaw 快速入门：macOS App 首次启动指南。> 这是 方式一：macOS 桌面应用 的安装指南。 > 如果你想用命令行安装，请看命令行向导安装指南。"
+description: "OpenClaw 快速入门：macOS App 首次启动指南。macOS App 是可选伴侣应用，推荐先用 openclaw onboard --install-daemon 跑通 Gateway 和控制 UI。"
 ---
 
 # macOS App 首次启动指南
 
-> 这是 **方式一：macOS 桌面应用** 的安装指南。
-> 如果你想用命令行安装，请看[命令行向导安装指南](./wizard)。
+> macOS App 是可选的伴侣应用。第一次使用时，官方当前更推荐先运行 `openclaw onboard --install-daemon`，把 Gateway 和控制 UI 跑通；如果你已经选择使用 macOS App，这篇再带你完成首次启动。
 
 跟着下面的步骤完成首次启动，全程大约 5～10 分钟。
 
-**还没有下载？** 前往 [GitHub Releases](https://github.com/openclaw/openclaw/releases) 页面，下载最新版本的 `.dmg` 文件，双击安装后再继续。
+**还没有下载？** 前往 [GitHub Releases](https://github.com/openclaw/openclaw/releases) 页面查看是否有当前版本的 macOS 安装包。若暂时没有适合你的 App 构建，请改用[命令行向导安装指南](./wizard)。
 
 **开始之前，请确认你已经有了 AI API 密钥。**
-还没有？→ [回到快速开始，先获取 API 密钥](./getting-started#第一步准备-api-密钥)
+还没有？→ [回到快速开始，先看准备事项](./getting-started#先准备这-3-样东西)
 
 ---
 
