@@ -134,6 +134,50 @@ auto（自动）  ask（询问）  deny（拒绝）
 
 ---
 
+## 限制参数：`argPattern`
+
+有时你不是想允许整个命令，而是只允许“这个命令带某种参数”。
+
+例如，只允许：
+
+```bash
+python3 safe.py
+```
+
+但不允许：
+
+```bash
+python3 other.py
+```
+
+可以在 allowlist 条目里加 `argPattern`：
+
+```json
+{
+  "version": 1,
+  "agents": {
+    "main": {
+      "allowlist": [
+        {
+          "pattern": "python3",
+          "argPattern": "^safe\\.py$"
+        }
+      ]
+    }
+  }
+}
+```
+
+人话解释：
+
+- `pattern` 匹配命令本身。
+- `argPattern` 匹配命令后面的参数。
+- 如果同一个命令还有一个不带 `argPattern` 的宽松条目，宽松条目仍可能放行其他参数。
+
+所以，如果你的目标是“只能跑 safe.py”，不要同时保留一个允许整个 `python3` 的条目。
+
+---
+
 ## 安全 Binaries（Safe Bins）
 
 OpenClaw 内置了一份安全命令白名单（Safe Bins），这些命令被认为风险极低，会根据策略自动处理：

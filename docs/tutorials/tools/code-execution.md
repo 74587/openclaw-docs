@@ -5,7 +5,9 @@ sidebarTitle: "远程代码执行"
 
 # Code Execution：在远程沙盒里做 Python 分析
 
-`code_execution` 是给分析任务用的远程 Python 沙盒。它和本机 `exec` 不一样。
+`code_execution` 是给分析任务用的远程 Python 沙盒。它由内置 `xai` 插件注册，走 xAI Responses API。
+
+它和本机 `exec` 不一样。
 
 一句话记住：
 
@@ -39,13 +41,13 @@ code_execution 动远程沙盒
 
 ## 配置 xAI Key
 
-`code_execution` 通过 xAI Responses API 的远程沙盒执行。你需要配置：
+你需要配置 xAI API Key。最简单是把它放到 Gateway 环境变量里：
 
 ```bash
 export XAI_API_KEY="xai-..."
 ```
 
-也可以把 key 放到 xAI 插件配置里。
+也可以把 key 放到 xAI 插件配置里。这个 key 会同时服务 `code_execution`、`x_search` 等 xAI 工具。
 
 示意配置：
 
@@ -55,6 +57,9 @@ export XAI_API_KEY="xai-..."
     entries: {
       xai: {
         config: {
+          webSearch: {
+            apiKey: "xai-..."
+          },
           codeExecution: {
             enabled: true,
             model: "grok-4-1-fast",
@@ -66,6 +71,14 @@ export XAI_API_KEY="xai-..."
     }
   }
 }
+```
+
+默认模型是 `grok-4-1-fast`，默认超时是 30 秒。
+
+配置完成后重启 Gateway：
+
+```bash
+openclaw gateway restart
 ```
 
 ---
@@ -91,6 +104,8 @@ export XAI_API_KEY="xai-..."
 远程沙盒是临时的，不是你的长期 notebook。
 不要假设它记得上一次的数据，也不要把它当成本机终端。
 
+如果没有配置 xAI key，工具会返回 `missing_xai_api_key` 这类结构化错误。看到它时，不要去改 Python 代码，先补 `XAI_API_KEY` 或 xAI 插件里的 `webSearch.apiKey`。
+
 ---
 
 ## 继续阅读
@@ -98,4 +113,3 @@ export XAI_API_KEY="xai-..."
 - [Exec 命令工具](/tutorials/tools/exec)
 - [Grok Search](/tutorials/tools/grok-search)
 - [Web 网络工具](/tutorials/tools/web)
-

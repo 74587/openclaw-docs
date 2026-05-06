@@ -18,6 +18,9 @@ description: "OpenClaw 工具系统：循环检测（Loop Detection）。防止 
 
 **循环检测**（`tools.loopDetection`）就是为了解决这个问题而设计的安全机制。它会监控 Agent 最近的工具调用历史，一旦发现无进展的重复模式，就会介入并停止 Agent，避免无意义的循环继续下去。
 
+最新版里还有一个配套保护：**压缩后循环保护**（post-compaction guard）。
+当上下文太长触发压缩并重试后，如果 Agent 立刻又用同一个工具、同样参数、同样结果反复打转，OpenClaw 会用 `compaction_loop_persisted` 中止这次运行，避免无限烧 token。
+
 ## 启用循环检测
 
 在配置文件中添加以下内容即可启用：
@@ -43,12 +46,16 @@ description: "OpenClaw 工具系统：循环检测（Loop Detection）。防止 
       enabled: true,
       warningThreshold: 10,
       criticalThreshold: 20,
+      unknownToolThreshold: 10,
       globalCircuitBreakerThreshold: 30,
       historySize: 30,
       detectors: {
         genericRepeat: true,
         knownPollNoProgress: true,
         pingPong: true,
+      },
+      postCompactionGuard: {
+        windowSize: 3,
       },
     },
   },
@@ -75,8 +82,10 @@ description: "OpenClaw 工具系统：循环检测（Loop Detection）。防止 
 |---|---|---|
 | `warningThreshold` | `10` | 当检测到循环迹象时，向 Agent 发送警告，提示它调整策略 |
 | `criticalThreshold` | `20` | 强制 Agent 停止当前行为并上报结果 |
+| `unknownToolThreshold` | `10` | 同一个不存在或不可用工具被反复调用多少次后拦截 |
 | `globalCircuitBreakerThreshold` | `30` | 无论 Agent 状态如何，直接硬停止——终极保护 |
 | `historySize` | `30` | 分析最近多少次工具调用记录来判断是否存在循环 |
+| `postCompactionGuard.windowSize` | `3` | 压缩重试后观察多少次工具调用；同样调用重复到窗口大小就中止 |
 
 这种分级设计给了 Agent 一次"自我纠正"的机会。只有在 Agent 无法响应警告时，才会触发强制停止。
 

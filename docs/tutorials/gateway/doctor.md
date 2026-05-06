@@ -188,6 +188,29 @@ Doctor 会：
 强制所有模型使用单一 API 或将成本归零。Doctor 会发出警告以便你可以
 移除覆盖并恢复每模型 API 路由 + 成本。
 
+### 2c) Codex 路由修复
+
+新版 Codex 原生运行时使用的是：
+
+```text
+openai/* 模型引用 + agentRuntime.id: "codex"
+```
+
+旧配置里可能还留着 `openai-codex/*`。这很容易让人以为自己在走原生 Codex harness，实际却可能仍走 PI 的 OpenAI 路径。
+
+`openclaw doctor --fix` 现在会尝试修复这些旧路由：
+
+- 把 `openai-codex/gpt-*` 改成 `openai/gpt-*`。
+- 当 Codex 插件已安装、启用、提供 `codex` harness，并且 OAuth 可用时，选择 `agentRuntime.id: "codex"`。
+- 否则选择 `agentRuntime.id: "pi"`，避免配置看起来能用但运行时找不到 harness。
+- 同步修复默认模型、fallback、heartbeat、subagent、compaction、hooks、通道模型覆盖和持久化会话里的旧路由状态。
+
+如果你以前手动写过 Codex 模型配置，升级后优先跑：
+
+```bash
+openclaw doctor --fix
+```
+
 ### 3) 旧版状态迁移（磁盘布局）
 
 Doctor 可以将旧的磁盘布局迁移到当前结构：

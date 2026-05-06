@@ -109,9 +109,11 @@ openclaw sandbox explain --json
 - `group:sessions`：`sessions_list`、`sessions_history`、`sessions_send`、`sessions_spawn`、`session_status`
 - `group:memory`：`memory_search`、`memory_get`
 - `group:ui`：`browser`、`canvas`
-- `group:automation`：`cron`、`gateway`
+- `group:automation`：`heartbeat_respond`、`cron`、`gateway`
 - `group:messaging`：`message`
 - `group:nodes`：`nodes`
+- `group:agents`：`agents_list`、`update_plan`
+- `group:media`：`image`、`image_generate`、`music_generate`、`video_generate`、`tts`
 - `group:openclaw`：所有内置 OpenClaw 工具（不包括模型提供商（Provider）插件）
 
 ---

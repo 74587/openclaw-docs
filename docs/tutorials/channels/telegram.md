@@ -762,6 +762,11 @@ curl "https://api.telegram.org/bot<bot_token>/getUpdates"
 
     默认：长轮询。
 
+    长轮询模式下，OpenClaw 只有在一条 Telegram update 成功分发后，才会把“我已经处理到这里了”的重启水位写入磁盘。
+    如果处理函数失败，这条 update 仍然可以在当前进程里重试，也不会被写成“重启后不用再处理”。
+
+    这句话对排错很重要：不要把“看到了 update”误以为“update 已经安全完成”。真正安全的是成功分发后的水位记录。
+
     Webhook 模式：
 
     - 设置 `channels.telegram.webhookUrl`

@@ -142,4 +142,71 @@ openclaw logs --follow
 
 ---
 
+## 在 VS Code 里调试 Gateway
+
+如果你是在看 OpenClaw 源码，而不是只使用命令行，那么 VS Code 调试很有用。
+新版本构建出来的文件名可能带 hash，所以必须打开 source map，断点才能正确跳回 `src/` 里的 TypeScript 源码。
+
+最省心的方式：
+
+1. 打开 VS Code 左侧的 **Run and Debug** 面板。
+2. 选择 **Rebuild and Debug Gateway**。
+3. 点击开始调试。
+
+这个配置会自动删除 `dist`，重新构建，并打开 source map。
+适合你刚改完源码、想从干净构建开始调试的场景。
+
+如果你想自己控制构建，按下面做。
+
+Linux/macOS：
+
+```bash
+export OUTPUT_SOURCE_MAPS=1
+pnpm clean:dist && pnpm build
+```
+
+Windows PowerShell：
+
+```powershell
+$env:OUTPUT_SOURCE_MAPS="1"
+pnpm clean:dist
+pnpm build
+```
+
+Windows CMD：
+
+```bat
+set OUTPUT_SOURCE_MAPS=1
+pnpm clean:dist
+pnpm build
+```
+
+然后在 VS Code 里选择 **Debug Gateway** 再启动。
+
+调试时你可以：
+
+- 在 `src/` 目录里的 TypeScript 文件打断点。
+- 单步执行。
+- 查看变量。
+- 查看调用栈。
+
+如果调试过程中还需要用构建后的 OpenClaw CLI，可以另开一个终端运行：
+
+```bash
+node ./openclaw.mjs
+```
+
+或者临时建一个别名：
+
+```bash
+alias openclaw-build="node $(pwd)/openclaw.mjs"
+```
+
+::: tip 两个调试配置怎么选
+刚改完源码、想自动重新构建，选 **Rebuild and Debug Gateway**。
+已经构建好了、只是想反复启动调试，选 **Debug Gateway**。
+:::
+
+---
+
 _下一步：[故障排查](./troubleshooting)_
